@@ -10,13 +10,12 @@ public class CrazyPiece {
     int x;
     int y;
 
-    CrazyPiece(int IDPeca, int tipoDePeca, int IDEquipa, String alcunha) {
-        this.IDPeca = IDPeca;
-        this.tipoDePeca = tipoDePeca;
-        this.IDEquipa = IDEquipa;
-        this.alcunha = alcunha;
+    CrazyPiece(int IDPeca, int tipoDePeca, int IDEquipa, String alcunha){
+        this.IDPeca=IDPeca;
+        this.tipoDePeca=tipoDePeca;
+        this.IDEquipa=IDEquipa;
+        this.alcunha=alcunha;
     }
-
     CrazyPiece() {
 
     }
@@ -31,24 +30,22 @@ public class CrazyPiece {
         return y;
     }
 
-
-    public int getID(int IDPeca) {
-        this.IDPeca = IDPeca;
+    public int getId() {
         return IDPeca;
-    }/*
-    public String getImagePNG(){
-        if(IDEquipa == 0){
-            getIcon("icon8-king-50-white.png");
-        }
-        if(IDEquipa == 1){
-            getIcon("icon8-king-50-black.png");
-        }
-    }/*
-    public String toString(){
-        if (){                                                 É MAIS OU MENOS ISTO
-            return IDdaPeca + tipoDaPeca + IDEquipa + alcunha + "@ (" + x + ", " + y ")";
+    }
+
+
+    public String getImagePNG() {
+        if(IDEquipa == 0 ){
+            return "black.png";
         }else{
-            return IDdaPeca + tipoDaPeca + IDEquipa + alcunha + "@ está fora!";
+            return "white.png";
         }
-    }*/
+    }
+
+    public String toString() {
+        //É MAIS OU MENOS ISTO
+        return IDPeca + " " + tipoDePeca + " " + IDEquipa + " " + alcunha + " @ (" + x + ", " + y + ")";
+
+    }
 }

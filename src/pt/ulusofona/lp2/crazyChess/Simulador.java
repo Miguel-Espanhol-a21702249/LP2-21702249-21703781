@@ -9,12 +9,11 @@ import java.util.HashMap;
 public class Simulador {
     int sizeTabuleiro;
     int numeroDePecas;
-    ArrayList<CrazyPiece> listaPecas = new ArrayList<>();
-    static HashMap<Integer,CrazyPiece> mapaDePecas = null;
+    List<CrazyPiece> listaPecas = new ArrayList<>();
 
-    public boolean iniciaJogo(File ficheiroInicial){
+
+    public boolean iniciaJogo(File ficheiroInicial) {
         int count =0 ,linhaTabuleiro=0;
-        mapaDePecas = new HashMap<>();
         try {
             Scanner leitorFicheiro = new Scanner(ficheiroInicial);
 
@@ -40,7 +39,6 @@ public class Simulador {
                             if (Integer.parseInt(dados[2]) == 0 || Integer.parseInt(dados[2])==1) {
                                 CrazyPiece piece = new CrazyPiece(Integer.parseInt(dados[0]),Integer.parseInt(dados[1]),Integer.parseInt(dados[2]),dados[3]);
 
-                                mapaDePecas.put(Integer.parseInt(dados[0]),piece);
                                 listaPecas.add(piece);
                             }
                         }
@@ -49,11 +47,15 @@ public class Simulador {
                 }else {
                     CrazyPiece piece = new CrazyPiece();
                     for (int coluna =0 ;coluna < sizeTabuleiro ; coluna++) {
-                        if( Integer.parseInt(dados[coluna]) != 0 ) {
-                            piece = mapaDePecas.get(Integer.parseInt(dados[coluna]));
-                            piece.posicaoX(coluna);
-                            piece.posicaoY(linhaTabuleiro);
-                            mapaDePecas.put(Integer.parseInt(dados[coluna]),piece);
+                        if( Integer.parseInt(dados[coluna]) != 0) {
+                            for (int i = 0; i < listaPecas.size(); i++) {
+                                if (listaPecas.get(i).getId() == Integer.parseInt(dados[coluna])) {
+                                        listaPecas.get(i).posicaoX(coluna);
+                                        listaPecas.get(i).posicaoY(linhaTabuleiro);
+                                        System.out.println(listaPecas.get(i).toString());
+
+                                }
+                            }
                         }
                     }
                     linhaTabuleiro++;
@@ -61,7 +63,11 @@ public class Simulador {
             }
 
             leitorFicheiro.close();
+            System.out.println();
+            for(CrazyPiece p :listaPecas){
 
+                System.out.println(p.toString());
+            }
             return true;
 
         } catch(FileNotFoundException exception) {
@@ -74,36 +80,70 @@ public class Simulador {
     public int getTamanhoTabuleiro(){
         return sizeTabuleiro;
     }
-/*
-    public boolean processaJogada(int xO, int yO, int xD, int Yd){
 
-    }*/
+    public boolean processaJogada(int xO, int yO, int xD, int yD){
+        int equipaAtual=0;
+        for(int i = 0; i < listaPecas.size(); i++){
+            if(xO != xD && yO!=yD) {
+                if (listaPecas.get(i).x == xO && listaPecas.get(i).y == yO) {
+                    if (Math.abs(xO - xD) <= 1 && Math.abs(yO - yD) <= 1) {
+                        if (xD < sizeTabuleiro && yD < sizeTabuleiro) {
+                            if (0 < xD && 0 < yD) {
+                                for (int j = 0; j < listaPecas.size(); j++) {
+                                    if (listaPecas.get(j).x == xD && listaPecas.get(j).y == yD) {
+                                        if (listaPecas.get(j).IDEquipa == listaPecas.get(i).IDEquipa) {
+                                            return false;
+                                        } else {
+                                            listaPecas.remove(listaPecas.get(j));
+                                            listaPecas.get(i).x = xD;
+                                            listaPecas.get(i).y = yD;
+                                            return true;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+
+    }
+
     public List<CrazyPiece> getPecasMalucas(){
         return listaPecas;
-    }/*
-    public boolean jogoTerminado(){
+    }
 
-    }*/
+    public boolean jogoTerminado(){
+        return false;
+    }
     public List<String> getAutores() {
         List<String> dados = new ArrayList<>();
         dados.add("a21702249 - Miguel Espanhol");
         dados.add("a21703781 - Rui Prata");
         return dados;
     }
-    /*public List<String> getResultados(){
+    public List<String> getResultados(){
+        return null;
+    }
 
-    }*/
     public int getIDPeca(int x, int y){
-        for (int i = 0; i< listaPecas.size; i++){
-            if(listaPecas.get(i).x == x){
-                if(listaPecas.get(i).y == y){
-                    return ;
-                }
+        for(int i=0;i<listaPecas.size();i++){
+            if(listaPecas.get(i).x==x && listaPecas.get(i).y==y){
+                return listaPecas.get(i).IDPeca;
             }
         }
+        return 0;
     }
-    /*
-    public int getIDEquipaAJogar(){
-
-    }*/
+    public int getIDEquipaAJogar() {
+        int turno = 0;
+        if (turno % 2 == 0) {
+            turno++;
+            return 0;
+        } else {
+            turno++;
+            return 1;
+        }
+    }
 }
