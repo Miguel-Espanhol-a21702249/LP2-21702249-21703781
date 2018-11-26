@@ -97,7 +97,7 @@ public class Simulador {
                                             listaPecas.remove(listaPecas.get(j));
                                             listaPecas.get(i).x = xD;
                                             listaPecas.get(i).y = yD;
-                                            return true;
+                                            return true; //true
                                             }
                                         }
                                     }
