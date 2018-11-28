@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.HashMap;
 
 public class Simulador {
     int sizeTabuleiro;
@@ -211,7 +210,7 @@ public class Simulador {
     public int getIDPeca(int x, int y){
         for(int i=0;i<listaPecas.size();i++){
             if(listaPecas.get(i).x==x && listaPecas.get(i).y==y){
-                return listaPecas.get(i).IDPeca;
+                return listaPecas.get(i).iDPeca;
             }
         }
         return 0;

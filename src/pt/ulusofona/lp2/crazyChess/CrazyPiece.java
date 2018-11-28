@@ -1,18 +1,18 @@
 package pt.ulusofona.lp2.crazyChess;
 
 public class CrazyPiece {
-    int IDPeca;
+    int iDPeca;
     int tipoDePeca;
-    int IDEquipa;
+    int iDEquipa;
     String alcunha;
     int x;
     int y;
     boolean morri=true;
 
-    public CrazyPiece(int IDPeca, int tipoDePeca, int idEquipa, String alcunha){
-        this.IDPeca = IDPeca;
+    public CrazyPiece(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha){
+        this.iDPeca = iDPeca;
         this.tipoDePeca = tipoDePeca;
-        this.IDEquipa = idEquipa;
+        this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
     }
 
@@ -41,15 +41,15 @@ public class CrazyPiece {
     int getTipoDePeca(){
         return tipoDePeca;
     }
-    int getIDEquipa(){
-        return IDEquipa;
+    int getiDEquipa(){
+        return iDEquipa;
     }
     String getAlcunha(){
         return alcunha;
     }
 
     public int getId() {
-        return IDPeca;
+        return iDPeca;
     }
     boolean getMorri(){
         return morri;
@@ -57,7 +57,7 @@ public class CrazyPiece {
 
 
     public String getImagePNG() {
-        if(IDEquipa == 0 ){
+        if(iDEquipa == 0 ){
             return "black.png";
         }else{
             return "white.png";
@@ -67,9 +67,9 @@ public class CrazyPiece {
     public String toString() {
         if(getMorri() == false) {
             //É MAIS OU MENOS ISTO
-            return IDPeca + " | " + tipoDePeca + " | " + IDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+            return iDPeca + " | " + tipoDePeca + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
         }else{
-            return IDPeca + " | " + tipoDePeca + " | " + IDEquipa + " | " + alcunha + " @ (n/a)";
+            return iDPeca + " | " + tipoDePeca + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
         }
     }
 }
