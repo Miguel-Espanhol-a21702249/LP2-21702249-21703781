@@ -144,9 +144,9 @@ public class Simulador {
     public boolean jogoTerminado(){
         int pecaPreta=0, pecaBranca=0;
         for (CrazyPiece peca : listaPecas){
-            if (peca.IDEquipa == 0 && !peca.morri){
+            if (peca.iDEquipa == 0 && !peca.morri){
                 pecaPreta++;
-            } else if (peca.IDEquipa == 1 && !peca.morri){
+            } else if (peca.iDEquipa == 1 && !peca.morri){
                 pecaBranca++;
             }
         }
