@@ -19,14 +19,14 @@ public class Simulador {
     String mensagem;
 
 
-    public boolean iniciaJogo(File ficheiroInicial) {
+    public boolean iniciaJogo (File ficheiroInicial) {
         int count =0 ,linhaTabuleiro=0;
 
         try {
 
             Scanner leitorFicheiro = new Scanner(ficheiroInicial);
 
-            while(leitorFicheiro.hasNextLine()) {
+            while (leitorFicheiro.hasNextLine()) {
 
                 String linha = leitorFicheiro.nextLine();
                 String dados[] = linha.split(":");
@@ -50,9 +50,9 @@ public class Simulador {
 
                 }else if (count < 2 + numeroDePecas) {// informaçoes sobre a peça
 
-                    if(!listaPecas.contains(Integer.parseInt(dados[0])) && Integer.parseInt(dados[0])>=1) {
+                    if (!listaPecas.contains(Integer.parseInt(dados[0])) && Integer.parseInt(dados[0])>=1) {
 
-                        if(Integer.parseInt(dados[1])>=0 && Integer.parseInt(dados[1])<=10) {
+                        if (Integer.parseInt(dados[1])>=0 && Integer.parseInt(dados[1])<=10) {
 
                             if (Integer.parseInt(dados[2]) == 0 || Integer.parseInt(dados[2])==1) {
 
@@ -89,7 +89,7 @@ public class Simulador {
             leitorFicheiro.close();
             return true;
 
-        } catch(FileNotFoundException exception) {
+        } catch (FileNotFoundException exception) {
             String mensagem = "Erro: o ficheiro " + ficheiroInicial.getName() + " nao foi encontrado.";
             System.out.println(mensagem);
             return false;
@@ -104,13 +104,13 @@ public class Simulador {
 
 
 
-    public boolean processaJogada(int xO, int yO, int xD, int yD){
+    public boolean processaJogada (int xO, int yO, int xD, int yD){
 
         int equipaAtual= getIDEquipaAJogar();
 
-        if(xO != xD && yO != yD || xD < sizeTabuleiro && yD < sizeTabuleiro || xD > 0 && yD > 0) {
+        if (xO != xD && yO != yD || xD < sizeTabuleiro && yD < sizeTabuleiro || xD > 0 && yD > 0) {
 
-            for(CrazyPiece peca : listaPecas){
+            for (CrazyPiece peca : listaPecas){
 
                 if (peca.getX() == xO && peca.getY() == yO) { // procura por uma peça com as coordenadas xO e yO
 
@@ -157,11 +157,11 @@ public class Simulador {
                             turno++;
                             jogadasSemCaptura++;
 
-                            if(peca.getIDEquipa() == 0){
+                            if (peca.getIDEquipa() == 0){
 
                                 jogadaVPreta++;
 
-                            }else{
+                            }else {
 
                                 jogadaVBranca++;
 
@@ -172,7 +172,7 @@ public class Simulador {
 
                         }
 
-                        if(peca.getIDEquipa() == 0){
+                        if (peca.getIDEquipa() == 0){
 
                         jogadaINVPreta++;
 
@@ -194,7 +194,7 @@ public class Simulador {
     public boolean jogoTerminado(){
         int pecaPreta=0, pecaBranca=0;
 
-        for (CrazyPiece peca : listaPecas){
+        for ( CrazyPiece peca : listaPecas){
 
             if (peca.iDEquipa == 0 && !peca.morri){
 
@@ -207,26 +207,29 @@ public class Simulador {
             }
         }
 
-        if (pecaBranca == 0) {
-
+        if ( pecaBranca == 0) {
+            //vence preto
             vencedor = 1;
             return true;
         }
-        if (pecaPreta == 0){
+        if ( pecaPreta == 0){
 
             //vence branco
             vencedor = 0;
             return true;
         }
 
-        if(pecaBranca == 1 && pecaPreta == 1){
-            //vence preto
+        if ( pecaBranca == 1 && pecaPreta == 1){ // so ha uma peça de cada lado
+
+            //empate
             vencedor = 3;
             return true;
         }
 
-        if(pecaComidaPreta + pecaComidaBranca > 0 && jogadasSemCaptura == 10) {
+        if ( pecaComidaPreta + pecaComidaBranca > 0 && jogadasSemCaptura == 10) { //passaram 10 jogadas sem capturas
+
             return true;
+
         }
 
         return false;
@@ -253,12 +256,12 @@ public class Simulador {
 
         }
 
-        if( vencedor == 1 ){
+        if ( vencedor == 1 ){
 
             mensagem = "VENCERAM AS PRETAS";
 
         }
-        if( vencedor ==3){
+        if ( vencedor == 3){
 
             mensagem = "EMPATE";
 
@@ -287,11 +290,11 @@ public class Simulador {
 
     }
 
-    public int getIDPeca(int x, int y){
+    public int getIDPeca(int x, int y){ // retorna a peça que esta nas coordenadas pretendidas
 
-        for(int i=0;i<listaPecas.size();i++){
+        for ( int i=0;i<listaPecas.size();i++){
 
-            if(listaPecas.get(i).x==x && listaPecas.get(i).y==y){
+            if ( listaPecas.get(i).x==x && listaPecas.get(i).y==y ){
 
                 return listaPecas.get(i).iDPeca;
 
@@ -301,22 +304,24 @@ public class Simulador {
     }
     public int getIDEquipaAJogar() {
 
-        if (turno % 2 == 0) {
+        if ( turno % 2 == 0) { // se for par e a vez dos pretos
 
             return 0;
 
-        } else {
+        } else { // se for impar e a vez dos brancos
 
             return 1;
         }
     }
-    public void setTamanho(int sizeTabuleiro){
+    public void setTamanho ( int sizeTabuleiro ){
 
         this.sizeTabuleiro = sizeTabuleiro;
-    }
-    public void setCrazyPieces(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean morri){
 
-        listaPecas.add(new CrazyPiece(iDPeca, tipoDePeca, iDEquipa, alcunha, x, y, morri));
+    }
+
+    public void setCrazyPieces ( int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean morri){
+
+        listaPecas.add( new CrazyPiece(iDPeca, tipoDePeca, iDEquipa, alcunha, x, y, morri));
 
     }
 }
