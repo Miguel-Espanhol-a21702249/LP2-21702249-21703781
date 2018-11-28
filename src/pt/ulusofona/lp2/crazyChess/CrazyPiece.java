@@ -1,7 +1,5 @@
 package pt.ulusofona.lp2.crazyChess;
 
-import javax.swing.*;
-
 public class CrazyPiece {
     int IDPeca;
     int tipoDePeca;
@@ -10,29 +8,49 @@ public class CrazyPiece {
     int x;
     int y;
 
-    CrazyPiece(int IDPeca, int tipoDePeca, int IDEquipa, String alcunha){
-        this.IDPeca=IDPeca;
-        this.tipoDePeca=tipoDePeca;
-        this.IDEquipa=IDEquipa;
-        this.alcunha=alcunha;
-    }
-    CrazyPiece() {
-
+    public CrazyPiece(int IDPeca, int tipoDePeca, int idEquipa, String alcunha){
+        this.IDPeca = IDPeca;
+        this.tipoDePeca = tipoDePeca;
+        this.IDEquipa = idEquipa;
+        this.alcunha = alcunha;
     }
 
-    int posicaoX(int x) {
-        this.x = x;
+    public CrazyPiece(){}
+
+
+
+    int posicaoX(int x){
+        this.x=x;
         return x;
     }
 
-    int posicaoY(int y) {
-        this.y = y;
+    int posicaoY(int y){
+        this.y=y;
         return y;
+    }
+
+    int getX(){
+        return x;
+    }
+
+    int getY(){
+        return y;
+    }
+
+    int getTipoDePeca(){
+        return tipoDePeca;
+    }
+    int getIDEquipa(){
+        return IDEquipa;
+    }
+    String getAlcunha(){
+        return alcunha;
     }
 
     public int getId() {
         return IDPeca;
     }
+
 
 
     public String getImagePNG() {
