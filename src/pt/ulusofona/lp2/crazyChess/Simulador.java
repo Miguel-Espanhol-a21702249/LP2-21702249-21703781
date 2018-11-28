@@ -11,7 +11,7 @@ public class Simulador {
     int numeroDePecas;
     List<CrazyPiece> listaPecas = new ArrayList<>();
     int turno = 0;
-    int vencedor;
+    int vencedor = 3;
     int pecaComidaPreta= 0;
     int pecaComidaBranca  = 0;
     int jogadaVBranca = 0, jogadaVPreta = 0;
@@ -189,6 +189,9 @@ public class Simulador {
         if( vencedor == 1 ){
             mensagem = "VENCERAM AS PRETAS";
 
+        }
+        if( vencedor ==3){
+            mensagem = "EMPATE";
         }
         resultados.add("Resultado: " + mensagem );
         resultados.add("---");
