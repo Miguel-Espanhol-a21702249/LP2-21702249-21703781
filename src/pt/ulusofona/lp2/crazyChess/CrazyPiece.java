@@ -7,7 +7,7 @@ public class CrazyPiece {
     String alcunha;
     int x;
     int y;
-    boolean morri;
+    boolean morri=true;
 
     public CrazyPiece(int IDPeca, int tipoDePeca, int idEquipa, String alcunha){
         this.IDPeca = IDPeca;

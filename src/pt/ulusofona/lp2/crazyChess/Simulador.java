@@ -16,6 +16,7 @@ public class Simulador {
     int jogadaVBranca = 0, jogadaVPreta = 0;
     int jogadaINVBranca = 0, jogadaINVPreta = 0;
     int jogadasSemCaptura= 0;
+    boolean vitoriaSemJogar = false;
 
     String mensagem;
 
@@ -60,6 +61,7 @@ public class Simulador {
                                 if (listaPeca.getId() == Integer.parseInt(dados[coluna])) {
                                     listaPeca.posicaoX(coluna);
                                     listaPeca.posicaoY(linhaTabuleiro);
+                                    listaPeca.morri = false;
                                     System.out.println(listaPeca);
                                 }
                             }
@@ -143,7 +145,7 @@ public class Simulador {
     public boolean jogoTerminado(){
         int pecaPreta=0, pecaBranca=0;
         for (CrazyPiece peca : listaPecas){
-            if (peca.IDEquipa == 0){
+            if (peca.IDEquipa == 0 && !peca.morri){
                 pecaPreta++;
             } else {
                 pecaBranca++;
@@ -167,8 +169,6 @@ public class Simulador {
         if(pecaComidaPreta + pecaComidaBranca > 0 && jogadasSemCaptura == 10) {
             return true;
         }
-
-
 
         return false;
     }
