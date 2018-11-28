@@ -154,25 +154,25 @@ public class Simulador {
         }
         if(pecaBranca == 0) {
             vencedor = 1;
-            return false;
+            return true;
         }
         if(pecaPreta == 0){
             //vence branco
             vencedor = 0;
-            return false;
+            return true;
         }
 
         if(pecaBranca == 1 && pecaPreta == 1){
             vencedor = 3;
-            return false;
-        }
-
-        if(turno > 10){
             return true;
         }
 
+        if(turno > 10){
+            return false;
+        }
 
-        return true;
+
+        return false;
     }
 
 
