@@ -164,10 +164,7 @@ public class Simulador {
             vencedor = 3;
             return true;
         }
-        if(pecaComidaPreta + pecaComidaBranca == 0 && turno > 10) {
-            return true;
-        }
-        if(jogadasSemCaptura == 10){
+        if(pecaComidaPreta + pecaComidaBranca > 0 && jogadasSemCaptura == 10) {
             return true;
         }
 
