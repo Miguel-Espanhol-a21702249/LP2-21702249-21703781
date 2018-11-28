@@ -114,6 +114,7 @@ public class Simulador {
                             peca.posicaoY(yD);
                             turno++;
                             jogadasSemCaptura++;
+                            System.out.println(jogadasSemCaptura);
                             if(peca.getIDEquipa() == 0){
                                 jogadaVPreta++;
                             }else{
@@ -166,7 +167,7 @@ public class Simulador {
         if(pecaComidaPreta + pecaComidaBranca == 0 && turno > 10) {
             return true;
         }
-        if(jogadasSemCaptura > 10){
+        if(jogadasSemCaptura == 10){
             return true;
         }
 
