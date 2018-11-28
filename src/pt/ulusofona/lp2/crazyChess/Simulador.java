@@ -12,10 +12,10 @@ public class Simulador {
     List<CrazyPiece> listaPecas = new ArrayList<>();
     int turno = 0;
     int vencedor = 3;
-    int pecaComidaPreta= 0;
-    int pecaComidaBranca  = 0;
+    int pecaComidaPreta= 0, pecaComidaBranca = 0;
     int jogadaVBranca = 0, jogadaVPreta = 0;
     int jogadaINVBranca = 0, jogadaINVPreta = 0;
+
     String mensagem;
 
 
@@ -56,6 +56,7 @@ public class Simulador {
                     for (int coluna =0 ;coluna < sizeTabuleiro ; coluna++) {
                         if( Integer.parseInt(dados[coluna]) != 0) {
                             for (CrazyPiece listaPeca : listaPecas) {
+                                if(numeroDePecasBrancas == )
                                 if (listaPeca.getId() == Integer.parseInt(dados[coluna])) {
                                     listaPeca.posicaoX(coluna);
                                     listaPeca.posicaoY(linhaTabuleiro);
@@ -89,16 +90,10 @@ public class Simulador {
                 if (peca.getX() == xO && peca.getY() == yO) {
                     if (peca.getIDEquipa() == equipaAtual) {
                         if (Math.abs(xO - xD) <= 1 && Math.abs(yO - yD) <= 1) {
-                            System.out.println("*" + listaPecas);
                             for (CrazyPiece pieces : listaPecas) {
-                                System.out.println("º" + listaPecas);
-                                System.out.println(pieces.getX());
-                                System.out.println(pieces.getY());
                                 if (pieces.getX() == xD && pieces.getY() == yD) {
-                                    System.out.println("<" + listaPecas);
                                     if (pieces.getIDEquipa() != peca.getIDEquipa()) {
                                         listaPecas.remove(pieces);
-                                        System.out.println(">" + listaPecas);
                                         pieces.morri = true;
                                         if(pieces.getIDEquipa() == 0) {
                                             pecaComidaBranca++;
@@ -114,7 +109,6 @@ public class Simulador {
                                     }
                                 }
                             }
-                            System.out.println("else" + listaPecas);
                             peca.posicaoX(xD);
                             peca.posicaoY(yD);
                             turno++;
@@ -151,6 +145,9 @@ public class Simulador {
             } else {
                 pecaBranca++;
             }
+        }
+        if(pecaPreta == 0 || pecaBranca == 0){
+            return true;
         }
         if(pecaBranca == 0) {
             vencedor = 1;
