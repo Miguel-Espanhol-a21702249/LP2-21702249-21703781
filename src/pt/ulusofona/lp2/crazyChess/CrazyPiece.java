@@ -76,7 +76,6 @@ public class CrazyPiece {
 
     public String toString() {
         if(getMorri() == false) {
-            //É MAIS OU MENOS ISTO
             return iDPeca + " | " + tipoDePeca + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
         }else{
             return iDPeca + " | " + tipoDePeca + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
