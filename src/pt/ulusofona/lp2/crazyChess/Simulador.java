@@ -145,6 +145,7 @@ public class Simulador {
                 pecaBranca++;
             }
         }
+
         if(pecaBranca == 0) {
             vencedor = 1;
             return true;
@@ -159,14 +160,15 @@ public class Simulador {
             vencedor = 3;
             return true;
         }
-
-        if(turno > 10){
-            return false;
-        }
+        if(pecaComidaPreta + pecaComidaBranca == 0 && turno > 10) {
+                return false;
+            }
+        
 
 
         return false;
     }
+
 
 
     public List<String> getAutores() {
