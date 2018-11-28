@@ -145,9 +145,6 @@ public class Simulador {
                 pecaBranca++;
             }
         }
-        if(pecaPreta == 0 || pecaBranca == 0){
-            return true;
-        }
         if(pecaBranca == 0) {
             vencedor = 1;
             return true;
