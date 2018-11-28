@@ -193,13 +193,13 @@ public class Simulador {
         resultados.add("Resultado: " + mensagem );
         resultados.add("---");
         resultados.add("Equipa das Pretas ");
-        resultados.add("P" + pecaComidaPreta);
-        resultados.add("P" + jogadaVPreta);
-        resultados.add("P" + jogadaINVPreta);
+        resultados.add("" + pecaComidaPreta);
+        resultados.add("" + jogadaVPreta);
+        resultados.add("" + jogadaINVPreta);
         resultados.add("Equipa das Brancas ");
-        resultados.add("B" + pecaComidaBranca);
-        resultados.add("B" + jogadaVBranca);
-        resultados.add("B" + jogadaINVBranca);
+        resultados.add("" + pecaComidaBranca);
+        resultados.add("" + jogadaVBranca);
+        resultados.add("" + jogadaINVBranca);
         return resultados;
 
     }
