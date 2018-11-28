@@ -15,6 +15,7 @@ public class Simulador {
     int pecaComidaPreta= 0, pecaComidaBranca = 0;
     int jogadaVBranca = 0, jogadaVPreta = 0;
     int jogadaINVBranca = 0, jogadaINVPreta = 0;
+    int jogadasSemCaptura= 0;
 
     String mensagem;
 
@@ -104,6 +105,7 @@ public class Simulador {
                                         peca.posicaoX(xD);
                                         peca.posicaoY(yD);
                                         turno++;
+                                        jogadasSemCaptura=0;
                                         return true;
                                     }
                                 }
@@ -111,6 +113,7 @@ public class Simulador {
                             peca.posicaoX(xD);
                             peca.posicaoY(yD);
                             turno++;
+                            jogadasSemCaptura++;
                             if(peca.getIDEquipa() == 0){
                                 jogadaVPreta++;
                             }else{
@@ -160,7 +163,7 @@ public class Simulador {
             vencedor = 3;
             return true;
         }
-        if(pecaComidaPreta + pecaComidaBranca == 0 && turno >= 10) {
+        if(pecaComidaPreta + pecaComidaBranca == 0 && turno > 10) {
                 return true;
         }
 
