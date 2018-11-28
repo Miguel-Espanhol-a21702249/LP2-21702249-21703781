@@ -161,9 +161,9 @@ public class Simulador {
             return true;
         }
         if(pecaComidaPreta + pecaComidaBranca == 0 && turno > 10) {
-                return false;
+                return true;
             }
-        
+
 
 
         return false;
