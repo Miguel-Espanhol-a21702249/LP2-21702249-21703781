@@ -166,6 +166,9 @@ public class Simulador {
         if(pecaComidaPreta + pecaComidaBranca == 0 && turno > 10) {
                 return true;
         }
+        if(jogadasSemCaptura == 10){
+            return true;
+        }
 
 
 
