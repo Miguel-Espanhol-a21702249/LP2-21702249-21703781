@@ -101,10 +101,10 @@ public class Simulador {
                                         System.out.println(">" + listaPecas);
                                         pieces.morri = true;
                                         if(pieces.getIDEquipa() == 0) {
-                                            pecaComidaPreta++;
+                                            pecaComidaBranca++;
                                             jogadaVBranca++;
                                         }else{
-                                            pecaComidaBranca++;
+                                            pecaComidaPreta++;
                                             jogadaVPreta++;
                                         }
                                         peca.posicaoX(xD);
@@ -153,12 +153,12 @@ public class Simulador {
             }
         }
         if(pecaBranca == 0) {
-            vencedor = 0;
+            vencedor = 1;
             return true;
         }
         if(pecaPreta == 0){
             //vence branco
-            vencedor = 1;
+            vencedor = 0;
             return true;
         }
 
