@@ -41,7 +41,7 @@ public class CrazyPiece {
     int getTipoDePeca(){
         return tipoDePeca;
     }
-    int getiDEquipa(){
+    int getIDEquipa(){
         return iDEquipa;
     }
     String getAlcunha(){
