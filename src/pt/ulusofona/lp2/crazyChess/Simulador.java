@@ -147,7 +147,7 @@ public class Simulador {
         for (CrazyPiece peca : listaPecas){
             if (peca.IDEquipa == 0 && !peca.morri){
                 pecaPreta++;
-            } else {
+            } else if (peca.IDEquipa == 1 && !peca.morri){
                 pecaBranca++;
             }
         }
