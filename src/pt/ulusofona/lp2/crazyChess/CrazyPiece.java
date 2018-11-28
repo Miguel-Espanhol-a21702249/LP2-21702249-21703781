@@ -7,6 +7,7 @@ public class CrazyPiece {
     String alcunha;
     int x;
     int y;
+    boolean morri;
 
     public CrazyPiece(int IDPeca, int tipoDePeca, int idEquipa, String alcunha){
         this.IDPeca = IDPeca;
@@ -63,7 +64,7 @@ public class CrazyPiece {
 
     public String toString() {
         //É MAIS OU MENOS ISTO
-        return IDPeca + " " + tipoDePeca + " " + IDEquipa + " " + alcunha + " @ (" + x + ", " + y + ")";
+        return IDPeca + " | " + tipoDePeca + " | " + IDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
 
     }
 }
