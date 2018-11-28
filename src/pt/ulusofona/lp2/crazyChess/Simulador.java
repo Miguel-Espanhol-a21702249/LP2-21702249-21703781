@@ -56,7 +56,6 @@ public class Simulador {
                     for (int coluna =0 ;coluna < sizeTabuleiro ; coluna++) {
                         if( Integer.parseInt(dados[coluna]) != 0) {
                             for (CrazyPiece listaPeca : listaPecas) {
-                                if(numeroDePecasBrancas == )
                                 if (listaPeca.getId() == Integer.parseInt(dados[coluna])) {
                                     listaPeca.posicaoX(coluna);
                                     listaPeca.posicaoY(linhaTabuleiro);
