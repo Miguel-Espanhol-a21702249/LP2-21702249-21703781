@@ -84,6 +84,8 @@ public class Simulador {
         return sizeTabuleiro;
     }
 
+
+
     public boolean processaJogada(int xO, int yO, int xD, int yD){
         int equipaAtual= getIDEquipaAJogar();
         if(xO != xD && yO != yD || xD < sizeTabuleiro && yD < sizeTabuleiro || xD > 0 && yD > 0) {
@@ -221,5 +223,11 @@ public class Simulador {
         } else {
             return 1;
         }
+    }
+    public void setTamanho(int sizeTabuleiro){
+        this.sizeTabuleiro = sizeTabuleiro;
+    }
+    public void setCrazyPieces(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean morri){
+        listaPecas.add(new CrazyPiece(iDPeca, tipoDePeca, iDEquipa, alcunha, x, y, morri));
     }
 }

@@ -18,6 +18,16 @@ public class CrazyPiece {
 
     public CrazyPiece(){}
 
+    public CrazyPiece(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean morri){
+        this.iDPeca = iDPeca;
+        this.tipoDePeca = tipoDePeca;
+        this.iDEquipa = iDEquipa;
+        this.alcunha = alcunha;
+        this.x=x;
+        this.y=y;
+        this.morri=morri;
+    }
+
 
 
     int posicaoX(int x){
