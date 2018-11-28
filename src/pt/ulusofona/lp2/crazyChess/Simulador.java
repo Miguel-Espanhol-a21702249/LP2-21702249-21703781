@@ -153,15 +153,17 @@ public class Simulador {
             }
         }
         if(pecaBranca == 0) {
-            //vence preto
+            vencedor = 0;
             return true;
         }
         if(pecaPreta == 0){
             //vence branco
+            vencedor = 1;
             return true;
         }
 
         if(pecaBranca == 1 && pecaPreta == 1){
+            vencedor = 3;
             return true;
         }
 
