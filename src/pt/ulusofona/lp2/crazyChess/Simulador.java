@@ -195,11 +195,11 @@ public class Simulador {
         }
         resultados.add("Resultado: " + mensagem );
         resultados.add("---");
-        resultados.add("Equipa das Pretas ");
+        resultados.add("Equipa das Pretas");
         resultados.add("" + pecaComidaPreta);
         resultados.add("" + jogadaVPreta);
         resultados.add("" + jogadaINVPreta);
-        resultados.add("Equipa das Brancas ");
+        resultados.add("Equipa das Brancas");
         resultados.add("" + pecaComidaBranca);
         resultados.add("" + jogadaVBranca);
         resultados.add("" + jogadaINVBranca);
