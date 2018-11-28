@@ -12,6 +12,10 @@ public class Simulador {
     List<CrazyPiece> listaPecas = new ArrayList<>();
     int turno = 0;
     int vencedor;
+    int pecaComidaPreta= 0;
+    int pecaComidaBranca  = 0;
+    int jogadaVBranca = 0, jogadaVPreta = 0;
+    int jogadaINVBranca = 0, jogadaINVPreta = 0;
     String mensagem;
 
 
@@ -96,6 +100,13 @@ public class Simulador {
                                         listaPecas.remove(pieces);
                                         System.out.println(">" + listaPecas);
                                         pieces.morri = true;
+                                        if(pieces.getIDEquipa() == 0) {
+                                            pecaComidaPreta++;
+                                            jogadaVBranca++;
+                                        }else{
+                                            pecaComidaBranca++;
+                                            jogadaVPreta++;
+                                        }
                                         peca.posicaoX(xD);
                                         peca.posicaoY(yD);
                                         turno++;
@@ -107,14 +118,23 @@ public class Simulador {
                             peca.posicaoX(xD);
                             peca.posicaoY(yD);
                             turno++;
+                            if(peca.getIDEquipa() == 0){
+                                jogadaVPreta++;
+                            }else{
+                                jogadaVBranca++;
+                            }
                             return true;
                             }
 
                         }
-
-                    }
+                        if(peca.getIDEquipa() == 0){
+                        jogadaINVPreta++;
+                    }else{
+                        jogadaINVBranca++;
+                    }   }
                 }
-                    }
+        }
+
         return false;
 
     }
@@ -173,15 +193,13 @@ public class Simulador {
         resultados.add("Resultado: " + mensagem );
         resultados.add("---");
         resultados.add("Equipa das Pretas ");
-        /*
-        resultados.add(numero de pretas comidas);
-        resultados.add(jogadas validas de pretas);
-        resultados.add(jogadas invalidas de pretas);
+        resultados.add("P" + pecaComidaPreta);
+        resultados.add("P" + jogadaVPreta);
+        resultados.add("P" + jogadaINVPreta);
         resultados.add("Equipa das Brancas ");
-        resultados.add(numero de brancas comidas);
-        resultados.add(jogadas validas de brancas);
-        resultados.add(jogadas invalidas de brancas);*/
-
+        resultados.add("B" + pecaComidaBranca);
+        resultados.add("B" + jogadaVBranca);
+        resultados.add("B" + jogadaINVBranca);
         return resultados;
 
     }
