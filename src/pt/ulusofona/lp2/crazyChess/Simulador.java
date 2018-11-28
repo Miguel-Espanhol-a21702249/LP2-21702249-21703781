@@ -55,6 +55,7 @@ public class Simulador {
                                 if (listaPeca.getId() == Integer.parseInt(dados[coluna])) {
                                     listaPeca.posicaoX(coluna);
                                     listaPeca.posicaoY(linhaTabuleiro);
+                                    System.out.println(listaPeca);
                                 }
                             }
                         }
@@ -78,29 +79,42 @@ public class Simulador {
     }
 
     public boolean processaJogada(int xO, int yO, int xD, int yD){
-        int equipaAtual=0;
+        int equipaAtual= getIDEquipaAJogar();
         if(xO != xD && yO != yD || xD < sizeTabuleiro && yD < sizeTabuleiro || xD > 0 && yD > 0) {
-        for(CrazyPiece listaPeca : listaPecas){
-                if (listaPeca.getX() == xO && listaPeca.getY() == yO) {
-                    if (Math.abs(xO - xD) <= 1 && Math.abs(yO - yD) <= 1) {
-                                for (CrazyPiece pieces: listaPecas) {
-                                    if (pieces.getX() == xD && pieces.getY() == yD) {
-                                        if (pieces.getIDEquipa() == listaPeca.getIDEquipa()) {
-                                            return false;
-                                        } else {
-                                            listaPecas.remove(pieces);
-                                            listaPeca.posicaoX(xD);
-                                            listaPeca.posicaoY(yD);
-                                            turno++;
-                                            return true;
-
-                                        }
+            for(CrazyPiece peca : listaPecas){
+                if (peca.getX() == xO && peca.getY() == yO) {
+                    if (peca.getIDEquipa() == equipaAtual) {
+                        if (Math.abs(xO - xD) <= 1 && Math.abs(yO - yD) <= 1) {
+                            System.out.println("*" + listaPecas);
+                            for (CrazyPiece pieces : listaPecas) {
+                                System.out.println("º" + listaPecas);
+                                System.out.println(pieces.getX());
+                                System.out.println(pieces.getY());
+                                if (pieces.getX() == xD && pieces.getY() == yD) {
+                                    System.out.println("<" + listaPecas);
+                                    if (pieces.getIDEquipa() != peca.getIDEquipa()) {
+                                        listaPecas.remove(pieces);
+                                        System.out.println(">" + listaPecas);
+                                        pieces.morri = true;
+                                        peca.posicaoX(xD);
+                                        peca.posicaoY(yD);
+                                        turno++;
+                                        return true;
                                     }
                                 }
                             }
+                            System.out.println("else" + listaPecas);
+                            peca.posicaoX(xD);
+                            peca.posicaoY(yD);
+                            turno++;
+                            return true;
+                            }
+
                         }
+
                     }
-        }
+                }
+                    }
         return false;
 
     }
@@ -181,12 +195,9 @@ public class Simulador {
         return 0;
     }
     public int getIDEquipaAJogar() {
-        int turno = 0;
         if (turno % 2 == 0) {
-            turno++;
             return 0;
         } else {
-            turno++;
             return 1;
         }
     }

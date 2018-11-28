@@ -51,7 +51,9 @@ public class CrazyPiece {
     public int getId() {
         return IDPeca;
     }
-
+    boolean getMorri(){
+        return morri;
+    }
 
 
     public String getImagePNG() {
@@ -63,8 +65,11 @@ public class CrazyPiece {
     }
 
     public String toString() {
-        //É MAIS OU MENOS ISTO
-        return IDPeca + " | " + tipoDePeca + " | " + IDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
-
+        if(getMorri() == false) {
+            //É MAIS OU MENOS ISTO
+            return IDPeca + " | " + tipoDePeca + " | " + IDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+        }else{
+            return IDPeca + " | " + tipoDePeca + " | " + IDEquipa + " | " + alcunha + " @ (n/a)";
+        }
     }
 }
