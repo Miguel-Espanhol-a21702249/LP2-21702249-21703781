@@ -131,13 +131,16 @@ public class Simulador {
                         jogadaINVPreta++;
                     }else{
                         jogadaINVBranca++;
-                    }   }
+                    }
                 }
+            }
         }
 
         return false;
 
     }
+
+
 
     public List<CrazyPiece> getPecasMalucas(){
         return listaPecas;
