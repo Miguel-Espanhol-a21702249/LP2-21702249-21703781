@@ -65,18 +65,12 @@ public class CrazyPiece {
         return morri;
     }
 
-
-    public String getImagePNG() {
-        if(iDEquipa == 0 ){
-            return "black.png";
-        }else{
-            return "white.png";
-        }
+    public String getImagePNG(){
+        return null;
     }
 
     public String toString() {
         if(getMorri() == false) {
-            //É MAIS OU MENOS ISTO
             return iDPeca + " | " + tipoDePeca + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
         }else{
             return iDPeca + " | " + tipoDePeca + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";

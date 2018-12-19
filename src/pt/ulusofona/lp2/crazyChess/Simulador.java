@@ -1,6 +1,9 @@
 package pt.ulusofona.lp2.crazyChess;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,7 +19,6 @@ public class Simulador {
     int jogadaINVBranca = 0, jogadaINVPreta = 0;
     int jogadasSemCaptura= 0;
     boolean vitoriaSemJogar = false;
-
     String mensagem;
 
 
@@ -44,8 +46,13 @@ public class Simulador {
 
                     if(!listaPecas.contains(Integer.parseInt(dados[0])) && Integer.parseInt(dados[0])>=1) {
                         if(Integer.parseInt(dados[1])>=0 && Integer.parseInt(dados[1])<=10) {
-                            if (Integer.parseInt(dados[2]) == 0 || Integer.parseInt(dados[2])==1) {
-                                CrazyPiece piece = new CrazyPiece(Integer.parseInt(dados[0]),Integer.parseInt(dados[1]),Integer.parseInt(dados[2]),dados[3]);
+                            if (Integer.parseInt(dados[2]) == 10 || Integer.parseInt(dados[2])==20) {
+                                CrazyPiece piece = new CrazyPiece(Integer.parseInt(dados[0]), Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), dados[3]) {
+                                    @Override
+                                    public String getImagePNG() {
+                                        return null;
+                                    }
+                                };
 
                                 listaPecas.add(piece);
 
@@ -222,15 +229,82 @@ public class Simulador {
     }
     public int getIDEquipaAJogar() {
         if (turno % 2 == 0) {
-            return 0;
+            return 10;
         } else {
-            return 1;
+            return 20;
         }
     }
+
+    public List<String> obterSugestoesJogada(int xO, int yO){
+        return null;
+    }
+
+    public void anularJogadaAnterior(){
+
+    }
+    public boolean gravarJogo(File ficheiroDestino){
+        String newLine = System.getProperty("line.separator");
+        try {
+            File output = new File("teste.txt");
+            FileWriter writer = new FileWriter(output);
+            writer.write(getTamanhoTabuleiro()+ "");
+            writer.write(newLine);
+            writer.write(numeroDePecas + "");
+            writer.write(newLine);
+            for(CrazyPiece peca : listaPecas) {
+                writer.write(peca.getId() + ":" + peca.getTipoDePeca() + ":" +  peca.getIDEquipa() + ":" + peca.getAlcunha());
+                writer.write(newLine);
+            }
+
+            System.out.println(listaPecas.size());
+            for (int coluna =0 ;coluna < sizeTabuleiro ; coluna++) {
+                for(int linha = 0; linha <sizeTabuleiro ; linha++) {
+                    boolean pecaEncontrada =true;
+                    int idEncontrado = 0;
+                    for (CrazyPiece piece : listaPecas) {
+                        if (piece.getX() == linha && piece.getY() == coluna) {
+                            pecaEncontrada = true;
+                            idEncontrado = piece.getId();
+                            System.out.println(idEncontrado);
+                        } else {
+                            pecaEncontrada = false;
+                        }
+                    }
+                    System.out.println(pecaEncontrada);
+                        if (pecaEncontrada == true) {
+                            writer.write( idEncontrado+"");
+                        } else {
+                            writer.write("0");
+                        }
+                        if (linha < sizeTabuleiro - 1) {
+                            writer.write(":");
+                        }
+                    }
+
+                writer.write(newLine);
+
+            }
+
+            writer.close();
+            return true;
+        }
+        catch(IOException e) {
+            System.out.println("Ocorreu um erro.");
+            return false;
+        }
+
+    }
+
+
     public void setTamanho(int sizeTabuleiro){
         this.sizeTabuleiro = sizeTabuleiro;
     }
     public void setCrazyPieces(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean morri){
-        listaPecas.add(new CrazyPiece(iDPeca, tipoDePeca, iDEquipa, alcunha, x, y, morri));
+        listaPecas.add(new CrazyPiece(iDPeca, tipoDePeca, iDEquipa, alcunha, x, y, morri) {
+            @Override
+            public String getImagePNG() {
+                return null;
+            }
+        });
     }
 }
