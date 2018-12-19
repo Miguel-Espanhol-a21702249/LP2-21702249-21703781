@@ -266,6 +266,7 @@ public class Simulador {
                             pecaEncontrada = true;
                             idEncontrado = piece.getId();
                             System.out.println(idEncontrado);
+                            break;
                         } else {
                             pecaEncontrada = false;
                         }
