@@ -1,11 +1,31 @@
 package pt.ulusofona.lp2.crazyChess;
 
 public class TorreHor extends CrazyPiece {
+
+    TorreHor(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha ){
+        this.iDPeca = iDPeca;
+        this.tipoDePeca = 4;
+        this.valorRelativo = "3";
+        this.iDEquipa = iDEquipa;
+        this.alcunha = alcunha;
+    }
+
+
+
+    @Override
     public String getImagePNG(){
         if(iDEquipa == 10){
-            return "torre_h_black.png";
+            return null;
         }else{
-            return "torre_h_white.png";
+            return null;
         }
+    }
+
+    public boolean movimento(int xO, int yO, int xD, int yD){
+
+        if(Math.abs(xO - xD) <= 1 && Math.abs(yO - yD) <= 1){
+            return true;
+        }
+        return false;
     }
 }

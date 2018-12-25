@@ -1,8 +1,9 @@
 package pt.ulusofona.lp2.crazyChess;
 
-public class CrazyPiece {
+abstract public class  CrazyPiece {
     int iDPeca;
     int tipoDePeca;
+    String valorRelativo;
     int iDEquipa;
     String alcunha;
     int x;
@@ -65,15 +66,16 @@ public class CrazyPiece {
         return morri;
     }
 
-    public String getImagePNG(){
-        return null;
-    }
+    abstract public String getImagePNG();
+
+    abstract public boolean movimento(int xO, int yO, int xD, int yD);
+
 
     public String toString() {
-        if(getMorri() == false) {
-            return iDPeca + " | " + tipoDePeca + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+        if(!getMorri()) {
+            return iDPeca + " | " + tipoDePeca + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
         }else{
-            return iDPeca + " | " + tipoDePeca + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+            return iDPeca + " | " + tipoDePeca + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
         }
     }
 }
