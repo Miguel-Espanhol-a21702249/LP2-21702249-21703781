@@ -1,5 +1,9 @@
 package pt.ulusofona.lp2.crazyChess;
 
+
+import static pt.ulusofona.lp2.crazyChess.Simulador.jogadasSemCaptura;
+import static pt.ulusofona.lp2.crazyChess.Simulador.pecaComidaBranca;
+import static pt.ulusofona.lp2.crazyChess.Simulador.pecaComidaPreta;
 abstract public class  CrazyPiece {
     int iDPeca;
     int tipoDePeca;
@@ -8,7 +12,7 @@ abstract public class  CrazyPiece {
     String alcunha;
     int x;
     int y;
-    boolean morri=true;
+    boolean capturada =true;
 
     public CrazyPiece(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha){
         this.iDPeca = iDPeca;
@@ -19,14 +23,14 @@ abstract public class  CrazyPiece {
 
     public CrazyPiece(){}
 
-    public CrazyPiece(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean morri){
+    public CrazyPiece(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean capturada){
         this.iDPeca = iDPeca;
         this.tipoDePeca = tipoDePeca;
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
         this.x=x;
         this.y=y;
-        this.morri=morri;
+        this.capturada = capturada;
     }
 
 
@@ -62,17 +66,36 @@ abstract public class  CrazyPiece {
     public int getId() {
         return iDPeca;
     }
-    boolean getMorri(){
-        return morri;
+    boolean getCapturada(){
+        return capturada;
     }
 
     abstract public String getImagePNG();
 
-    abstract public boolean movimento(int xO, int yO, int xD, int yD);
+    abstract public boolean movimento(CrazyPiece peca, int equipaAJogar,int xO, int yO, int xD, int yD);
 
+
+    public void capturarPeca(CrazyPiece peca, int xD, int yD){
+        if (peca.getX() == xD && peca.getY() == yD) {
+            if (peca.getIDEquipa() != peca.getIDEquipa()) {
+                peca.posicaoY(-1);
+                peca.capturada = true;
+                if(peca.getIDEquipa() == 10) {
+                    pecaComidaBranca++;
+
+                }else{
+                    pecaComidaPreta++;
+                }
+
+                peca.posicaoX(xD);
+                peca.posicaoY(yD);
+                jogadasSemCaptura=0;
+            }
+        }
+    }
 
     public String toString() {
-        if(!getMorri()) {
+        if(!getCapturada()) {
             return iDPeca + " | " + tipoDePeca + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
         }else{
             return iDPeca + " | " + tipoDePeca + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
