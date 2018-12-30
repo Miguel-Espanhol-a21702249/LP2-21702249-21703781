@@ -18,9 +18,9 @@ public class Lebre extends CrazyPiece {
     @Override
     public String getImagePNG(){
         if(iDEquipa == 10){
-            return null;
+            return "lebre_black.png";
         }else{
-            return null;
+            return "lebre_white.png";
         }
     }
 
@@ -32,7 +32,7 @@ public class Lebre extends CrazyPiece {
                 if (xO != xD && yO != yD && Math.abs(xO - xD) == 1 && Math.abs(yO - yD) == 1) {
                     if(turno % 2 == 0) {
                         for (CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
-                            capturarPeca(pieces, xD, yD);
+                            capturarPeca(pieces,equipaAtual,xD, yD);
                             jogadaVPreta++;
                             jogadaVBranca++;
                         }
@@ -57,5 +57,13 @@ public class Lebre extends CrazyPiece {
             }
         }
         return false;
+    }
+
+    public String toString(){
+        if(!getCapturada()) {
+            return iDPeca + " | " + "Lebre" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+        }else{
+            return iDPeca + " | " + "Lebre" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+        }
     }
 }

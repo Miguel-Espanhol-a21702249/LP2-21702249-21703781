@@ -22,9 +22,9 @@ public class Rainha extends CrazyPiece {
     @Override
     public String getImagePNG(){
         if(iDEquipa == 10){
-            return null;
+            return "rainha_black.png";
         }else{
-            return null;
+            return "rainha_white.png";
         }
     }
 
@@ -33,10 +33,15 @@ public class Rainha extends CrazyPiece {
         if (peca.getX() == xO && peca.getY() == yO) {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (Math.abs(xO - xD) <= 5 && Math.abs(yO - yD) <= 5) {
+
+
+
+
+
                     for (CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
 
                         if(pieces.getTipoDePeca()!= peca.getTipoDePeca()){ // a rainha nao pode comer rainha
-                            capturarPeca(pieces, xD, yD);
+                            capturarPeca(pieces,equipaAtual,xD, yD);
                         }
                         jogadaVPreta++;
                         jogadaVBranca++;
@@ -60,6 +65,15 @@ public class Rainha extends CrazyPiece {
             }
         }
         return false;
+    }
+
+
+    public String toString(){
+        if(!getCapturada()) {
+            return iDPeca + " | " + "Rainha" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+        }else{
+            return iDPeca + " | " + "Rainha" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+        }
     }
 
 }

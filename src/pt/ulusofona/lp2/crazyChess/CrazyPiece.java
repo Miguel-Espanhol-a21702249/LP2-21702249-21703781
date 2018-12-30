@@ -1,9 +1,8 @@
 package pt.ulusofona.lp2.crazyChess;
 
 
-import static pt.ulusofona.lp2.crazyChess.Simulador.jogadasSemCaptura;
-import static pt.ulusofona.lp2.crazyChess.Simulador.pecaComidaBranca;
-import static pt.ulusofona.lp2.crazyChess.Simulador.pecaComidaPreta;
+import static pt.ulusofona.lp2.crazyChess.Simulador.*;
+
 abstract public class  CrazyPiece {
     int iDPeca;
     int tipoDePeca;
@@ -75,30 +74,18 @@ abstract public class  CrazyPiece {
     abstract public boolean movimento(CrazyPiece peca, int equipaAJogar,int xO, int yO, int xD, int yD);
 
 
-    public void capturarPeca(CrazyPiece peca, int xD, int yD){
+    public void capturarPeca(CrazyPiece peca,int equipaAJogar, int xD, int yD){
         if (peca.getX() == xD && peca.getY() == yD) {
-            if (peca.getIDEquipa() != peca.getIDEquipa()) {
+            if (peca.getIDEquipa() != equipaAJogar) {
                 peca.posicaoY(-1);
+                peca.posicaoX(-1);
                 peca.capturada = true;
-                if(peca.getIDEquipa() == 10) {
-                    pecaComidaBranca++;
-
-                }else{
-                    pecaComidaPreta++;
-                }
-
-                peca.posicaoX(xD);
-                peca.posicaoY(yD);
+                listaPecasComida.add(peca);
                 jogadasSemCaptura=0;
             }
         }
     }
 
-    public String toString() {
-        if(!getCapturada()) {
-            return iDPeca + " | " + tipoDePeca + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
-        }else{
-            return iDPeca + " | " + tipoDePeca + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
-        }
-    }
+    abstract public String toString();
+
 }

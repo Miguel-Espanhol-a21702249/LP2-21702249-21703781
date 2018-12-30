@@ -20,9 +20,9 @@ public class Joker extends CrazyPiece {
     @Override
     public String getImagePNG(){
         if(iDEquipa == 10){
-            return null;
+            return "joker_white.png";
         }else{
-            return null;
+            return "joker_black.png";
         }
     }
 
@@ -32,7 +32,7 @@ public class Joker extends CrazyPiece {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (Math.abs(xO - xD) <= 1 && Math.abs(yO - yD) <= 1) {
                     for (CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
-                        capturarPeca(pieces, xD, yD);
+                        capturarPeca(pieces,equipaAtual,xD, yD);
                         jogadaVPreta++;
                         jogadaVBranca++;
                     }
@@ -54,5 +54,13 @@ public class Joker extends CrazyPiece {
             }
         }
         return false;
+    }
+
+    public String toString(){
+        if(!getCapturada()) {
+            return iDPeca + " | " + "Joker" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+        }else{
+            return iDPeca + " | " + "Joker" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+        }
     }
 }

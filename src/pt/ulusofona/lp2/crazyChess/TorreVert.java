@@ -7,7 +7,7 @@ import static pt.ulusofona.lp2.crazyChess.Simulador.jogadasSemCaptura;
 import static pt.ulusofona.lp2.crazyChess.Simulador.turno;
 
 
-//torre certa falta ver se passa por cima de peças
+//torre certa
 public class TorreVert extends CrazyPiece {
 
     TorreVert(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha){
@@ -20,21 +20,47 @@ public class TorreVert extends CrazyPiece {
 
     public String getImagePNG(){
         if(iDEquipa == 10){
-            return null;
+            return "torre_v_black.png";
         }else{
-            return null;
+            return "torre_v_white.png";
         }
     }
 
     public boolean movimento(CrazyPiece peca,int equipaAtual,int xO, int yO, int xD, int yD) {
         if (peca.getX() == xO && peca.getY() == yO) {
             if (peca.getIDEquipa() == equipaAtual) {
-                if (xO == xD) {
-                    for (CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
-                        capturarPeca(pieces, xD, yD);
-                        jogadaVPreta++;
-                        jogadaVBranca++;
+                if (xO == xD  && yO!=yD) {
+
+                    // verifica se passa por cima de peças
+                    if(yO > yD) {
+                        do {
+                            for (CrazyPiece p : listaPecas) {
+
+                                if (p.getY() == yO && peca.getY() != p.getY() && p.getX() == peca.getX()) {
+                                    return false;
+                                }
+                            }
+                            yO--;
+                        } while (yO >= yD);
+
+                    }else{
+
+                        do {
+                            for (CrazyPiece p : listaPecas) {
+
+                                if (p.getY() == yO && peca.getY() != p.getY() && p.getX() == peca.getX()) {
+                                    return false;
+                                }
+                            }
+                            yO++;
+                        } while (yO <= yD);
                     }
+
+                    // peça existente nas coordenadas destino
+
+
+
+
                     peca.posicaoX(xD);
                     peca.posicaoY(yD);
                     turno++;
@@ -53,5 +79,13 @@ public class TorreVert extends CrazyPiece {
             }
         }
         return false;
+    }
+
+    public String toString(){
+        if(!getCapturada()) {
+            return iDPeca + " | " + "Torre Vertical" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+        }else{
+            return iDPeca + " | " + "Torre Vertical" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+        }
     }
 }

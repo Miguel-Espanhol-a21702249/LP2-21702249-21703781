@@ -16,19 +16,104 @@ public class PadreDaVila extends CrazyPiece {
     @Override
     public String getImagePNG(){
         if(iDEquipa == 10){
-            return null;
+            return "padre_vila_black.png";
         }else{
-            return null;
+            return "padre_vila_white.png";
         }
     }
 
     public boolean movimento(CrazyPiece peca,int equipaAtual,int xO, int yO, int xD, int yD) {
+        int direcaoBispo= -2;
         // peça existente nas coordenandas origem
+        //peca = peca que esta a ser jogada
         if (peca.getX() == xO && peca.getY() == yO) {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (xO != xD && yO != yD && Math.abs(xO - xD) <= 3 && Math.abs(yO - yD) <= 3) {
+
                     for (CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
-                        capturarPeca(pieces, xD, yD);
+                        //pieces  = peça que vai ser comida
+                        if (xD == pieces.getX() && yD == pieces.getY() && pieces.getTipoDePeca() != peca.getTipoDePeca()) {
+                            capturarPeca(pieces, equipaAtual, xD, yD);
+                            jogadaVPreta++;
+                            jogadaVBranca++;
+                        }
+                    }
+
+                    if(xO > xD && yO > yD){
+                        //diagonal para esquerda cima
+                        direcaoBispo = -1;
+                    }else{
+                        if(xO > xD && yO < yD){
+                            //diagonal para esquerda baixo
+                            direcaoBispo = 2;
+                        }else{
+                            if(xO < xD && yO > yD){
+                                //diagonal para direita cima
+                                direcaoBispo = 0;
+                            }else{
+                                if(xO < xD && yO < yD){
+                                    //diagonal para direita baixa
+                                    direcaoBispo = 1;
+                                }
+                            }
+                        }
+                    }
+
+                    if(direcaoBispo == -1 ) {
+
+                        do {
+
+                            for (CrazyPiece p : listaPecas) {
+                                if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == peca.getX() && p.getX() == xO && peca.getX() != p.getX() && p.getY() == peca.getY()) {
+                                    return false;
+                                }
+                            }
+                            xO--;
+                            yO--;
+                        } while (xO >= xD && yO >= yD);
+                    }
+
+
+                    if(direcaoBispo == 0){
+                        do{
+                            for(CrazyPiece p: listaPecas){
+                                if(peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO){
+                                    return false;
+                                }
+                            }
+                            xO++;
+                            yO--;
+                        }while( xO <= xD && yO >= yD);
+                    }
+
+                    if(direcaoBispo == 1){
+                        do{
+                            for(CrazyPiece p: listaPecas){
+                                if(peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO){
+                                    return false;
+                                }
+                            }
+                            xO++;
+                            yO++;
+                        }while(xO <= xD && yO <= yD);
+                    }
+
+                    if(direcaoBispo == 2){
+                        do{
+                            for(CrazyPiece p: listaPecas){
+                                if(peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO){
+                                    return false;
+                                }
+                            }
+                            xO--;
+                            yO++;
+                        }while(xO >= xD && yO <= yD);
+                    }
+
+
+
+                    for (CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
+                        capturarPeca(pieces,equipaAtual,xD, yD);
                         jogadaVPreta++;
                         jogadaVBranca++;
                     }
@@ -50,5 +135,13 @@ public class PadreDaVila extends CrazyPiece {
             }
         }
         return false;
+    }
+
+    public String toString(){
+        if(!getCapturada()) {
+            return iDPeca + " | " + "Padre da Vila" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+        }else{
+            return iDPeca + " | " + "Padre da Vila" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+        }
     }
 }

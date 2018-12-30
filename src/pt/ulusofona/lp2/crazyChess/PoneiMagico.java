@@ -16,9 +16,9 @@ public class PoneiMagico extends CrazyPiece {
     @Override
     public String getImagePNG(){
         if(iDEquipa == 10){
-            return null;
+            return "ponei_magico_black.png";
         }else{
-            return null;
+            return "ponei_magico_white.png";
         }
     }
 
@@ -27,8 +27,10 @@ public class PoneiMagico extends CrazyPiece {
         if (peca.getX() == xO && peca.getY() == yO) {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (xO != xD && yO != yD && Math.abs(xO - xD) == 2 && Math.abs(yO - yD) == 2) {
+
+
                     for (CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
-                        capturarPeca(pieces, xD, yD);
+                        capturarPeca(pieces,equipaAtual,xD, yD);
                         jogadaVPreta++;
                         jogadaVBranca++;
                     }
@@ -50,5 +52,13 @@ public class PoneiMagico extends CrazyPiece {
             }
         }
         return false;
+    }
+
+    public String toString(){
+        if(!getCapturada()) {
+            return iDPeca + " | " + "Pónei Mágico" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+        }else{
+            return iDPeca + " | " + "Pónei Mágico" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+        }
     }
 }

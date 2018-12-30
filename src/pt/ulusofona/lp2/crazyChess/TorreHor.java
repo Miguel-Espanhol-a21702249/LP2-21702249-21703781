@@ -7,7 +7,7 @@ import static pt.ulusofona.lp2.crazyChess.Simulador.jogadasSemCaptura;
 import static pt.ulusofona.lp2.crazyChess.Simulador.turno;
 
 
-//torre certa falta ver se passa por cima de peças
+//torre certa
 public class TorreHor extends CrazyPiece {
 
     TorreHor(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha ){
@@ -23,9 +23,9 @@ public class TorreHor extends CrazyPiece {
     @Override
     public String getImagePNG(){
         if(iDEquipa == 10){
-            return null;
+            return "torre_h_black.png";
         }else{
-            return null;
+            return "torre_h_white.png";
         }
     }
 
@@ -33,8 +33,35 @@ public class TorreHor extends CrazyPiece {
         if (peca.getX() == xO && peca.getY() == yO) {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (yO == yD) {
+
+
+                    if(xO > xD) {
+                        do {
+                            for (CrazyPiece p : listaPecas) {
+
+                                if (p.getX() == xO && peca.getX() != p.getX() && p.getY() == peca.getY()) {
+                                    return false;
+                                }
+                            }
+                            xO--;
+                        } while (xO >= xD);
+
+                    }else{
+
+                        do {
+                            for (CrazyPiece p : listaPecas) {
+
+                                if (p.getX() == xO && peca.getX() != p.getX() && p.getY() == peca.getY()) {
+                                    return false;
+                                }
+                            }
+                            xO++;
+                        } while (xO <= xD);
+                    }
+
+
                     for (CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
-                        capturarPeca(pieces, xD, yD);
+                        capturarPeca(pieces,equipaAtual,xD, yD);
                         jogadaVPreta++;
                         jogadaVBranca++;
                     }
@@ -56,6 +83,15 @@ public class TorreHor extends CrazyPiece {
             }
         }
         return false;
+    }
+
+
+    public String toString(){
+        if(!getCapturada()) {
+            return iDPeca + " | " + "Torre Horizontal" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+        }else{
+            return iDPeca + " | " + "Torre Horizontal" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+        }
     }
 
 }
