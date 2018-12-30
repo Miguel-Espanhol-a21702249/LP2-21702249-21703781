@@ -34,11 +34,17 @@ public class TorreHor extends CrazyPiece {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (yO == yD) {
 
+                    for(CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
+                        if (xD == pieces.getX() && pieces.getIDEquipa() != peca.getIDEquipa()) {
+                            capturarPeca(pieces, equipaAtual, xD, yD);
+                            jogadaVPreta++;
+                            jogadaVBranca++;
+                        }
+                    }
 
                     if(xO > xD) {
                         do {
                             for (CrazyPiece p : listaPecas) {
-
                                 if (p.getX() == xO && peca.getX() != p.getX() && p.getY() == peca.getY()) {
                                     return false;
                                 }
@@ -60,11 +66,7 @@ public class TorreHor extends CrazyPiece {
                     }
 
 
-                    for (CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
-                        capturarPeca(pieces,equipaAtual,xD, yD);
-                        jogadaVPreta++;
-                        jogadaVBranca++;
-                    }
+
                     peca.posicaoX(xD);
                     peca.posicaoY(yD);
                     turno++;

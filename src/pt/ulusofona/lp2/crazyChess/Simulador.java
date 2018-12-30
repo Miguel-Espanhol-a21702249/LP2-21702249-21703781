@@ -122,7 +122,6 @@ public class Simulador {
 
     public boolean processaJogada(int xO, int yO, int xD, int yD) {
         int equipaAtual = getIDEquipaAJogar();
-        boolean validaJogada= false;
         if (xO != xD && yO != yD || xD < sizeTabuleiro && yD < sizeTabuleiro || xD > 0 && yD > 0) {
             for (CrazyPiece peca : listaPecas) {
                 if(peca.getX()== xO && peca.getY() == yO) {
@@ -191,7 +190,7 @@ public class Simulador {
             mensagem = "VENCERAM AS PRETAS";
 
         }
-        if( vencedor ==3){
+        if( vencedor == 3){
             mensagem = "EMPATE";
         }
         resultados.add("Resultado: " + mensagem );

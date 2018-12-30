@@ -31,6 +31,14 @@ public class TorreVert extends CrazyPiece {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (xO == xD  && yO!=yD) {
 
+                    for(CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
+                        if (yD == pieces.getY() && pieces.getIDEquipa() != peca.getIDEquipa()) {
+                            capturarPeca(pieces, equipaAtual, xD, yD);
+                            jogadaVPreta++;
+                            jogadaVBranca++;
+                        }
+                    }
+
                     // verifica se passa por cima de peças
                     if(yO > yD) {
                         do {

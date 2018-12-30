@@ -32,10 +32,14 @@ public class PadreDaVila extends CrazyPiece {
 
                     for (CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
                         //pieces  = peça que vai ser comida
-                        if (xD == pieces.getX() && yD == pieces.getY() && pieces.getTipoDePeca() != peca.getTipoDePeca()) {
-                            capturarPeca(pieces, equipaAtual, xD, yD);
-                            jogadaVPreta++;
-                            jogadaVBranca++;
+                        if (xD == pieces.getX() && yD == pieces.getY() ) {
+                            if( pieces.getIDEquipa() != peca.getIDEquipa()) {
+                                capturarPeca(pieces, equipaAtual, xD, yD);
+                                jogadaVPreta++;
+                                jogadaVBranca++;
+                            }else{
+                                return false;
+                            }
                         }
                     }
 

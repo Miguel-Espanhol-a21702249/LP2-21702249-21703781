@@ -31,10 +31,17 @@ public class Lebre extends CrazyPiece {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (xO != xD && yO != yD && Math.abs(xO - xD) == 1 && Math.abs(yO - yD) == 1) {
                     if(turno % 2 == 0) {
+
                         for (CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
-                            capturarPeca(pieces,equipaAtual,xD, yD);
-                            jogadaVPreta++;
-                            jogadaVBranca++;
+                            if(xD == pieces.getX() && yD == pieces.getY()) {
+                                if (pieces.getIDEquipa() != peca.getIDEquipa()) {
+                                    capturarPeca(pieces, equipaAtual, xD, yD);
+                                    jogadaVPreta++;
+                                    jogadaVBranca++;
+                                } else{
+                                    return false;
+                                }
+                            }
                         }
                         peca.posicaoX(xD);
                         peca.posicaoY(yD);

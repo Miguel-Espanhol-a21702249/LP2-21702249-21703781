@@ -34,12 +34,12 @@ public class Rei extends CrazyPiece {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (Math.abs(xO - xD) <= 1 && Math.abs(yO - yD) <= 1) {
 
-
                     for (CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
                         capturarPeca(pieces,equipaAtual,xD, yD);
                         jogadaVPreta++;
                         jogadaVBranca++;
                     }
+
                     peca.posicaoX(xD);
                     peca.posicaoY(yD);
                     turno++;

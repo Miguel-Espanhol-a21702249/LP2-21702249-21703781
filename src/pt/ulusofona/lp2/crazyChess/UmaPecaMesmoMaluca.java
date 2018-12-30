@@ -4,10 +4,10 @@ import static pt.ulusofona.lp2.crazyChess.Simulador.jogadaVBranca;
 import static pt.ulusofona.lp2.crazyChess.Simulador.jogadaVPreta;
 import static pt.ulusofona.lp2.crazyChess.Simulador.jogadasSemCaptura;
 
-public class UmaPeçaMesmoMaluca extends CrazyPiece {
+public class UmaPecaMesmoMaluca extends CrazyPiece {
 
 
-    UmaPeçaMesmoMaluca(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha) {
+    UmaPecaMesmoMaluca(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha) {
         this.iDPeca = iDPeca;
         this.tipoDePeca = 0;
         this.valorRelativo = "infinito";
