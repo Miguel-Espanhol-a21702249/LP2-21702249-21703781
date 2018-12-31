@@ -1,10 +1,6 @@
 package pt.ulusofona.lp2.crazyChess;
 
-import static pt.ulusofona.lp2.crazyChess.Simulador.listaPecas;
-import static pt.ulusofona.lp2.crazyChess.Simulador.jogadaVBranca;
-import static pt.ulusofona.lp2.crazyChess.Simulador.jogadaVPreta;
-import static pt.ulusofona.lp2.crazyChess.Simulador.jogadasSemCaptura;
-import static pt.ulusofona.lp2.crazyChess.Simulador.turno;
+import static pt.ulusofona.lp2.crazyChess.Simulador.*;
 
 //rainha certa falta ver se passa por cima de peças
 public class Rainha extends CrazyPiece {

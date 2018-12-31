@@ -29,6 +29,25 @@ public class PoneiMagico extends CrazyPiece {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (xO != xD && yO != yD && Math.abs(xO - xD) == 2 && Math.abs(yO - yD) == 2) {
 
+
+
+
+                    for (CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
+                        //pieces  = peça que vai ser comida
+                        if (xD == pieces.getX() && yD == pieces.getY() ) {
+                            if( pieces.getIDEquipa() != peca.getIDEquipa()) {
+                                capturarPeca(pieces, equipaAtual, xD, yD);
+                                jogadaVPreta++;
+                                jogadaVBranca++;
+                            }else{
+                                return false;
+                            }
+                        }
+                    }
+
+
+
+
                     if(xO > xD && yO > yD){
                         //diagonal para esquerda cima
                         direcaoPonei = -1;

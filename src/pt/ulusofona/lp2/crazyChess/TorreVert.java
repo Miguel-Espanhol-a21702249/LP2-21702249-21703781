@@ -1,10 +1,6 @@
 package pt.ulusofona.lp2.crazyChess;
 
-import static pt.ulusofona.lp2.crazyChess.Simulador.listaPecas;
-import static pt.ulusofona.lp2.crazyChess.Simulador.jogadaVBranca;
-import static pt.ulusofona.lp2.crazyChess.Simulador.jogadaVPreta;
-import static pt.ulusofona.lp2.crazyChess.Simulador.jogadasSemCaptura;
-import static pt.ulusofona.lp2.crazyChess.Simulador.turno;
+import static pt.ulusofona.lp2.crazyChess.Simulador.*;
 
 
 //torre certa
@@ -29,15 +25,25 @@ public class TorreVert extends CrazyPiece {
     public boolean movimento(CrazyPiece peca,int equipaAtual,int xO, int yO, int xD, int yD) {
         if (peca.getX() == xO && peca.getY() == yO) {
             if (peca.getIDEquipa() == equipaAtual) {
-                if (xO == xD  && yO!=yD) {
+                if (xO == xD  && yO != yD) {
 
                     for(CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
-                        if (yD == pieces.getY() && pieces.getIDEquipa() != peca.getIDEquipa()) {
-                            capturarPeca(pieces, equipaAtual, xD, yD);
-                            jogadaVPreta++;
-                            jogadaVBranca++;
+                        if (yD == pieces.getY() && xD == pieces.getX() ) {
+                            if( pieces.getIDEquipa() != peca.getIDEquipa()) {
+
+                                capturarPeca(pieces, equipaAtual, xD, yD);
+
+                                if (!pieces.getCapturada()) {
+                                    jogadasSemCaptura++;
+                                }
+                                break;
+                            }
+
+
                         }
                     }
+
+
 
                     // verifica se passa por cima de peças
                     if(yO > yD) {
@@ -72,19 +78,40 @@ public class TorreVert extends CrazyPiece {
                     peca.posicaoX(xD);
                     peca.posicaoY(yD);
                     turno++;
-                    jogadasSemCaptura++;
+
+
                     if (peca.getIDEquipa() == 10) {
                         jogadaVPreta++;
                     } else {
                         jogadaVBranca++;
                     }
+
                     return true;
-                }else{ // se o movimento for errado
+
+                }else{// se o movimento for errado
+
+                    if (peca.getIDEquipa() == 10) {
+                        jogadaINVPreta++;
+                    } else {
+                        jogadaINVBranca++;
+                    }
                     return false;
                 }
             } else { // se nao for a vez da equipa jogar
+
+                if (peca.getIDEquipa() == 10) {
+                    jogadaINVPreta++;
+                } else {
+                    jogadaINVBranca++;
+                }
                 return false;
             }
+        }
+
+        if (peca.getIDEquipa() == 10) {
+            jogadaINVPreta++;
+        } else {
+            jogadaINVBranca++;
         }
         return false;
     }

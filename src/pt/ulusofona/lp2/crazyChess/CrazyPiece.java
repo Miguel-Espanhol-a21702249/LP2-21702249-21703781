@@ -11,31 +11,31 @@ abstract public class  CrazyPiece {
     String alcunha;
     int x;
     int y;
-    boolean capturada = true;
+    boolean capturada =false;
 
-    public CrazyPiece(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha) {
+    public CrazyPiece(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha){
         this.iDPeca = iDPeca;
         this.tipoDePeca = tipoDePeca;
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
     }
 
-    public CrazyPiece() {
-    }
+    public CrazyPiece(){}
 
-    public CrazyPiece(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean capturada) {
+    public CrazyPiece(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean capturada){
         this.iDPeca = iDPeca;
         this.tipoDePeca = tipoDePeca;
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
-        this.x = x;
-        this.y = y;
+        this.x=x;
+        this.y=y;
         this.capturada = capturada;
     }
 
 
-    int posicaoX(int x) {
-        this.x = x;
+
+    int posicaoX(int x){
+        this.x=x;
         return x;
     }
 
@@ -44,50 +44,53 @@ abstract public class  CrazyPiece {
         return y;
     }
 
-    int getX() {
+    int getX(){
         return x;
     }
 
-    int getY() {
+    int getY(){
         return y;
     }
 
-    int getTipoDePeca() {
+    int getTipoDePeca(){
         return tipoDePeca;
     }
-
-    int getIDEquipa() {
+    int getIDEquipa(){
         return iDEquipa;
     }
-
-    String getAlcunha() {
+    String getAlcunha(){
         return alcunha;
     }
 
     public int getId() {
         return iDPeca;
     }
-
-    boolean getCapturada() {
+    boolean getCapturada(){
         return capturada;
     }
 
     abstract public String getImagePNG();
 
-    abstract public boolean movimento(CrazyPiece peca, int equipaAJogar, int xO, int yO, int xD, int yD);
+    abstract public boolean movimento(CrazyPiece peca, int equipaAJogar,int xO, int yO, int xD, int yD);
 
 
-    public void capturarPeca(CrazyPiece peca, int equipaAJogar, int xD, int yD) {
+    public void capturarPeca(CrazyPiece peca,int equipaAJogar, int xD, int yD){
         if (peca.getX() == xD && peca.getY() == yD) {
             if (peca.getIDEquipa() != equipaAJogar) {
                 peca.posicaoY(-1);
                 peca.posicaoX(-1);
                 peca.capturada = true;
-                listaPecasComida.add(peca);
-                jogadasSemCaptura = 0;
+
+                if( peca.getIDEquipa() == 10){
+                    listaPecasComidasBrancas.add(peca);
+                }else{
+                    listaPecasComidasPretas.add(peca);
+                }
+                jogadasSemCaptura=0;
             }
         }
     }
 
     abstract public String toString();
+
 }

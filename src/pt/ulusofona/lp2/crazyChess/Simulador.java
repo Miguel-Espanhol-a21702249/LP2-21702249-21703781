@@ -11,7 +11,8 @@ public class Simulador {
     int sizeTabuleiro;
     int numeroDePecas;
     static List<CrazyPiece> listaPecas = new ArrayList<>();
-    static List<CrazyPiece> listaPecasComida = new ArrayList<>();
+    static List<CrazyPiece> listaPecasComidasBrancas = new ArrayList<>();
+    static List<CrazyPiece> listaPecasComidasPretas = new ArrayList<>();
     int vencedor = 3;
     static int pecaComidaPreta= 0, pecaComidaBranca = 0;
     static int jogadaVBranca = 0;
@@ -21,6 +22,7 @@ public class Simulador {
     boolean vitoriaSemJogar = false;
     String mensagem;
     static int turno=0;
+
 
 
 
@@ -196,11 +198,11 @@ public class Simulador {
         resultados.add("Resultado: " + mensagem );
         resultados.add("---");
         resultados.add("Equipa das Pretas");
-        resultados.add("" + pecaComidaPreta);
+        resultados.add("" + listaPecasComidasPretas.size());
         resultados.add("" + jogadaVPreta);
         resultados.add("" + jogadaINVPreta);
         resultados.add("Equipa das Brancas");
-        resultados.add("" + pecaComidaBranca);
+        resultados.add("" + listaPecasComidasBrancas.size());
         resultados.add("" + jogadaVBranca);
         resultados.add("" + jogadaINVBranca);
         return resultados;

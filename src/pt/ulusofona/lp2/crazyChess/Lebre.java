@@ -54,7 +54,7 @@ public class Lebre extends CrazyPiece {
                         }
                         return true;
                     }else{
-                        return false;
+                        return false; // se o turno for impar
                     }
                 }else{ // se a distancia for maior
                     return false;

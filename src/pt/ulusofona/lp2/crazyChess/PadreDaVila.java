@@ -68,7 +68,7 @@ public class PadreDaVila extends CrazyPiece {
                         do {
 
                             for (CrazyPiece p : listaPecas) {
-                                if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == peca.getX() && p.getX() == xO && peca.getX() != p.getX() && p.getY() == peca.getY()) {
+                                if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO ) {
                                     return false;
                                 }
                             }
@@ -116,11 +116,6 @@ public class PadreDaVila extends CrazyPiece {
 
 
 
-                    for (CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
-                        capturarPeca(pieces,equipaAtual,xD, yD);
-                        jogadaVPreta++;
-                        jogadaVBranca++;
-                    }
                     peca.posicaoX(xD);
                     peca.posicaoY(yD);
                     turno++;
