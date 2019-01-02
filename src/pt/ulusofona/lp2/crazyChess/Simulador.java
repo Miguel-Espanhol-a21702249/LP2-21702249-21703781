@@ -282,7 +282,7 @@ public class Simulador {
                 writer.write(newLine);
 
             }
-
+            writer.write(getIDEquipaAJogar()+ ":" + jogadaVPreta + ":" + pecaComidaPreta + ":" + jogadaINVPreta + ":" + jogadaVBranca + ":" + pecaComidaBranca + ":" + jogadaINVBranca);
             writer.close();
             return true;
         }
