@@ -10,7 +10,8 @@ import java.util.Scanner;
 public class Simulador {
     int sizeTabuleiro;
     int numeroDePecas;
-    static List<CrazyPiece> listaPecas = new ArrayList<>();
+    List<CrazyPiece> listaPecas = new ArrayList<>();
+    static List<CrazyPiece> listaPecasAux= new ArrayList<>();
     static List<CrazyPiece> listaPecasComidasBrancas = new ArrayList<>();
     static List<CrazyPiece> listaPecasComidasPretas = new ArrayList<>();
     static List<Jogada> listaDeJogadas = new ArrayList<>();
@@ -100,6 +101,7 @@ public class Simulador {
                                     listaPeca.posicaoY(linhaTabuleiro);
                                     listaPeca.capturada = false;
                                     System.out.println(listaPeca);
+                                    listaPecasAux.addAll(listaPecas);
                                 }
                             }
                         }

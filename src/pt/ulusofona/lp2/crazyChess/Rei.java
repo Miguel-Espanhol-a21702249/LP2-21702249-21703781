@@ -23,14 +23,14 @@ public class Rei extends CrazyPiece {
             return "crazy_emoji_white.png";
         }
     }
-
+    public boolean anularJogada(CrazyPiece p, int xO, int xD,int yO,int yD){return true;}
     public boolean movimento(CrazyPiece peca, int equipaAtual, int xO, int yO, int xD, int yD) {
         // peça existente nas coordenandas origem
             if (peca.getIDEquipa() == equipaAtual) {
                 if (Math.abs(xO - xD) == 1 || Math.abs(yO - yD) == 1) {
 
                     //comer pieces
-                    for (CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
+                    for (CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
                         if(xD == pieces.getX() && yD == pieces.getY()) {
 
                             if (pieces.getIDEquipa() != peca.getIDEquipa()) {
