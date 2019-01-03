@@ -40,28 +40,18 @@ public class TorreVert extends CrazyPiece {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (xO == xD && yO != yD) {
 
-
-
                     for(CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
                         if (yD == pieces.getY() && xD == pieces.getX() ) {
-                            if( pieces.getIDEquipa() != peca.getIDEquipa()) {
+                            if (pieces.getIDEquipa() != peca.getIDEquipa()) {
 
                                 capturarPeca(pieces, equipaAtual, xD, yD);
+                                jogadaVPreta++;
+                                jogadaVBranca++;
 
-                                if (!pieces.getCapturada()) {
-                                    jogadasSemCaptura++;
-                                }
-                                break;
 
-                            } else {
-                                return false;
                             }
-
-
                         }
                     }
-
-
 
 
 
@@ -70,7 +60,7 @@ public class TorreVert extends CrazyPiece {
                         do {
                             for (CrazyPiece p : listaPecasAux) {
 
-                                if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO) {
+                                if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == peca.getX()) {
                                     return false;
                                 }
                             }
@@ -82,7 +72,7 @@ public class TorreVert extends CrazyPiece {
                         do {
                             for (CrazyPiece p : listaPecasAux) {
 
-                                if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == peca.getY()) {
+                                if (p.getY() == yO && peca.getY() != p.getY() && p.getX() == peca.getX()) {
                                     return false;
                                 }
                             }
@@ -95,7 +85,7 @@ public class TorreVert extends CrazyPiece {
 
                     peca.posicaoX(xD);
                     peca.posicaoY(yD);
-
+                    jogadasSemCaptura++;
 
                     if (peca.getIDEquipa() == 10) {
                         jogadaVPreta++;
@@ -105,33 +95,16 @@ public class TorreVert extends CrazyPiece {
 
                     return true;
 
-                }else{// se o movimento for errado
 
-                    if (peca.getIDEquipa() == 10) {
-                        jogadaINVPreta++;
-                    } else {
-                        jogadaINVBranca++;
+                    }else{ // se o movimento for errado
+                        return false;
                     }
+                } else { // se nao for a vez da equipa jogar
                     return false;
                 }
-            } else { // se nao for a vez da equipa jogar
-
-                if (peca.getIDEquipa() == 10) {
-                    jogadaINVPreta++;
-                } else {
-                    jogadaINVBranca++;
-                }
-                return false;
             }
+            return false;
         }
-
-        if (peca.getIDEquipa() == 10) {
-            jogadaINVPreta++;
-        } else {
-            jogadaINVBranca++;
-        }
-        return false;
-    }
 
     public String toString(){
         if(!getCapturada()) {

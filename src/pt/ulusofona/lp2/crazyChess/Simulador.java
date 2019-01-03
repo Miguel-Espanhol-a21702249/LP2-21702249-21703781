@@ -14,7 +14,6 @@ public class Simulador {
     static List<CrazyPiece> listaPecasAux= new ArrayList<>();
     static List<CrazyPiece> listaPecasComidasBrancas = new ArrayList<>();
     static List<CrazyPiece> listaPecasComidasPretas = new ArrayList<>();
-    static List<Jogada> listaDeJogadas = new ArrayList<>();
     int vencedor = 3;
     static int pecaComidaPreta= 0, pecaComidaBranca = 0;
     static int jogadaVBranca = 0;
@@ -149,7 +148,6 @@ public class Simulador {
                         countLebre++;
                     }
                 }
-                Jogada jogada = new Jogada(turno, xO, yO, xD, yD);
             }
             return jogadaValida;
         }
@@ -256,13 +254,6 @@ public class Simulador {
     }
 
     public void anularJogadaAnterior(){
-        for (Jogada jogadaPretendida : listaDeJogadas){
-            if(turno-1 == jogadaPretendida.getTurno()){
-                processaJogada(jogadaPretendida.getxD(),jogadaPretendida.getyD(),jogadaPretendida.getxO(),jogadaPretendida.getyO());
-                turno-=2;
-                break;
-            }
-        }
 
 
     }
