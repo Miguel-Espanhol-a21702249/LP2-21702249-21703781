@@ -13,6 +13,15 @@ public class TorreVert extends CrazyPiece {
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
     }
+    //construtor teste
+    TorreVert(int tipoDePeca, int iDEquipa ,int x, int y, boolean capturada ){
+        this.iDPeca = iDPeca;
+        this.tipoDePeca = 5;
+        this.iDEquipa = iDEquipa;
+        this.x = x;
+        this.y = y;
+        this.capturada = capturada;
+    }
 
     public String getImagePNG(){
         if(iDEquipa == 10){
@@ -22,12 +31,16 @@ public class TorreVert extends CrazyPiece {
         }
     }
 
+    public boolean anularJogada(CrazyPiece peca, int xO, int yO, int xD, int yD){
+        return true;
+    }
+
     public boolean movimento(CrazyPiece peca,int equipaAtual,int xO, int yO, int xD, int yD) {
         if (peca.getX() == xO && peca.getY() == yO) {
             if (peca.getIDEquipa() == equipaAtual) {
-                if (xO == xD  && yO != yD) {
+                if (xO == xD && yO != yD) {
 
-                    for(CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
+                    for(CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
                         if (yD == pieces.getY() && xD == pieces.getX() ) {
                             if( pieces.getIDEquipa() != peca.getIDEquipa()) {
 
@@ -37,6 +50,9 @@ public class TorreVert extends CrazyPiece {
                                     jogadasSemCaptura++;
                                 }
                                 break;
+
+                            } else {
+                                return false;
                             }
 
 
@@ -48,9 +64,9 @@ public class TorreVert extends CrazyPiece {
                     // verifica se passa por cima de peças
                     if(yO > yD) {
                         do {
-                            for (CrazyPiece p : listaPecas) {
+                            for (CrazyPiece p : listaPecasAux) {
 
-                                if (p.getY() == yO && peca.getY() != p.getY() && p.getX() == peca.getX()) {
+                                if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO) {
                                     return false;
                                 }
                             }
@@ -60,17 +76,15 @@ public class TorreVert extends CrazyPiece {
                     }else{
 
                         do {
-                            for (CrazyPiece p : listaPecas) {
+                            for (CrazyPiece p : listaPecasAux) {
 
-                                if (p.getY() == yO && peca.getY() != p.getY() && p.getX() == peca.getX()) {
+                                if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO) {
                                     return false;
                                 }
                             }
                             yO++;
                         } while (yO <= yD);
                     }
-
-                    // peça existente nas coordenadas destino
 
 
 

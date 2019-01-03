@@ -12,7 +12,16 @@ public class Lebre extends CrazyPiece {
         this.alcunha = alcunha;
     }
 
-
+    Lebre(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha,int x, int y, boolean capturada ){
+        this.iDPeca = iDPeca;
+        this.tipoDePeca = 6;
+        this.valorRelativo = "2";
+        this.iDEquipa = iDEquipa;
+        this.alcunha = alcunha;
+        this.x = x;
+        this.y = y;
+        this.capturada = capturada;
+    }
 
 
     @Override
@@ -24,6 +33,9 @@ public class Lebre extends CrazyPiece {
         }
     }
 
+    public boolean anularJogada(CrazyPiece peca, int xO, int yO, int xD, int yD){
+        return true;
+    }
 
     public boolean movimento(CrazyPiece peca,int equipaAtual,int xO, int yO, int xD, int yD) {
         // peça existente nas coordenandas origem
@@ -32,7 +44,7 @@ public class Lebre extends CrazyPiece {
                 if (xO != xD && yO != yD && Math.abs(xO - xD) == 1 && Math.abs(yO - yD) == 1) {
                     if(turno % 2 == 0) {
 
-                        for (CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
+                        for (CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
                             if(xD == pieces.getX() && yD == pieces.getY()) {
                                 if (pieces.getIDEquipa() != peca.getIDEquipa()) {
                                     capturarPeca(pieces, equipaAtual, xD, yD);

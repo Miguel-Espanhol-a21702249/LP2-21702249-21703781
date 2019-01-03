@@ -11,6 +11,16 @@ public class PoneiMagico extends CrazyPiece {
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
     }
+    PoneiMagico(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha,int x, int y, boolean capturada){
+        this.iDPeca = iDPeca;
+        this.tipoDePeca = 2;
+        this.valorRelativo = "5";
+        this.iDEquipa = iDEquipa;
+        this.alcunha = alcunha;
+        this.x = x;
+        this.y = y;
+        this.capturada = capturada;
+    }
 
 
     @Override
@@ -22,6 +32,10 @@ public class PoneiMagico extends CrazyPiece {
         }
     }
 
+    public boolean anularJogada(CrazyPiece peca, int xO, int yO, int xD, int yD){
+        return true;
+    }
+
     public boolean movimento(CrazyPiece peca, int equipaAtual, int xO, int yO, int xD, int yD) {
         int direcaoPonei=-2;
         // peça existente nas coordenandas origem
@@ -29,10 +43,7 @@ public class PoneiMagico extends CrazyPiece {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (xO != xD && yO != yD && Math.abs(xO - xD) == 2 && Math.abs(yO - yD) == 2) {
 
-
-
-
-                    for (CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
+                    for (CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
                         //pieces  = peça que vai ser comida
                         if (xD == pieces.getX() && yD == pieces.getY() ) {
                             if( pieces.getIDEquipa() != peca.getIDEquipa()) {
@@ -44,6 +55,7 @@ public class PoneiMagico extends CrazyPiece {
                             }
                         }
                     }
+
 
 
 
@@ -74,7 +86,7 @@ public class PoneiMagico extends CrazyPiece {
 
                         do {
 
-                            for (CrazyPiece p : listaPecas) {
+                            for (CrazyPiece p : listaPecasAux) {
                                 if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && p.tipoDePeca == 0) {
                                     return false;
                                 }
@@ -87,7 +99,7 @@ public class PoneiMagico extends CrazyPiece {
 
                     if(direcaoPonei == 0){
                         do{
-                            for(CrazyPiece p: listaPecas){
+                            for(CrazyPiece p: listaPecasAux){
                                 if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && p.tipoDePeca == 0) {
                                     return false;
                                 }
@@ -99,7 +111,7 @@ public class PoneiMagico extends CrazyPiece {
 
                     if(direcaoPonei == 1){
                         do{
-                            for(CrazyPiece p: listaPecas){
+                            for(CrazyPiece p: listaPecasAux){
                                 if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && p.tipoDePeca == 0) {
                                     return false;
                                 }
@@ -111,7 +123,7 @@ public class PoneiMagico extends CrazyPiece {
 
                     if(direcaoPonei == 2){
                         do{
-                            for(CrazyPiece p: listaPecas){
+                            for(CrazyPiece p: listaPecasAux){
                                 if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && p.tipoDePeca == 0) {
                                     return false;
                                 }
@@ -124,18 +136,6 @@ public class PoneiMagico extends CrazyPiece {
 
 
 
-                    for (CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
-                        //pieces  = peça que vai ser comida
-                        if (xD == pieces.getX() && yD == pieces.getY() ) {
-                            if( pieces.getIDEquipa() != peca.getIDEquipa()) {
-                                capturarPeca(pieces, equipaAtual, xD, yD);
-                                jogadaVPreta++;
-                                jogadaVBranca++;
-                            }else{
-                                return false;
-                            }
-                        }
-                    }
 
                     peca.posicaoX(xD);
                     peca.posicaoY(yD);

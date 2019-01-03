@@ -1,10 +1,6 @@
 package pt.ulusofona.lp2.crazyChess;
 
-import static pt.ulusofona.lp2.crazyChess.Simulador.listaPecas;
-import static pt.ulusofona.lp2.crazyChess.Simulador.jogadaVBranca;
-import static pt.ulusofona.lp2.crazyChess.Simulador.jogadaVPreta;
-import static pt.ulusofona.lp2.crazyChess.Simulador.jogadasSemCaptura;
-import static pt.ulusofona.lp2.crazyChess.Simulador.turno;
+import static pt.ulusofona.lp2.crazyChess.Simulador.*;
 
 
 //torre certa
@@ -18,7 +14,16 @@ public class TorreHor extends CrazyPiece {
         this.alcunha = alcunha;
     }
 
-
+    TorreHor(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha,int x, int y, boolean capturada ){
+        this.iDPeca = iDPeca;
+        this.tipoDePeca = 4;
+        this.valorRelativo = "3";
+        this.iDEquipa = iDEquipa;
+        this.alcunha = alcunha;
+        this.x = x;
+        this.y = y;
+        this.capturada = capturada;
+    }
 
     @Override
     public String getImagePNG(){
@@ -29,13 +34,18 @@ public class TorreHor extends CrazyPiece {
         }
     }
 
+
+    public boolean anularJogada(CrazyPiece peca, int xO, int yO, int xD, int yD){
+        return true;
+    }
+
     public boolean movimento(CrazyPiece peca,int equipaAtual,int xO, int yO, int xD, int yD) {
         if (peca.getX() == xO && peca.getY() == yO) {
             if (peca.getIDEquipa() == equipaAtual) {
-                if (yO == yD) {
+                if (yO == yD && xO != xD) {
 
-                    for(CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
-                        if (xD == pieces.getX() && pieces.getIDEquipa() != peca.getIDEquipa()) {
+                    for(CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
+                        if (xD == pieces.getX() && yO == pieces.getY() && pieces.getIDEquipa() != peca.getIDEquipa()) {
                             capturarPeca(pieces, equipaAtual, xD, yD);
                             jogadaVPreta++;
                             jogadaVBranca++;
@@ -44,7 +54,7 @@ public class TorreHor extends CrazyPiece {
 
                     if(xO > xD) {
                         do {
-                            for (CrazyPiece p : listaPecas) {
+                            for (CrazyPiece p : listaPecasAux) {
                                 if (p.getX() == xO && peca.getX() != p.getX() && p.getY() == peca.getY()) {
                                     return false;
                                 }
@@ -55,7 +65,7 @@ public class TorreHor extends CrazyPiece {
                     }else{
 
                         do {
-                            for (CrazyPiece p : listaPecas) {
+                            for (CrazyPiece p : listaPecasAux) {
 
                                 if (p.getX() == xO && peca.getX() != p.getX() && p.getY() == peca.getY()) {
                                     return false;

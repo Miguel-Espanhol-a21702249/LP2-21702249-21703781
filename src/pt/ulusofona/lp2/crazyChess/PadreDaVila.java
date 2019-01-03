@@ -12,6 +12,16 @@ public class PadreDaVila extends CrazyPiece {
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
     }
+    PadreDaVila(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha,int x, int y, boolean capturada){
+        this.iDPeca = iDPeca;
+        this.tipoDePeca = 3;
+        this.valorRelativo = "3";
+        this.iDEquipa = iDEquipa;
+        this.alcunha = alcunha;
+        this.x = x;
+        this.y = y;
+        this.capturada = capturada;
+    }
 
     @Override
     public String getImagePNG(){
@@ -22,6 +32,10 @@ public class PadreDaVila extends CrazyPiece {
         }
     }
 
+    public boolean anularJogada(CrazyPiece peca, int xO, int yO, int xD, int yD){
+        return true;
+    }
+
     public boolean movimento(CrazyPiece peca,int equipaAtual,int xO, int yO, int xD, int yD) {
         int direcaoBispo= -2;
         // peça existente nas coordenandas origem
@@ -30,7 +44,11 @@ public class PadreDaVila extends CrazyPiece {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (xO != xD && yO != yD && Math.abs(xO - xD) <= 3 && Math.abs(yO - yD) <= 3) {
 
-                    for (CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
+
+
+
+                    //verifica se ha peça para ser comida
+                    for (CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
                         //pieces  = peça que vai ser comida
                         if (xD == pieces.getX() && yD == pieces.getY() ) {
                             if( pieces.getIDEquipa() != peca.getIDEquipa()) {
@@ -43,6 +61,8 @@ public class PadreDaVila extends CrazyPiece {
                         }
                     }
 
+
+                    //ve se ha salta por cima de peças
                     if(xO > xD && yO > yD){
                         //diagonal para esquerda cima
                         direcaoBispo = -1;
@@ -67,7 +87,7 @@ public class PadreDaVila extends CrazyPiece {
 
                         do {
 
-                            for (CrazyPiece p : listaPecas) {
+                            for (CrazyPiece p : listaPecasAux) {
                                 if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO ) {
                                     return false;
                                 }
@@ -78,9 +98,11 @@ public class PadreDaVila extends CrazyPiece {
                     }
 
 
+
+
                     if(direcaoBispo == 0){
                         do{
-                            for(CrazyPiece p: listaPecas){
+                            for(CrazyPiece p: listaPecasAux){
                                 if(peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO){
                                     return false;
                                 }
@@ -92,7 +114,7 @@ public class PadreDaVila extends CrazyPiece {
 
                     if(direcaoBispo == 1){
                         do{
-                            for(CrazyPiece p: listaPecas){
+                            for(CrazyPiece p: listaPecasAux){
                                 if(peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO){
                                     return false;
                                 }
@@ -104,7 +126,7 @@ public class PadreDaVila extends CrazyPiece {
 
                     if(direcaoBispo == 2){
                         do{
-                            for(CrazyPiece p: listaPecas){
+                            for(CrazyPiece p: listaPecasAux){
                                 if(peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO){
                                     return false;
                                 }
@@ -114,6 +136,15 @@ public class PadreDaVila extends CrazyPiece {
                         }while(xO >= xD && yO <= yD);
                     }
 
+
+                    //ve se a distancia entre rainha e padre e maior que dois
+                    for(CrazyPiece rainha : listaPecasAux) {
+                        if (rainha.getTipoDePeca() == 1 && rainha.getIDEquipa() != peca.getIDEquipa()) {
+                            if (Math.abs(rainha.getX() - xD) <= 2 && Math.abs(rainha.getY() - yD) <= 2){
+                                return false;
+                            }
+                        }
+                    }
 
 
                     peca.posicaoX(xD);

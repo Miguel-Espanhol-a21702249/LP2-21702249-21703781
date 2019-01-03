@@ -10,9 +10,11 @@ import java.util.Scanner;
 public class Simulador {
     int sizeTabuleiro;
     int numeroDePecas;
-    static List<CrazyPiece> listaPecas = new ArrayList<>();
-    static List<CrazyPiece> listaPecasComidasBrancas = new ArrayList<>();
-    static List<CrazyPiece> listaPecasComidasPretas = new ArrayList<>();
+    List<CrazyPiece> listaPecas = new ArrayList<>();
+    static List<CrazyPiece> listaPecasAux = new ArrayList<>();
+    static List<String> listaJogadasSugeridas = new ArrayList<>();
+    List<String> jogadaSugeridaInvalida = new ArrayList<>();
+    static List<CrazyPiece> listaAnularJogada = new ArrayList<>();
     int vencedor = 3;
     static int pecaComidaPreta= 0, pecaComidaBranca = 0;
     static int jogadaVBranca = 0;
@@ -28,6 +30,7 @@ public class Simulador {
 
     public boolean iniciaJogo(File ficheiroInicial) {
         int count =0 ,linhaTabuleiro=0;
+        jogadaSugeridaInvalida.add("Pedido Inválido");
         try {
             Scanner leitorFicheiro = new Scanner(ficheiroInicial);
 
@@ -99,6 +102,7 @@ public class Simulador {
                                     listaPeca.posicaoY(linhaTabuleiro);
                                     listaPeca.capturada = false;
                                     System.out.println(listaPeca);
+                                    listaPecasAux.addAll(listaPecas);
                                 }
                             }
                         }
@@ -124,14 +128,16 @@ public class Simulador {
 
     public boolean processaJogada(int xO, int yO, int xD, int yD) {
         int equipaAtual = getIDEquipaAJogar();
-        if (xO != xD && yO != yD || xD < sizeTabuleiro && yD < sizeTabuleiro || xD > 0 && yD > 0) {
+        boolean jogada = false;
+        if (xD < sizeTabuleiro && yD < sizeTabuleiro && xD >= 0 && yD >= 0) {
             for (CrazyPiece peca : listaPecas) {
                 if(peca.getX()== xO && peca.getY() == yO) {
-                    return peca.movimento(peca, equipaAtual, xO, yO, xD, yD);
+                    jogada = peca.movimento(peca, equipaAtual, xO, yO, xD, yD);
+
                 }
 
             }
-
+            return jogada;
         }
         return false;
     }
@@ -167,11 +173,8 @@ public class Simulador {
             vencedor = 3;
             return true;
         }
-        if(pecaComidaPreta + pecaComidaBranca > 0 && jogadasSemCaptura == 10) {
-            return true;
-        }
+        return pecaComidaPreta + pecaComidaBranca > 0 && jogadasSemCaptura == 10;
 
-        return false;
     }
 
 
@@ -198,11 +201,11 @@ public class Simulador {
         resultados.add("Resultado: " + mensagem );
         resultados.add("---");
         resultados.add("Equipa das Pretas");
-        resultados.add("" + listaPecasComidasPretas.size());
+        resultados.add("" + pecaComidaPreta);
         resultados.add("" + jogadaVPreta);
         resultados.add("" + jogadaINVPreta);
         resultados.add("Equipa das Brancas");
-        resultados.add("" + listaPecasComidasBrancas.size());
+        resultados.add("" + pecaComidaBranca);
         resultados.add("" + jogadaVBranca);
         resultados.add("" + jogadaINVBranca);
         return resultados;
@@ -225,18 +228,20 @@ public class Simulador {
         }
     }
 
-    public List<String> obterSugestoesJogada(int xO, int yO){
-
-
-        for(CrazyPiece peca : listaPecas){
-            if(peca.getX() == xO && peca.getY() == yO){
+    public List<String> obterSugestoesJogada(int xO, int yO) {
+        for (CrazyPiece peca : listaPecas) {
+            if (peca.getX() == xO && peca.getY() == yO) {
+                return listaJogadasSugeridas;
             }
-        }
-        return null;
+
+        }return jogadaSugeridaInvalida;
     }
 
     public void anularJogadaAnterior(){
 
+        for(CrazyPiece peca : listaPecas){
+            peca.anularJogada(peca,peca.getX(),peca.getY(),0,0);
+        }
     }
 
     public boolean gravarJogo(File ficheiroDestino){
@@ -269,7 +274,7 @@ public class Simulador {
                         }
                     }
                     System.out.println(pecaEncontrada);
-                    if (pecaEncontrada == true) {
+                    if (pecaEncontrada) {
                         writer.write( idEncontrado+"");
                     } else {
                         writer.write("0");
@@ -281,7 +286,9 @@ public class Simulador {
 
                 writer.write(newLine);
 
+
             }
+            writer.write(getIDEquipaAJogar()+ ":" + pecaComidaPreta + ":" + jogadaVPreta + ":" + jogadaINVPreta + ":" + pecaComidaBranca + ":" + jogadaVBranca + ":" + jogadaINVBranca);
 
             writer.close();
             return true;
@@ -297,10 +304,40 @@ public class Simulador {
     public void setTamanho(int sizeTabuleiro){
         this.sizeTabuleiro = sizeTabuleiro;
     }
-    /*public void setCrazyPieces(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean capturada){
-        listaPecas.add(new CrazyPiece(iDPeca, tipoDePeca, iDEquipa, alcunha, x, y, capturada));
-    }*/
 
 
-
+    /*public void setCrazyPieces(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean capturada) {
+        switch (tipoDePeca) {
+            case 0:
+                CrazyPiece rei = new Rei(iDPeca, tipoDePeca, iDEquipa, alcunha, x, y, capturada);
+                listaPecasTeste.add(rei);
+                break;
+            case 1:
+                CrazyPiece rainha = new Rainha(iDPeca, tipoDePeca, iDEquipa, alcunha, x, y, capturada);
+                listaPecasTeste.add(rainha);
+                break;
+            case 2:
+                CrazyPiece poneiMagico = new PoneiMagico(iDPeca, tipoDePeca, iDEquipa, alcunha, x, y, capturada);
+                listaPecasTeste.add(poneiMagico);
+                break;
+            case 3:
+                CrazyPiece padreDaVila = new PadreDaVila(iDPeca, tipoDePeca, iDEquipa, alcunha, x, y, capturada);
+                listaPecasTeste.add(padreDaVila);
+                break;
+            case 4:
+                CrazyPiece torreH = new TorreHor(iDPeca, tipoDePeca, iDEquipa, alcunha, x, y, capturada);
+                listaPecasTeste.add(torreH);
+                break;
+            case 5:
+                CrazyPiece torreV = new TorreVert(iDPeca, tipoDePeca, iDEquipa, alcunha, x, y, capturada);
+                listaPecasTeste.add(torreV);
+                break;
+            case 6:
+                CrazyPiece lebre = new Lebre(iDPeca, tipoDePeca, iDEquipa, alcunha, x, y, capturada);
+                listaPecasTeste.add(lebre);
+                break;
+            case 7:
+                CrazyPiece joker= new Joker(iDPeca, tipoDePeca, iDEquipa, alcunha,x,y,capturada);
+                listaPecasTeste.add(joker);
+                break;*/
 }

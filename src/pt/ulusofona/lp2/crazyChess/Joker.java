@@ -14,6 +14,17 @@ public class Joker extends CrazyPiece {
         this.alcunha = alcunha;
     }
 
+    Joker(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha,int x, int y, boolean capturada){
+        this.iDPeca = iDPeca;
+        this.tipoDePeca = 5;
+        this.valorRelativo = "4";
+        this.iDEquipa = iDEquipa;
+        this.alcunha = alcunha;
+        this.x = x;
+        this.y = y;
+        this.capturada = capturada;
+    }
+
 
 
 
@@ -26,6 +37,9 @@ public class Joker extends CrazyPiece {
         }
     }
 
+    public boolean anularJogada(CrazyPiece peca, int xO, int yO, int xD, int yD){
+        return true;
+    }
     public boolean movimento(CrazyPiece peca, int equipaAtual, int xO, int yO, int xD, int yD) {return true;}
 
     public String toString(){
