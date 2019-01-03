@@ -40,7 +40,6 @@ public class TorreHor extends CrazyPiece {
     }
 
     public boolean movimento(CrazyPiece peca,int equipaAtual,int xO, int yO, int xD, int yD) {
-        if (peca.getX() == xO && peca.getY() == yO) {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (yO == yD && xO != xD) {
 
@@ -67,7 +66,7 @@ public class TorreHor extends CrazyPiece {
                         do {
                             for (CrazyPiece p : listaPecasAux) {
 
-                                if (p.getX() == xO && peca.getX() != p.getX() && p.getY() == peca.getY()) {
+                                if (peca.getX() != p.getX() && p.getX() == xO && p.getY() == peca.getY()) {
                                     return false;
                                 }
                             }
@@ -79,7 +78,7 @@ public class TorreHor extends CrazyPiece {
 
                     peca.posicaoX(xD);
                     peca.posicaoY(yD);
-                    turno++;
+
                     jogadasSemCaptura++;
                     if (peca.getIDEquipa() == 10) {
                         jogadaVPreta++;
@@ -93,8 +92,7 @@ public class TorreHor extends CrazyPiece {
             } else { // se nao for a vez da equipa jogar
                 return false;
             }
-        }
-        return false;
+
     }
 
 

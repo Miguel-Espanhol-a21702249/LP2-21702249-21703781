@@ -40,6 +40,8 @@ public class TorreVert extends CrazyPiece {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (xO == xD && yO != yD) {
 
+
+
                     for(CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
                         if (yD == pieces.getY() && xD == pieces.getX() ) {
                             if( pieces.getIDEquipa() != peca.getIDEquipa()) {
@@ -61,6 +63,8 @@ public class TorreVert extends CrazyPiece {
 
 
 
+
+
                     // verifica se passa por cima de peças
                     if(yO > yD) {
                         do {
@@ -78,7 +82,7 @@ public class TorreVert extends CrazyPiece {
                         do {
                             for (CrazyPiece p : listaPecasAux) {
 
-                                if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO) {
+                                if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == peca.getY()) {
                                     return false;
                                 }
                             }
@@ -91,7 +95,6 @@ public class TorreVert extends CrazyPiece {
 
                     peca.posicaoX(xD);
                     peca.posicaoY(yD);
-                    turno++;
 
 
                     if (peca.getIDEquipa() == 10) {

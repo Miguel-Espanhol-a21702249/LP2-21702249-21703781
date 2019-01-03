@@ -11,7 +11,7 @@ abstract public class  CrazyPiece {
     String alcunha;
     int x;
     int y;
-    boolean capturada = false;
+    boolean capturada =false;
 
     public CrazyPiece(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha){
         this.iDPeca = iDPeca;
@@ -71,24 +71,24 @@ abstract public class  CrazyPiece {
 
     abstract public String getImagePNG();
 
-
-    abstract public boolean anularJogada(CrazyPiece peca, int xO, int yO, int xD, int yD);
-
     abstract public boolean movimento(CrazyPiece peca, int equipaAJogar,int xO, int yO, int xD, int yD);
 
 
     public void capturarPeca(CrazyPiece peca,int equipaAJogar, int xD, int yD){
-        peca.posicaoY(-1);
-        peca.posicaoX(-1);
-        peca.capturada = true;
+        if (peca.getX() == xD && peca.getY() == yD) {
+            if (peca.getIDEquipa() != equipaAJogar) {
+                peca.posicaoY(-1);
+                peca.posicaoX(-1);
+                peca.capturada = true;
 
-        if( peca.getIDEquipa() == 10){
-            pecaComidaBranca++;
-        }else{
-            pecaComidaPreta++;
+                if( peca.getIDEquipa() == 10){
+                    listaPecasComidasBrancas.add(peca);
+                }else{
+                    listaPecasComidasPretas.add(peca);
+                }
+                jogadasSemCaptura=0;
+            }
         }
-
-        jogadasSemCaptura=0;
     }
 
     abstract public String toString();

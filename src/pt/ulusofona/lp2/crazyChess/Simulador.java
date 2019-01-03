@@ -23,7 +23,8 @@ public class Simulador {
     static int jogadasSemCaptura= 0;
     boolean vitoriaSemJogar = false;
     String mensagem;
-    static int turno=0;
+    int turno=0;
+    static int countLebre = 0;
 
 
 
@@ -138,14 +139,19 @@ public class Simulador {
 
     public boolean processaJogada(int xO, int yO, int xD, int yD) {
         int equipaAtual = getIDEquipaAJogar();
+        boolean jogadaValida = false;
         if (xO != xD && yO != yD || xD < sizeTabuleiro && yD < sizeTabuleiro || xD > 0 && yD > 0) {
             for (CrazyPiece peca : listaPecas){
                 if (peca.getX() == xO && peca.getY() == yO) {
-                    return peca.movimento(peca, equipaAtual, xO, yO, xD, yD);
+                    jogadaValida= peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
+                    if(jogadaValida){
+                        turno++;
+                        countLebre++;
+                    }
                 }
-                    Jogada jogada = new Jogada(turno, xO, yO, xD, yD);
-                }
-
+                Jogada jogada = new Jogada(turno, xO, yO, xD, yD);
+            }
+            return jogadaValida;
         }
         return false;
     }

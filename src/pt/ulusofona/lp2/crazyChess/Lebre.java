@@ -42,7 +42,7 @@ public class Lebre extends CrazyPiece {
         if (peca.getX() == xO && peca.getY() == yO) {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (xO != xD && yO != yD && Math.abs(xO - xD) == 1 && Math.abs(yO - yD) == 1) {
-                    if(turno % 2 == 0) {
+                    if(countLebre % 2 == 0) {
 
                         for (CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
                             if(xD == pieces.getX() && yD == pieces.getY()) {
@@ -57,7 +57,6 @@ public class Lebre extends CrazyPiece {
                         }
                         peca.posicaoX(xD);
                         peca.posicaoY(yD);
-                        turno++;
                         jogadasSemCaptura++;
                         if (peca.getIDEquipa() == 10) {
                             jogadaVPreta++;

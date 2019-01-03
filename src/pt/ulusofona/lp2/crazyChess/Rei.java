@@ -27,7 +27,7 @@ public class Rei extends CrazyPiece {
     public boolean movimento(CrazyPiece peca, int equipaAtual, int xO, int yO, int xD, int yD) {
         // peça existente nas coordenandas origem
             if (peca.getIDEquipa() == equipaAtual) {
-                if (Math.abs(xO - xD) == 1 || Math.abs(yO - yD) == 1) {
+                if (Math.abs(xO - xD) <= 1 && Math.abs(yO - yD) <= 1) {
 
                     //comer pieces
                     for (CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
@@ -51,7 +51,6 @@ public class Rei extends CrazyPiece {
                     }
                     peca.posicaoX(xD);
                     peca.posicaoY(yD);
-                    turno++;
 
                     if (peca.getIDEquipa() == 10) {
                         jogadaVPreta++;
@@ -85,7 +84,7 @@ public class Rei extends CrazyPiece {
     }
 
     public String toString(){
-        if(getCapturada()) {
+        if(!getCapturada()) {
             return iDPeca + " | " + "Rei" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
         }else{
             return iDPeca + " | " + "Rei" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";

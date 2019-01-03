@@ -149,7 +149,7 @@ public class PadreDaVila extends CrazyPiece {
 
                     peca.posicaoX(xD);
                     peca.posicaoY(yD);
-                    turno++;
+
                     jogadasSemCaptura++;
                     if (peca.getIDEquipa() == 10) {
                         jogadaVPreta++;
