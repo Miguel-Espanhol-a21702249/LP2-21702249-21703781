@@ -13,6 +13,7 @@ public class Simulador {
     static List<CrazyPiece> listaPecas = new ArrayList<>();
     static List<CrazyPiece> listaPecasComidasBrancas = new ArrayList<>();
     static List<CrazyPiece> listaPecasComidasPretas = new ArrayList<>();
+    static List<Jogada> listaDeJogadas = new ArrayList<>();
     int vencedor = 3;
     static int pecaComidaPreta= 0, pecaComidaBranca = 0;
     static int jogadaVBranca = 0;
@@ -90,8 +91,8 @@ public class Simulador {
                         }
                     }
                     count++;
-                }else {
-                    for (int coluna =0 ;coluna < sizeTabuleiro ; coluna++) {
+                }else if(count < 2 + numeroDePecas + sizeTabuleiro){
+                    for (int coluna =0 ;coluna < sizeTabuleiro  ; coluna++) {
                         if( Integer.parseInt(dados[coluna]) != 0) {
                             for (CrazyPiece listaPeca : listaPecas) {
                                 if (listaPeca.getId() == Integer.parseInt(dados[coluna])) {
@@ -104,6 +105,17 @@ public class Simulador {
                         }
                     }
                     linhaTabuleiro++;
+                }
+                else{
+                    if(Integer.parseInt(dados[0]) == 10 || Integer.parseInt(dados[0])==20 && Integer.parseInt(dados[1])>=0 && Integer.parseInt(dados[2])>=0 && Integer.parseInt(dados[3])>=0 && Integer.parseInt(dados[4])>=0 && Integer.parseInt(dados[5])>=0&& Integer.parseInt(dados[6])>=0){
+                        turno = Integer.parseInt(dados[1]) + Integer.parseInt(dados[4]);
+                        jogadaVPreta = Integer.parseInt(dados[1]);
+                        pecaComidaPreta = Integer.parseInt(dados[2]);
+                        jogadaINVPreta = Integer.parseInt(dados[3]);
+                        jogadaVBranca = Integer.parseInt(dados[4]);
+                        pecaComidaBranca = Integer.parseInt(dados[5]);
+                        jogadaINVBranca = Integer.parseInt(dados[6]);
+                    }
                 }
             }
 
@@ -125,12 +137,12 @@ public class Simulador {
     public boolean processaJogada(int xO, int yO, int xD, int yD) {
         int equipaAtual = getIDEquipaAJogar();
         if (xO != xD && yO != yD || xD < sizeTabuleiro && yD < sizeTabuleiro || xD > 0 && yD > 0) {
-            for (CrazyPiece peca : listaPecas) {
-                if(peca.getX()== xO && peca.getY() == yO) {
+            for (CrazyPiece peca : listaPecas){
+                if (peca.getX() == xO && peca.getY() == yO) {
                     return peca.movimento(peca, equipaAtual, xO, yO, xD, yD);
                 }
-
-            }
+                    Jogada jogada = new Jogada(turno, xO, yO, xD, yD);
+                }
 
         }
         return false;
@@ -236,6 +248,14 @@ public class Simulador {
     }
 
     public void anularJogadaAnterior(){
+        for (Jogada jogadaPretendida : listaDeJogadas){
+            if(turno-1 == jogadaPretendida.getTurno()){
+                processaJogada(jogadaPretendida.getxD(),jogadaPretendida.getyD(),jogadaPretendida.getxO(),jogadaPretendida.getyO());
+                turno-=2;
+                break;
+            }
+        }
+
 
     }
 
@@ -283,6 +303,8 @@ public class Simulador {
 
             }
             writer.write(getIDEquipaAJogar()+ ":" + jogadaVPreta + ":" + pecaComidaPreta + ":" + jogadaINVPreta + ":" + jogadaVBranca + ":" + pecaComidaBranca + ":" + jogadaINVBranca);
+            writer.write(newLine);
+            writer.write(listaPecas.size() + "");
             writer.close();
             return true;
         }

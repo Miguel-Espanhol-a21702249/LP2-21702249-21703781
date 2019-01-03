@@ -3,7 +3,7 @@ package pt.ulusofona.lp2.crazyChess;
 
 import static pt.ulusofona.lp2.crazyChess.Simulador.*;
 
-//rei certo
+
 public class Rei extends CrazyPiece {
 
 
@@ -18,17 +18,16 @@ public class Rei extends CrazyPiece {
 
     public String getImagePNG() {
         if (iDEquipa == 10) {
-            return "icons8-king-50-black.png";
+            return "crazy_emoji_black.png";
         } else {
-            return "icons8-king-50-white.png";
+            return "crazy_emoji_white.png";
         }
     }
 
     public boolean movimento(CrazyPiece peca, int equipaAtual, int xO, int yO, int xD, int yD) {
         // peça existente nas coordenandas origem
-        if (peca.getX() == xO && peca.getY() == yO) {
             if (peca.getIDEquipa() == equipaAtual) {
-                if (Math.abs(xO - xD) <= 1 && Math.abs(yO - yD) <= 1) {
+                if (Math.abs(xO - xD) == 1 || Math.abs(yO - yD) == 1) {
 
                     //comer pieces
                     for (CrazyPiece pieces : listaPecas) { // peça existente nas coordenadas destino
@@ -50,9 +49,6 @@ public class Rei extends CrazyPiece {
                         }
 
                     }
-
-
-
                     peca.posicaoX(xD);
                     peca.posicaoY(yD);
                     turno++;
@@ -86,14 +82,6 @@ public class Rei extends CrazyPiece {
 
                 return false;
             }
-        }
-
-        if (peca.getIDEquipa() == 10) {
-            jogadaINVPreta++;
-        } else {
-            jogadaINVBranca++;
-        }
-        return false;
     }
 
     public String toString(){
