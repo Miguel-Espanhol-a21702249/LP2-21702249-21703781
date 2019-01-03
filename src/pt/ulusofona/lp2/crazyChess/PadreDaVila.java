@@ -52,9 +52,8 @@ public class PadreDaVila extends CrazyPiece {
                         //pieces  = peça que vai ser comida
                         if (xD == pieces.getX() && yD == pieces.getY() ) {
                             if( pieces.getIDEquipa() != peca.getIDEquipa()) {
-                                capturarPeca(pieces, equipaAtual, xD, yD);
-                                jogadaVPreta++;
-                                jogadaVBranca++;
+                                capturarPeca(pieces, xD, yD);
+
                             }else{
                                 return false;
                             }
@@ -147,15 +146,6 @@ public class PadreDaVila extends CrazyPiece {
                     }
 
 
-                    peca.posicaoX(xD);
-                    peca.posicaoY(yD);
-
-                    jogadasSemCaptura++;
-                    if (peca.getIDEquipa() == 10) {
-                        jogadaVPreta++;
-                    } else {
-                        jogadaVBranca++;
-                    }
                     return true;
                 }else{ // se a distancia for maior
                     return false;

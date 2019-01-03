@@ -48,9 +48,7 @@ public class Rainha extends CrazyPiece {
 
                         for (CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
                             if (xD == pieces.getX() && yD == pieces.getY() && pieces.getIDEquipa() != peca.getIDEquipa() && pieces.getTipoDePeca() != peca.getTipoDePeca()) { // a rainha nao pode comer rainha
-                                capturarPeca(pieces, equipaAtual, xD, yD);
-                                jogadaVPreta++;
-                                jogadaVBranca++;
+                                capturarPeca(pieces,  xD, yD);
                             }
                         }
 
@@ -202,14 +200,6 @@ public class Rainha extends CrazyPiece {
                         }
 
 
-                        peca.posicaoX(xD);
-                        peca.posicaoY(yD);
-                        jogadasSemCaptura++;
-                        if (peca.getIDEquipa() == 10) {
-                            jogadaVPreta++;
-                        } else {
-                            jogadaVBranca++;
-                        }
                         return true;
                     } else { // se a distancia for maior
                         return false;

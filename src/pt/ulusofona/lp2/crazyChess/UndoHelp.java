@@ -1,12 +1,12 @@
 package pt.ulusofona.lp2.crazyChess;
 
 public class UndoHelp {
-    int iDPecaQueAnda;
-    int xDaQueAnda;
-    int yDaQueAnda;
-    int iDPecaQueMorre;
-    int xDaQueMorre;
-    int yDaQueMorre;
+    private int iDPecaQueAnda;
+    private int xDaQueAnda;
+    private int yDaQueAnda;
+    private int iDPecaQueMorre;
+    private int xDaQueMorre;
+    private int yDaQueMorre;
 
     UndoHelp(int iDPecaQueAnda, int xDaQueAnda, int yDaQueAnda,int iDPecaQueMorre, int xDaQueMorre, int yDaQueMorre){
         this.iDPecaQueAnda = iDPecaQueAnda;

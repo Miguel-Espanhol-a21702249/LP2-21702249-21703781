@@ -74,9 +74,8 @@ abstract public class  CrazyPiece {
     abstract public boolean movimento(CrazyPiece peca, int equipaAJogar,int xO, int yO, int xD, int yD);
 
 
-    public void capturarPeca(CrazyPiece peca,int equipaAJogar, int xD, int yD){
+    public void capturarPeca(CrazyPiece peca, int xD, int yD){
         if (peca.getX() == xD && peca.getY() == yD) {
-            if (peca.getIDEquipa() != equipaAJogar) {
                 peca.posicaoY(-1);
                 peca.posicaoX(-1);
                 peca.capturada = true;
@@ -87,7 +86,6 @@ abstract public class  CrazyPiece {
                     listaPecasComidasPretas.add(peca);
                 }
                 jogadasSemCaptura=0;
-            }
         }
     }
 

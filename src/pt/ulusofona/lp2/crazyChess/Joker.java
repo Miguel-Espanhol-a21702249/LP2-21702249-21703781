@@ -71,7 +71,7 @@ public class Joker extends CrazyPiece {
                                     if (yD == pieces.getY() && xD == pieces.getX() ) {
                                         if( pieces.getIDEquipa() != peca.getIDEquipa()) {
 
-                                            capturarPeca(pieces, equipaAtual, xD, yD);
+                                            capturarPeca(pieces, xD, yD);
 
                                             if (!pieces.getCapturada()) {
                                                 jogadasSemCaptura++;
@@ -121,39 +121,20 @@ public class Joker extends CrazyPiece {
                                 turno++;
 
 
-                                if (peca.getIDEquipa() == 10) {
-                                    jogadaVPreta++;
-                                } else {
-                                    jogadaVBranca++;
-                                }
-
                                 return true;
 
                             }else{// se o movimento for errado
 
-                                if (peca.getIDEquipa() == 10) {
-                                    jogadaINVPreta++;
-                                } else {
-                                    jogadaINVBranca++;
-                                }
                                 return false;
                             }
                         } else { // se nao for a vez da equipa jogar
 
-                            if (peca.getIDEquipa() == 10) {
-                                jogadaINVPreta++;
-                            } else {
-                                jogadaINVBranca++;
-                            }
+
                             return false;
                         }
                     }
 
-                    if (peca.getIDEquipa() == 10) {
-                        jogadaINVPreta++;
-                    } else {
-                        jogadaINVBranca++;
-                    }
+
                     break;
                 case 5:
                     CrazyPiece lebre = new Lebre(this.iDPeca , this.tipoDePeca, this.iDEquipa, this.alcunha);

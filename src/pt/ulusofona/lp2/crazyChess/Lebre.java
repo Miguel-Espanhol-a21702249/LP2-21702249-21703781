@@ -47,22 +47,14 @@ public class Lebre extends CrazyPiece {
                         for (CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
                             if(xD == pieces.getX() && yD == pieces.getY()) {
                                 if (pieces.getIDEquipa() != peca.getIDEquipa()) {
-                                    capturarPeca(pieces, equipaAtual, xD, yD);
-                                    jogadaVPreta++;
-                                    jogadaVBranca++;
+                                    capturarPeca(pieces,  xD, yD);
                                 } else{
                                     return false;
                                 }
                             }
                         }
-                        peca.posicaoX(xD);
-                        peca.posicaoY(yD);
-                        jogadasSemCaptura++;
-                        if (peca.getIDEquipa() == 10) {
-                            jogadaVPreta++;
-                        } else {
-                            jogadaVBranca++;
-                        }
+
+
                         return true;
                     }else{
                         return false; // se o turno for impar

@@ -40,17 +40,8 @@ public class UmaPecaMesmoMaluca extends CrazyPiece {
         if (peca.getX() == xO && peca.getY() == yO) {
             if (Math.abs(xO - xD) <= 1 && Math.abs(yO - yD) <= 1) {
                 for (CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
-                    capturarPeca(pieces,equipaAJogar,xD, yD);
-                    jogadaVBranca++;
-                    jogadaVPreta++;
-                }
-                peca.posicaoX(xD);
-                peca.posicaoY(yD);
-                jogadasSemCaptura++;
-                if(peca.getIDEquipa() == 10){
-                    jogadaVPreta++;
-                }else{
-                    jogadaVBranca++;
+                    capturarPeca(pieces,xD, yD);
+
                 }
                 return true;
             }

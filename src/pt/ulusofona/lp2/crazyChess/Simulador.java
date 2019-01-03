@@ -8,21 +8,20 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Simulador {
-    int sizeTabuleiro;
-    int numeroDePecas;
-    List<CrazyPiece> listaPecas = new ArrayList<>();
+    private int sizeTabuleiro;
+    private int numeroDePecas;
+    private List<CrazyPiece> listaPecas = new ArrayList<>();
     static List<CrazyPiece> listaPecasAux= new ArrayList<>();
     static List<CrazyPiece> listaPecasComidasBrancas = new ArrayList<>();
     static List<CrazyPiece> listaPecasComidasPretas = new ArrayList<>();
-    int vencedor = 3;
-    static int pecaComidaPreta= 0, pecaComidaBranca = 0;
-    static int jogadaVBranca = 0;
-    static int jogadaVPreta = 0;
-    static int jogadaINVBranca = 0, jogadaINVPreta = 0;
+    private int vencedor = 3;
+    private static int pecaComidaPreta= 0, pecaComidaBranca = 0;
+    private int jogadaVBranca = 0;
+    private int jogadaVPreta = 0;
+    private int jogadaINVBranca = 0, jogadaINVPreta = 0;
     static int jogadasSemCaptura= 0;
-    boolean vitoriaSemJogar = false;
-    String mensagem;
-    int turno=0;
+    private String mensagem;
+    private int turno = 0;
     static int countLebre = 0;
 
 
@@ -141,11 +140,27 @@ public class Simulador {
         boolean jogadaValida = false;
         if (xO != xD && yO != yD || xD < sizeTabuleiro && yD < sizeTabuleiro || xD > 0 && yD > 0) {
             for (CrazyPiece peca : listaPecas){
-                if (peca.getX() == xO && peca.getY() == yO) {
+                if (peca.getX() == xO && peca.getY() == yO && peca.getIDEquipa() == equipaAtual) {
                     jogadaValida= peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
                     if(jogadaValida){
+                        peca.posicaoX(xD);
+                        peca.posicaoY(yD);
                         turno++;
                         countLebre++;
+
+
+                        if(peca.getIDEquipa() == 10){
+                            jogadaVPreta++;
+                        }else{
+                            jogadaVBranca++;
+                        }
+
+                    }else{
+                        if (peca.getIDEquipa() == 10) {
+                            jogadaINVPreta++;
+                        } else {
+                            jogadaINVBranca++;
+                        }
                     }
                 }
             }
@@ -185,11 +200,8 @@ public class Simulador {
             vencedor = 3;
             return true;
         }
-        if(pecaComidaPreta + pecaComidaBranca > 0 && jogadasSemCaptura == 10) {
-            return true;
-        }
+        return pecaComidaPreta + pecaComidaBranca > 0 && jogadasSemCaptura == 10;
 
-        return false;
     }
 
 
@@ -254,8 +266,6 @@ public class Simulador {
     }
 
     public void anularJogadaAnterior(){
-
-
     }
 
     public boolean gravarJogo(File ficheiroDestino){

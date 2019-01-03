@@ -45,9 +45,7 @@ public class TorreHor extends CrazyPiece {
 
                     for(CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
                         if (xD == pieces.getX() && yO == pieces.getY() && pieces.getIDEquipa() != peca.getIDEquipa()) {
-                            capturarPeca(pieces, equipaAtual, xD, yD);
-                            jogadaVPreta++;
-                            jogadaVBranca++;
+                            capturarPeca(pieces, xD, yD);
                         }
                     }
 
@@ -80,11 +78,7 @@ public class TorreHor extends CrazyPiece {
                     peca.posicaoY(yD);
 
                     jogadasSemCaptura++;
-                    if (peca.getIDEquipa() == 10) {
-                        jogadaVPreta++;
-                    } else {
-                        jogadaVBranca++;
-                    }
+
                     return true;
                 }else{ // se o movimento for errado
                     return false;
