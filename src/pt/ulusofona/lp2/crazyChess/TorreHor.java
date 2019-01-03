@@ -14,12 +14,11 @@ public class TorreHor extends CrazyPiece {
         this.alcunha = alcunha;
     }
 
-    TorreHor(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha,int x, int y, boolean capturada ){
+    TorreHor(int iDPeca, int tipoDePeca, int iDEquipa,int x, int y, boolean capturada ){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 4;
         this.valorRelativo = "3";
         this.iDEquipa = iDEquipa;
-        this.alcunha = alcunha;
         this.x = x;
         this.y = y;
         this.capturada = capturada;

@@ -12,12 +12,11 @@ public class PadreDaVila extends CrazyPiece {
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
     }
-    PadreDaVila(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha,int x, int y, boolean capturada){
+    PadreDaVila(int iDPeca, int tipoDePeca, int iDEquipa,int x, int y, boolean capturada){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 3;
         this.valorRelativo = "3";
         this.iDEquipa = iDEquipa;
-        this.alcunha = alcunha;
         this.x = x;
         this.y = y;
         this.capturada = capturada;

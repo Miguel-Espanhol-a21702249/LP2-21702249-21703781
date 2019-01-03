@@ -13,12 +13,11 @@ public class Rainha extends CrazyPiece {
         this.alcunha = alcunha;
     }
 
-    Rainha(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean capturada ){
+    Rainha(int iDPeca, int tipoDePeca, int iDEquipa, int x, int y, boolean capturada ){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 1;
         this.valorRelativo = "8";
         this.iDEquipa = iDEquipa;
-        this.alcunha = alcunha;
         this.x = x;
         this.y = y;
         this.capturada = capturada;

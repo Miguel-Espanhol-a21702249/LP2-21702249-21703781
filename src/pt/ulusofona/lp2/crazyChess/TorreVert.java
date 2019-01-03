@@ -14,7 +14,7 @@ public class TorreVert extends CrazyPiece {
         this.alcunha = alcunha;
     }
     //construtor teste
-    TorreVert(int tipoDePeca, int iDEquipa ,int x, int y, boolean capturada ){
+    TorreVert(int iDPeca,int tipoDePeca, int iDEquipa ,int x, int y, boolean capturada ){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 5;
         this.iDEquipa = iDEquipa;

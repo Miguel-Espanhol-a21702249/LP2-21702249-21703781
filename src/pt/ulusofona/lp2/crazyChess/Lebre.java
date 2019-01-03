@@ -12,12 +12,11 @@ public class Lebre extends CrazyPiece {
         this.alcunha = alcunha;
     }
 
-    Lebre(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha,int x, int y, boolean capturada ){
+    Lebre(int iDPeca, int tipoDePeca, int iDEquipa,int x, int y, boolean capturada ){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 6;
         this.valorRelativo = "2";
         this.iDEquipa = iDEquipa;
-        this.alcunha = alcunha;
         this.x = x;
         this.y = y;
         this.capturada = capturada;

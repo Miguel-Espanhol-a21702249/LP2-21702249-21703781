@@ -23,6 +23,7 @@ public class Simulador {
     private String mensagem;
     private int turno = 0;
     static int countLebre = 0;
+    static int countJoker = 0;
 
 
 
@@ -100,7 +101,7 @@ public class Simulador {
                                     listaPeca.posicaoY(linhaTabuleiro);
                                     listaPeca.capturada = false;
                                     System.out.println(listaPeca);
-                                    listaPecasAux.addAll(listaPecas);
+
                                 }
                             }
                         }
@@ -119,6 +120,7 @@ public class Simulador {
                     }
                 }
             }
+            listaPecasAux.addAll(listaPecas);
 
             leitorFicheiro.close();
             return true;
@@ -147,6 +149,7 @@ public class Simulador {
                         peca.posicaoX(xD);
                         peca.posicaoY(yD);
                         turno++;
+                        countJoker++;
                         countLebre++;
 
 

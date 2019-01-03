@@ -5,7 +5,6 @@ import static pt.ulusofona.lp2.crazyChess.Simulador.*;
 public class Joker extends CrazyPiece {
 
 
-
     Joker(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 7;
@@ -41,107 +40,45 @@ public class Joker extends CrazyPiece {
         return true;
     }
     public boolean movimento(CrazyPiece peca, int equipaAtual, int xO, int yO, int xD, int yD) {
-        int turnoJoker=0;
-        int turno=0;
-        if (peca.getIDEquipa() == equipaAtual) {
-            if(turno>=6){
-                turnoJoker = turno -6;
-            }else{
-                turnoJoker = turno;
-            }
-            switch (turnoJoker){
-                case 0:
-                    CrazyPiece rainha = new PoneiMagico(this.iDPeca,this.tipoDePeca , this.iDEquipa, this.alcunha);
-                    break;
-                case 1:
-                    CrazyPiece poneiMagico = new PoneiMagico(this.iDPeca,this.tipoDePeca , this.iDEquipa, this.alcunha);
-                    break;
-                case 2:
-                    CrazyPiece padreDaVila = new PadreDaVila(this.iDPeca , this.tipoDePeca, this.iDEquipa, this.alcunha);
-                    break;
-                case 3:
-                    CrazyPiece torreHor = new TorreHor(this.iDPeca , this.tipoDePeca, this.iDEquipa, this.alcunha);
-                    break;
-                case 4:
-                    if (peca.getX() == xO && peca.getY() == yO) {
-                        if (peca.getIDEquipa() == equipaAtual) {
-                            if (xO == xD && yO != yD) {
-
-                                for(CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
-                                    if (yD == pieces.getY() && xD == pieces.getX() ) {
-                                        if( pieces.getIDEquipa() != peca.getIDEquipa()) {
-
-                                            capturarPeca(pieces, xD, yD);
-
-                                            if (!pieces.getCapturada()) {
-                                                jogadasSemCaptura++;
-                                            }
-                                            break;
-
-                                        } else {
-                                            return false;
-                                        }
-
-
-                                    }
-                                }
-
-
-
-                                // verifica se passa por cima de peças
-                                if(yO > yD) {
-                                    do {
-                                        for (CrazyPiece p : listaPecasAux) {
-
-                                            if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO) {
-                                                return false;
-                                            }
-                                        }
-                                        yO--;
-                                    } while (yO >= yD);
-
-                                }else{
-
-                                    do {
-                                        for (CrazyPiece p : listaPecasAux) {
-
-                                            if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO) {
-                                                return false;
-                                            }
-                                        }
-                                        yO++;
-                                    } while (yO <= yD);
-                                }
-
-
-
-
-                                peca.posicaoX(xD);
-                                peca.posicaoY(yD);
-                                turno++;
-
-
-                                return true;
-
-                            }else{// se o movimento for errado
-
-                                return false;
-                            }
-                        } else { // se nao for a vez da equipa jogar
-
-
-                            return false;
-                        }
-                    }
-
-
-                    break;
-                case 5:
-                    CrazyPiece lebre = new Lebre(this.iDPeca , this.tipoDePeca, this.iDEquipa, this.alcunha);
-                    break;
-            }
+        boolean jogadaValida=false;
+        if(countJoker >= 6){
+            countJoker = 0;
         }
-        return true;
+        if (peca.getIDEquipa() == equipaAtual) {
+                switch (countJoker) {
+                    case 0:
+                        peca = new Rainha(iDPeca,1,equipaAtual,peca.getX(),peca.getY(),false);
+                        jogadaValida=peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
+                        break;
+                    case 1:
+                        peca = new PoneiMagico(iDPeca,1,equipaAtual,peca.getX(),peca.getY(),false);
+                        jogadaValida=peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
+                        break;
+                    case 2:
+                        peca = new PadreDaVila(iDPeca,1,equipaAtual,peca.getX(),peca.getY(),false);
+                        jogadaValida=peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
+                        break;
+                    case 3:
+                        peca = new TorreHor(iDPeca,1,equipaAtual,peca.getX(),peca.getY(),false);
+                        jogadaValida=peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
+                        break;
+                    case 4:
+                        peca = new TorreVert(iDPeca,1,equipaAtual,peca.getX(),peca.getY(),false);
+                        jogadaValida=peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
+                        break;
+                    case 5:
+                        peca = new Lebre(iDPeca,1,equipaAtual,peca.getX(),peca.getY(),false);
+                        jogadaValida=peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
+                        break;
+
+                    default:
+                        break;
+
+
+                }
+            }
+
+        return jogadaValida;
     }
 
     public String toString(){
