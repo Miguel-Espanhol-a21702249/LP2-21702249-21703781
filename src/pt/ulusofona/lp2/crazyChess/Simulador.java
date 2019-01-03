@@ -15,7 +15,7 @@ public class Simulador {
     static List<CrazyPiece> listaPecasComidasBrancas = new ArrayList<>();
     static List<CrazyPiece> listaPecasComidasPretas = new ArrayList<>();
     private int vencedor = 3;
-    private static int pecaComidaPreta= 0, pecaComidaBranca = 0;
+    public static int pecaComidaPreta= 0, pecaComidaBranca = 0;
     private int jogadaVBranca = 0;
     private int jogadaVPreta = 0;
     private int jogadaINVBranca = 0, jogadaINVPreta = 0;
@@ -143,6 +143,7 @@ public class Simulador {
                 if (peca.getX() == xO && peca.getY() == yO && peca.getIDEquipa() == equipaAtual) {
                     jogadaValida= peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
                     if(jogadaValida){
+
                         peca.posicaoX(xD);
                         peca.posicaoY(yD);
                         turno++;
@@ -154,17 +155,17 @@ public class Simulador {
                         }else{
                             jogadaVBranca++;
                         }
-
+                        return true;
                     }else{
                         if (peca.getIDEquipa() == 10) {
                             jogadaINVPreta++;
                         } else {
                             jogadaINVBranca++;
                         }
+                        return false;
                     }
                 }
             }
-            return jogadaValida;
         }
         return false;
     }
@@ -228,11 +229,11 @@ public class Simulador {
         resultados.add("Resultado: " + mensagem );
         resultados.add("---");
         resultados.add("Equipa das Pretas");
-        resultados.add("" + listaPecasComidasPretas.size());
+        resultados.add("" + pecaComidaPreta);
         resultados.add("" + jogadaVPreta);
         resultados.add("" + jogadaINVPreta);
         resultados.add("Equipa das Brancas");
-        resultados.add("" + listaPecasComidasBrancas.size());
+        resultados.add("" + pecaComidaBranca);
         resultados.add("" + jogadaVBranca);
         resultados.add("" + jogadaINVBranca);
         return resultados;

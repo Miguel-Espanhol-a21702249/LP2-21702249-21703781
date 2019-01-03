@@ -81,10 +81,11 @@ abstract public class  CrazyPiece {
                 peca.capturada = true;
 
                 if( peca.getIDEquipa() == 10){
-                    listaPecasComidasBrancas.add(peca);
+                    pecaComidaBranca++;
                 }else{
-                    listaPecasComidasPretas.add(peca);
+                    pecaComidaPreta++;
                 }
+
                 jogadasSemCaptura=0;
         }
     }
