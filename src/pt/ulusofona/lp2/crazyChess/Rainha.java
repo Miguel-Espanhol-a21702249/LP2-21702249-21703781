@@ -41,11 +41,13 @@ public class Rainha extends CrazyPiece {
     }
 
     public boolean movimento(CrazyPiece peca, int equipaAtual, int xO, int yO, int xD, int yD) {
+        int distanciaX = Math.abs(xO-xD);
+        int distanciaY = Math.abs(yO-yD);
         int direcaoRainha = -2;
         if (peca.getX() == xO && peca.getY() == yO) {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (xO != xD || yO != yD) {
-                    if (Math.abs(xO - xD) <= 5 && Math.abs(yO - yD) <= 5) {
+                    if (distanciaX <= 5 && distanciaY <= 5) {
 
                         for (CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
                             if (xD == pieces.getX() && yD == pieces.getY() && pieces.getIDEquipa() != peca.getIDEquipa() && pieces.getTipoDePeca() != peca.getTipoDePeca()) { // a rainha nao pode comer rainha
@@ -58,49 +60,41 @@ public class Rainha extends CrazyPiece {
                         if (xO > xD && yO > yD) {
                             //diagonal para esquerda cima
                             direcaoRainha = -1;
-                        } else {
-                            if (xO > xD && yO < yD) {
-                                //diagonal para esquerda baixo
-                                direcaoRainha = 2;
-                            } else {
-                                if (xO < xD && yO > yD) {
-                                    //diagonal para direita cima
-                                    direcaoRainha = 0;
-                                } else {
-                                    if (xO < xD && yO < yD) {
-                                        //diagonal para direita baixa
-                                        direcaoRainha = 1;
-                                    } else {
-                                        if (xO == xD && yO > yD) {
-                                            //movimento para cima
-                                            direcaoRainha = 3;
-                                        } else {
-                                            if (xO > xD && yO == yD) {
-                                                //movimento para esquerda
-                                                direcaoRainha = 4;
-                                            } else {
-                                                if (xO == xD && yO < yD) {
-                                                    //movimento para baixo
-                                                    direcaoRainha = 5;
-                                                } else {
-                                                    if (xO < xD && yO == yD) {
-                                                        //movimento para direita
-                                                        direcaoRainha = 6;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                        }
+                        if (xO > xD && yO < yD) {
+                            //diagonal para esquerda baixo
+                            direcaoRainha = 2;
+                        }
+                        if (xO < xD && yO > yD) {
+                            //diagonal para direita cima
+                            direcaoRainha = 0;
+                        }
+                        if (xO < xD && yO < yD) {
+                            //diagonal para direita baixa
+                            direcaoRainha = 1;
+                        }
+                        if (xO == xD && yO > yD) {
+                            //movimento para cima
+                            direcaoRainha = 3;
+                        }
+                        if (xO > xD && yO == yD) {
+                            //movimento para esquerda
+                            direcaoRainha = 4;
+                        }
+                        if (xO == xD && yO < yD) {
+                            //movimento para baixo
+                            direcaoRainha = 5;
+                        }
+                        if (xO < xD && yO == yD) {
+                            //movimento para direita
+                            direcaoRainha = 6;
                         }
 
 
                         if (direcaoRainha == -1) {
                             do {
-
                                 for (CrazyPiece p : listaPecasAux) {
-                                    if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == peca.getX() && p.getX() == xO && peca.getX() != p.getX()) {
+                                    if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO  && peca.getX() != p.getX()) {
                                         return false;
                                     }
                                 }
