@@ -9,6 +9,7 @@ public class TorreHor extends CrazyPiece {
     TorreHor(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha ){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 4;
+        this.tipoString = "Torre Horizontal";
         this.valorRelativo = "3";
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
@@ -91,9 +92,9 @@ public class TorreHor extends CrazyPiece {
 
     public String toString(){
         if(!getCapturada()) {
-            return iDPeca + " | " + "Torre Horizontal" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+            return iDPeca + " | " + tipoString + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
         }else{
-            return iDPeca + " | " + "Torre Horizontal" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+            return iDPeca + " | " + tipoString + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
         }
     }
 

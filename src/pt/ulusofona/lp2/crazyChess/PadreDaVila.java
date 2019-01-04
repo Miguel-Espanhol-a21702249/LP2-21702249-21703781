@@ -8,6 +8,7 @@ public class PadreDaVila extends CrazyPiece {
     PadreDaVila(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 3;
+        this.tipoString = "Padre Da Vila";
         this.valorRelativo = "3";
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
@@ -15,6 +16,7 @@ public class PadreDaVila extends CrazyPiece {
     PadreDaVila(int iDPeca, int tipoDePeca, int iDEquipa,int x, int y, boolean capturada){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 3;
+        this.tipoString = "Padre Da Vila";
         this.valorRelativo = "3";
         this.iDEquipa = iDEquipa;
         this.x = x;
@@ -158,9 +160,9 @@ public class PadreDaVila extends CrazyPiece {
 
     public String toString(){
         if(!getCapturada()) {
-            return iDPeca + " | " + "Padre da Vila" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+            return iDPeca + " | " + tipoString + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
         }else{
-            return iDPeca + " | " + "Padre da Vila" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+            return iDPeca + " | " + tipoString + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
         }
     }
 }

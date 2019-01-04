@@ -7,6 +7,7 @@ public class PoneiMagico extends CrazyPiece {
     PoneiMagico(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 2;
+        this.tipoString = "Pónei Mágico";
         this.valorRelativo = "5";
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
@@ -144,9 +145,9 @@ public class PoneiMagico extends CrazyPiece {
 
     public String toString(){
         if(!getCapturada()) {
-            return iDPeca + " | " + "Pónei Mágico" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+            return iDPeca + " | " + tipoString + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
         }else{
-            return iDPeca + " | " + "Pónei Mágico" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+            return iDPeca + " | " + tipoString + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
         }
     }
 }

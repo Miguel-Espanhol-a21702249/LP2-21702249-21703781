@@ -9,6 +9,7 @@ abstract public class  CrazyPiece {
     String valorRelativo;
     int iDEquipa;
     String alcunha;
+    String tipoString;
     int x;
     int y;
     boolean capturada =false;

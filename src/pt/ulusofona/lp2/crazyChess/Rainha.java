@@ -8,6 +8,7 @@ public class Rainha extends CrazyPiece {
     Rainha(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha ){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 1;
+        this.tipoString = "Rainha";
         this.valorRelativo = "8";
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
@@ -16,6 +17,7 @@ public class Rainha extends CrazyPiece {
     Rainha(int iDPeca, int tipoDePeca, int iDEquipa, int x, int y, boolean capturada ){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 1;
+        this.tipoString = "Rainha";
         this.valorRelativo = "8";
         this.iDEquipa = iDEquipa;
         this.x = x;
@@ -98,7 +100,7 @@ public class Rainha extends CrazyPiece {
                             do {
 
                                 for (CrazyPiece p : listaPecasAux) {
-                                    if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == peca.getX() && p.getX() == xO && peca.getX() != p.getX() && p.getY() == peca.getY()) {
+                                    if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == peca.getX() && p.getX() == xO && peca.getX() != p.getX()) {
                                         return false;
                                     }
                                 }
@@ -215,9 +217,9 @@ public class Rainha extends CrazyPiece {
 
     public String toString(){
         if(!getCapturada()) {
-            return iDPeca + " | " + "Rainha" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+            return iDPeca + " | " + tipoString + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
         }else{
-            return iDPeca + " | " + "Rainha" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+            return iDPeca + " | " + tipoString + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
         }
     }
 

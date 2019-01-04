@@ -8,6 +8,7 @@ public class UmaPecaMesmoMaluca extends CrazyPiece {
     UmaPecaMesmoMaluca(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha) {
         this.iDPeca = iDPeca;
         this.tipoDePeca = 8;
+        this.tipoString = "Peça Mesmo Maluca";
         this.valorRelativo = "infinito";
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
@@ -51,9 +52,9 @@ public class UmaPecaMesmoMaluca extends CrazyPiece {
 
     public String toString(){
         if(!getCapturada()) {
-            return iDPeca + " | " + "Rei" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+            return iDPeca + " | " + tipoString + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
         }else{
-            return iDPeca + " | " + "Rei" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+            return iDPeca + " | " + tipoString + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
         }
     }
 }

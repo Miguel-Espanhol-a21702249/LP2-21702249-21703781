@@ -7,6 +7,7 @@ public class Lebre extends CrazyPiece {
     Lebre(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha ){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 6;
+        this.tipoString= "Lebre";
         this.valorRelativo = "2";
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
@@ -15,6 +16,7 @@ public class Lebre extends CrazyPiece {
     Lebre(int iDPeca, int tipoDePeca, int iDEquipa,int x, int y, boolean capturada ){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 6;
+        this.tipoString= "Lebre";
         this.valorRelativo = "2";
         this.iDEquipa = iDEquipa;
         this.x = x;
@@ -70,9 +72,9 @@ public class Lebre extends CrazyPiece {
 
     public String toString(){
         if(!getCapturada()) {
-            return iDPeca + " | " + "Lebre" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+            return iDPeca + " | " + tipoString + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
         }else{
-            return iDPeca + " | " + "Lebre" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+            return iDPeca + " | " + tipoString + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
         }
     }
 }

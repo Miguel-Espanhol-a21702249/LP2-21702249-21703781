@@ -8,6 +8,7 @@ public class Joker extends CrazyPiece {
     Joker(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 7;
+        this.tipoString= "Joker";
         this.valorRelativo = "4";
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
@@ -16,6 +17,7 @@ public class Joker extends CrazyPiece {
     Joker(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha,int x, int y, boolean capturada){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 7;
+        this.tipoString= "Joker";
         this.valorRelativo = "4";
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
@@ -83,9 +85,9 @@ public class Joker extends CrazyPiece {
 
     public String toString(){
         if(!getCapturada()) {
-            return iDPeca + " | " + "Joker" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+            return iDPeca + " | " + tipoString + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
         }else{
-            return iDPeca + " | " + "Joker" + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+            return iDPeca + " | " + tipoString + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
         }
     }
 }
