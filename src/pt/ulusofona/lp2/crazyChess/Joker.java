@@ -53,27 +53,27 @@ public class Joker extends CrazyPiece {
                         jogadaValida=peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
                         break;
                     case 1:
-                        peca = new PoneiMagico(iDPeca,1,equipaAtual,peca.getX(),peca.getY(),false);
+                        peca = new PoneiMagico(iDPeca,2,equipaAtual,peca.getX(),peca.getY(),false);
                         designacao = "Pónei Mágico";
                         jogadaValida=peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
                         break;
                     case 2:
-                        peca = new PadreDaVila(iDPeca,1,equipaAtual,peca.getX(),peca.getY(),false);
+                        peca = new PadreDaVila(iDPeca,3,equipaAtual,peca.getX(),peca.getY(),false);
                         designacao = "Padre Da Vila";
                         jogadaValida=peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
                         break;
                     case 3:
-                        peca = new TorreHor(iDPeca,1,equipaAtual,peca.getX(),peca.getY(),false);
+                        peca = new TorreHor(iDPeca,4,equipaAtual,peca.getX(),peca.getY(),false);
                         designacao = "Torre Horizontal";
                         jogadaValida=peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
                         break;
                     case 4:
-                        peca = new TorreVert(iDPeca,1,equipaAtual,peca.getX(),peca.getY(),false);
+                        peca = new TorreVert(iDPeca,5,equipaAtual,peca.getX(),peca.getY(),false);
                         designacao = "Torre Vertical";
                         jogadaValida=peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
                         break;
                     case 5:
-                        peca = new Lebre(iDPeca,1,equipaAtual,peca.getX(),peca.getY(),false);
+                        peca = new Lebre(iDPeca,6,equipaAtual,peca.getX(),peca.getY(),false);
                         designacao = "Lebre";
                         jogadaValida=peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
                         break;

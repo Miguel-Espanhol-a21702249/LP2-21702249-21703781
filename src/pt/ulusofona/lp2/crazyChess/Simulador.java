@@ -23,6 +23,9 @@ public class Simulador {
     private int turno = 0;
     static int countLebre = 0;
     static int countJoker = 0;
+    private int pecaEmJogo;;
+    private int reiPreto;
+    private int reiBranco;
 
 
 
@@ -99,7 +102,6 @@ public class Simulador {
                                     listaPeca.posicaoX(coluna);
                                     listaPeca.posicaoY(linhaTabuleiro);
                                     listaPeca.capturada = false;
-                                    System.out.println(listaPeca);
 
                                 }
                             }
@@ -120,6 +122,9 @@ public class Simulador {
                 }
             }
             listaPecasAux.addAll(listaPecas);
+            for(CrazyPiece listaPeca : listaPecasAux){
+                System.out.println(listaPeca);
+            }
 
             leitorFicheiro.close();
             return true;
@@ -138,9 +143,9 @@ public class Simulador {
 
     public boolean processaJogada(int xO, int yO, int xD, int yD) {
         int equipaAtual = getIDEquipaAJogar();
-        boolean jogadaValida = false;
-        if (xO != xD && yO != yD || xD < sizeTabuleiro && yD < sizeTabuleiro || xD > 0 && yD > 0) {
-            for (CrazyPiece peca : listaPecas){
+        boolean jogadaValida;
+        if (xD >= 0 && xD <= sizeTabuleiro -1  && yD >= 0 && yD <= sizeTabuleiro -1 && xO >=0 && yO >=0) {
+            for (CrazyPiece peca : listaPecasAux){
                 if (peca.getX() == xO && peca.getY() == yO && peca.getIDEquipa() == equipaAtual) {
                     jogadaValida= peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
                     if(jogadaValida){
@@ -169,6 +174,11 @@ public class Simulador {
                 }
             }
         }
+        if (getIDEquipaAJogar() == 10) {
+            jogadaINVPreta++;
+        } else {
+            jogadaINVBranca++;
+        }
         return false;
     }
 
@@ -181,29 +191,49 @@ public class Simulador {
 
     public boolean jogoTerminado(){
         int pecaPreta=0, pecaBranca=0;
-        for (CrazyPiece peca : listaPecas){
-            if (peca.iDEquipa == 10 && !peca.capturada){
-                pecaPreta++;
-            } else if (peca.iDEquipa == 20 && !peca.capturada){
-                pecaBranca++;
+
+        //contar quantas peças ha em jogo
+        for(CrazyPiece peca: listaPecasAux){
+            if(!peca.getCapturada()){
+                pecaEmJogo++;
             }
         }
 
-        if(pecaBranca == 0) {
-            vencedor = 1;
-            return true;
-        }
-        if(pecaPreta == 0){
-            //vence branco
-            vencedor = 0;
+        //se houver peças em jogo conta quantos reis existem
+        // se nao houver peças em jogo o jogo termina
+        if(pecaEmJogo > 0) {
+            for (CrazyPiece peca : listaPecasAux) {
+                if(peca.getTipoDePeca() == 0 && !peca.getCapturada() ){
+                    if(peca.getIDEquipa() == 10){
+                        reiPreto++;
+                    }else{
+                        reiBranco++;
+                    }
+                }
+            }
+        }else{
             return true;
         }
 
-        if(pecaBranca == 1 && pecaPreta == 1){
+        if(reiPreto == 0){
+            //vence branca
+            vencedor =0;
+            return true;
+        }
+        if(reiBranco == 0){
+            //vence preto
+            vencedor = 1;
+            return true;
+        }
+        if(reiPreto == 1 && reiBranco == 1){
+            //empate
             vencedor = 3;
             return true;
         }
-        return pecaComidaPreta + pecaComidaBranca > 0 && jogadasSemCaptura == 10;
+        if(pecaComidaPreta + pecaComidaBranca > 0 && jogadasSemCaptura == 10){
+            return false;
+        }
+        return false;
 
     }
 

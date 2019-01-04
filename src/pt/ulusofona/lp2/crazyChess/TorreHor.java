@@ -9,7 +9,7 @@ public class TorreHor extends CrazyPiece {
     TorreHor(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha ){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 4;
-        this.tipoString = "Torre Horizontal";
+        this.tipoString = "TorreH";
         this.valorRelativo = "3";
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
@@ -18,6 +18,7 @@ public class TorreHor extends CrazyPiece {
     TorreHor(int iDPeca, int tipoDePeca, int iDEquipa,int x, int y, boolean capturada ){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 4;
+        this.tipoString = "TorreH";
         this.valorRelativo = "3";
         this.iDEquipa = iDEquipa;
         this.x = x;

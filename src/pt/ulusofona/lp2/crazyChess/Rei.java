@@ -15,6 +15,16 @@ public class Rei extends CrazyPiece {
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
     }
+    Rei(int iDPeca, int tipoDePeca, int iDEquipa, int x, int y, boolean capturada ){
+        this.iDPeca = iDPeca;
+        this.tipoDePeca = 0;
+        this.tipoString = "Rei";
+        this.valorRelativo = "infinito";
+        this.iDEquipa = iDEquipa;
+        this.x = x;
+        this.y = y;
+        this.capturada = capturada;
+    }
 
 
     public String getImagePNG() {
