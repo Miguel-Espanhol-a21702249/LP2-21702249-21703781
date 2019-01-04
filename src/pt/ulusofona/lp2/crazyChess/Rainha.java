@@ -5,7 +5,7 @@ import static pt.ulusofona.lp2.crazyChess.Simulador.*;
 //rainha certa falta ver se passa por cima de peças
 public class Rainha extends CrazyPiece {
 
-    Rainha(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha ){
+    Rainha(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha) {
         this.iDPeca = iDPeca;
         this.tipoDePeca = 1;
         this.tipoString = "Rainha";
@@ -14,7 +14,7 @@ public class Rainha extends CrazyPiece {
         this.alcunha = alcunha;
     }
 
-    Rainha(int iDPeca, int tipoDePeca, int iDEquipa, int x, int y, boolean capturada ){
+    Rainha(int iDPeca, int tipoDePeca, int iDEquipa, int x, int y, boolean capturada) {
         this.iDPeca = iDPeca;
         this.tipoDePeca = 1;
         this.tipoString = "Rainha";
@@ -26,37 +26,36 @@ public class Rainha extends CrazyPiece {
     }
 
 
-
     @Override
-    public String getImagePNG(){
-        if(iDEquipa == 10){
+    public String getImagePNG() {
+        if (iDEquipa == 10) {
             return "rainha_black.png";
-        }else{
+        } else {
             return "rainha_white.png";
         }
     }
 
-    public boolean anularJogada(CrazyPiece peca, int xO, int yO, int xD, int yD){
+    public boolean anularJogada(CrazyPiece peca, int xO, int yO, int xD, int yD) {
         return true;
     }
 
     public boolean movimento(CrazyPiece peca, int equipaAtual, int xO, int yO, int xD, int yD) {
-        int distanciaX = Math.abs(xO-xD);
-        int distanciaY = Math.abs(yO-yD);
+        int distanciaX = Math.abs(xO - xD);
+        int distanciaY = Math.abs(yO - yD);
+        boolean distanciaMaxima = distanciaX<=5 && distanciaY<=5;
+        boolean distanciaMaximaHorizontal = distanciaX<= sizeTabuleiro-1 && distanciaY==0;
+        boolean distanciaMaximaVertical = distanciaY <= sizeTabuleiro-1 && distanciaX==0;
+        boolean distanciaMaximaDiagonal = distanciaY== distanciaX;
+        boolean passaPorCimaPecas = false;
         int direcaoRainha = -2;
-        if (peca.getX() == xO && peca.getY() == yO) {
-            if (peca.getIDEquipa() == equipaAtual) {
-                if (xO != xD || yO != yD) {
-                    if ((distanciaY <= 5 && distanciaX == distanciaY || (distanciaX<=5 && distanciaY==0) || (distanciaX==0 && distanciaY<=5))) {
-
-                        for (CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
-                            if (xD == pieces.getX() && yD == pieces.getY() && pieces.getIDEquipa() != peca.getIDEquipa() && pieces.getTipoDePeca() != peca.getTipoDePeca()) { // a rainha nao pode comer rainha
-                                capturarPeca(pieces,  xD, yD);
-                            }
-                        }
 
 
+        return distanciaMaxima && (distanciaMaximaDiagonal || distanciaMaximaHorizontal || distanciaMaximaVertical);
 
+    }
+}
+
+/*
                         if (xO > xD && yO > yD) {
                             //diagonal para esquerda cima
                             direcaoRainha = -1;
@@ -211,9 +210,4 @@ public class Rainha extends CrazyPiece {
                     return false;
                 }
             }
-        }
-        return false;
-    }
-
-
-}
+        }*/

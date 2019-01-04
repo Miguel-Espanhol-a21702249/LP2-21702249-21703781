@@ -6,9 +6,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
+import static pt.ulusofona.lp2.crazyChess.CrazyPiece.*;
 
 public class Simulador {
-    private int sizeTabuleiro;
+    static int sizeTabuleiro;
     private int numeroDePecas;
     private List<CrazyPiece> listaPecas = new ArrayList<>();
     static List<CrazyPiece> listaPecasAux= new ArrayList<>();
@@ -140,10 +141,74 @@ public class Simulador {
         return sizeTabuleiro;
     }
 
-
+    public void jogadaInvalida(){
+        if (getIDEquipaAJogar() == 10) {
+            jogadaINVPreta++;
+        } else {
+            jogadaINVBranca++;
+        }
+    }
+    public void jogadaValida(){
+        if(getIDEquipaAJogar() == 10){
+            jogadaVPreta++;
+        }else{
+            jogadaVBranca++;
+        }
+    }
     public boolean processaJogada(int xO, int yO, int xD, int yD) {
         int equipaAtual = getIDEquipaAJogar();
-        boolean jogadaValida;
+        CrazyPiece pecaMexe;
+
+        if(xD < 0 || yD < 0 || xD > sizeTabuleiro || yD > sizeTabuleiro){
+            jogadaInvalida();
+            return false;
+        }
+
+        if(xD == xO && yD== yO){
+            jogadaInvalida();
+            return false;
+        }
+
+
+        pecaMexe = pecaNaPosicao(xO,yO);
+        // nao encontrou peça
+        if(pecaMexe == null){
+            jogadaInvalida();
+            return false;
+        }
+
+        if(pecaMexe.getIDEquipa() != equipaAtual){
+            jogadaInvalida();
+            return false;
+        }
+
+        if(pecaMexe.movimento(pecaMexe,equipaAtual,xO,yO,xD,yD)){
+            //verifica se ha peça para comer
+            CrazyPiece pecaNoDestino = pecaNaPosicao(xD,yD);
+            if(pecaNoDestino!=null){
+
+                if(pecaNoDestino.getIDEquipa() == pecaMexe.getIDEquipa()){
+                    jogadaInvalida();
+                    return false;
+                }else{
+                    capturarPeca(pecaNoDestino,xD,yD);
+                    pecaEmJogo--;
+                }
+            }
+            jogadaValida();
+            pecaMexe.posicaoX(xD);
+            pecaMexe.posicaoY(yD);
+            turno++;
+            countJoker++;
+            countLebre++;
+            return true;
+        }
+        jogadaInvalida();
+        return false;
+
+
+
+        /*
         if (xD >= 0 && xD <= sizeTabuleiro -1  && yD >= 0 && yD <= sizeTabuleiro -1 && xO >=0 && yO >=0) {
             for (CrazyPiece peca : listaPecasAux){
                 if (peca.getX() == xO && peca.getY() == yO && peca.getIDEquipa() == equipaAtual) {
@@ -178,8 +243,7 @@ public class Simulador {
             jogadaINVPreta++;
         } else {
             jogadaINVBranca++;
-        }
-        return false;
+        }*/
     }
 
 
@@ -271,7 +335,15 @@ public class Simulador {
         return resultados;
 
     }
-
+    public CrazyPiece pecaNaPosicao(int xO, int yO){
+        CrazyPiece pecaNaPosicao = null;
+        for(CrazyPiece p : listaPecasAux){
+            if(p.getX() == xO && p.getY() == yO ){
+                pecaNaPosicao = p;
+            }
+        }
+        return pecaNaPosicao;
+    }
     public int getIDPeca(int x, int y){
         for (CrazyPiece listaPeca : listaPecas) {
             if (listaPeca.getX() == x && listaPeca.getY() == y) {
