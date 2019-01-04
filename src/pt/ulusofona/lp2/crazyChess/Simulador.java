@@ -12,8 +12,7 @@ public class Simulador {
     private int numeroDePecas;
     private List<CrazyPiece> listaPecas = new ArrayList<>();
     static List<CrazyPiece> listaPecasAux= new ArrayList<>();
-    static List<CrazyPiece> listaPecasComidasBrancas = new ArrayList<>();
-    static List<CrazyPiece> listaPecasComidasPretas = new ArrayList<>();
+    static List<String> listaJogadaSugeridaRei = new ArrayList<>();
     private int vencedor = 3;
     public static int pecaComidaPreta= 0, pecaComidaBranca = 0;
     private int jogadaVBranca = 0;
@@ -263,10 +262,10 @@ public class Simulador {
 
 
         for(CrazyPiece peca : listaPecas){
-            if(peca.getX() == xO && peca.getY() == yO){
-            }
+            peca.movimento(peca,getIDEquipaAJogar(), xO , yO,Math.abs(xO-1), Math.abs(yO-1));
+
         }
-        return null;
+        return listaJogadaSugeridaRei;
     }
 
     public void anularJogadaAnterior(){

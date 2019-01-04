@@ -50,11 +50,4 @@ public class UmaPecaMesmoMaluca extends CrazyPiece {
         return false;
     }
 
-    public String toString(){
-        if(!getCapturada()) {
-            return iDPeca + " | " + tipoString + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
-        }else{
-            return iDPeca + " | " + tipoString + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
-        }
-    }
 }

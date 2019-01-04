@@ -9,7 +9,7 @@ public class Rei extends CrazyPiece {
 
     Rei(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha) {
         this.iDPeca = iDPeca;
-        this.tipoDePeca = 1;
+        this.tipoDePeca = 0;
         this.tipoString = "Rei";
         this.valorRelativo = "infinito";
         this.iDEquipa = iDEquipa;
@@ -40,6 +40,7 @@ public class Rei extends CrazyPiece {
                         }
 
                     }
+                    listaJogadaSugeridaRei.add("["+ xD + ","+ yD+"]");
                     return true;
 
 
@@ -48,11 +49,4 @@ public class Rei extends CrazyPiece {
                 }
     }
 
-    public String toString(){
-        if(!getCapturada()) {
-            return iDPeca + " | " + tipoString + " | " + "(" + valorRelativo + ")" + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
-        }else{
-            return iDPeca + " | " + tipoString + " | " + "(" + valorRelativo + ")" + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
-        }
-    }
 }

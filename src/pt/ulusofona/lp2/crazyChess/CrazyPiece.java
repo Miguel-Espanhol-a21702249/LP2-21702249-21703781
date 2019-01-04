@@ -91,6 +91,11 @@ abstract public class  CrazyPiece {
         }
     }
 
-    abstract public String toString();
-
+    public String toString(){
+        if(!getCapturada()) {
+            return iDPeca + " | " + tipoString + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+        }else{
+            return iDPeca + " | " + tipoString + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+        }
+    }
 }
