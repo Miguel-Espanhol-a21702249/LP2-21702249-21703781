@@ -3,12 +3,11 @@ package pt.ulusofona.lp2.crazyChess;
 import static pt.ulusofona.lp2.crazyChess.Simulador.*;
 
 public class Joker extends CrazyPiece {
-
+    private String designacao= "Rainha";
 
     Joker(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 7;
-        this.tipoString= "Joker";
         this.valorRelativo = "4";
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
@@ -17,7 +16,6 @@ public class Joker extends CrazyPiece {
     Joker(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha,int x, int y, boolean capturada){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 7;
-        this.tipoString= "Joker";
         this.valorRelativo = "4";
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
@@ -42,6 +40,7 @@ public class Joker extends CrazyPiece {
         return true;
     }
     public boolean movimento(CrazyPiece peca, int equipaAtual, int xO, int yO, int xD, int yD) {
+
         boolean jogadaValida=false;
         if(countJoker >= 6){
             countJoker = 0;
@@ -50,26 +49,32 @@ public class Joker extends CrazyPiece {
                 switch (countJoker) {
                     case 0:
                         peca = new Rainha(iDPeca,1,equipaAtual,peca.getX(),peca.getY(),false);
+                        designacao = "Rainha";
                         jogadaValida=peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
                         break;
                     case 1:
                         peca = new PoneiMagico(iDPeca,1,equipaAtual,peca.getX(),peca.getY(),false);
+                        designacao = "Pónei Mágico";
                         jogadaValida=peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
                         break;
                     case 2:
                         peca = new PadreDaVila(iDPeca,1,equipaAtual,peca.getX(),peca.getY(),false);
+                        designacao = "Padre Da Vila";
                         jogadaValida=peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
                         break;
                     case 3:
                         peca = new TorreHor(iDPeca,1,equipaAtual,peca.getX(),peca.getY(),false);
+                        designacao = "Torre Horizontal";
                         jogadaValida=peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
                         break;
                     case 4:
                         peca = new TorreVert(iDPeca,1,equipaAtual,peca.getX(),peca.getY(),false);
+                        designacao = "Torre Vertical";
                         jogadaValida=peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
                         break;
                     case 5:
                         peca = new Lebre(iDPeca,1,equipaAtual,peca.getX(),peca.getY(),false);
+                        designacao = "Lebre";
                         jogadaValida=peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
                         break;
 
@@ -81,6 +86,16 @@ public class Joker extends CrazyPiece {
             }
 
         return jogadaValida;
+    }
+
+
+    @Override
+    public String toString(){
+        if(!getCapturada()) {
+            return iDPeca + " | " + "Joker/" + designacao + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+        }else{
+            return iDPeca + " | " + "Joker/" + designacao + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+        }
     }
 
 }
