@@ -47,7 +47,7 @@ public class Rainha extends CrazyPiece {
         if (peca.getX() == xO && peca.getY() == yO) {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (xO != xD || yO != yD) {
-                    if (distanciaX <= 5 && distanciaY <= 5) {
+                    if ((distanciaY <= 5 && distanciaX == distanciaY || (distanciaX<=5 && distanciaY==0) || (distanciaX==0 && distanciaY<=5))) {
 
                         for (CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
                             if (xD == pieces.getX() && yD == pieces.getY() && pieces.getIDEquipa() != peca.getIDEquipa() && pieces.getTipoDePeca() != peca.getTipoDePeca()) { // a rainha nao pode comer rainha
@@ -94,8 +94,10 @@ public class Rainha extends CrazyPiece {
                         if (direcaoRainha == -1) {
                             do {
                                 for (CrazyPiece p : listaPecasAux) {
-                                    if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO  && peca.getX() != p.getX()) {
-                                        return false;
+                                    if (distanciaX == distanciaY) {
+                                        if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && peca.getX() != p.getX()) {
+                                            return false;
+                                        }
                                     }
                                 }
                                 xO--;
@@ -105,8 +107,10 @@ public class Rainha extends CrazyPiece {
                         if (direcaoRainha == 0) {
                             do {
                                 for (CrazyPiece p : listaPecasAux) {
-                                    if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO) {
-                                        return false;
+                                    if (distanciaX == distanciaY) {
+                                        if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && peca.getX() != p.getX()) {
+                                            return false;
+                                        }
                                     }
                                 }
                                 xO++;
@@ -117,8 +121,10 @@ public class Rainha extends CrazyPiece {
                         if (direcaoRainha == 1) {
                             do {
                                 for (CrazyPiece p : listaPecasAux) {
-                                    if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO) {
-                                        return false;
+                                    if (distanciaX == distanciaY) {
+                                        if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && peca.getX() != p.getX()) {
+                                            return false;
+                                        }
                                     }
                                 }
                                 xO++;
@@ -129,8 +135,10 @@ public class Rainha extends CrazyPiece {
                         if (direcaoRainha == 2) {
                             do {
                                 for (CrazyPiece p : listaPecasAux) {
-                                    if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO) {
-                                        return false;
+                                    if (distanciaX == distanciaY) {
+                                        if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && peca.getX() != p.getX()) {
+                                            return false;
+                                        }
                                     }
                                 }
                                 xO--;

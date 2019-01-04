@@ -31,8 +31,8 @@ public class Rei extends CrazyPiece {
 
                     //comer pieces
                     for (CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
-                        if(xD == pieces.getX() && yD == pieces.getY()) {
-                            if (pieces.getIDEquipa() != peca.getIDEquipa()) {
+                        if(pieces.getX() == xD && pieces.getY()== yD) {
+                            if (pieces.getIDEquipa() != equipaAtual) {
                                 capturarPeca(pieces, xD, yD);
                             } else{
                                 return false;
@@ -48,5 +48,12 @@ public class Rei extends CrazyPiece {
                     return false;
                 }
     }
-
+    @Override
+    public String toString(){
+        if(!getCapturada()) {
+            return iDPeca + " | " + tipoString + " | " + "(" + valorRelativo + ")" + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+        }else{
+            return iDPeca + " | " + tipoString + " | " + "(" + valorRelativo + ")" + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+        }
+    }
 }
