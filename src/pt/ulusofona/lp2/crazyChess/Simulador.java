@@ -330,13 +330,13 @@ public class Simulador {
         resultados.add("Resultado: " + mensagem );
         resultados.add("---");
         resultados.add("Equipa das Pretas");
-        resultados.add("Capturas: " + pecaComidaBranca);
-        resultados.add("Jogadas válidas: " + jogadaVPreta);
-        resultados.add("Tentativas inválidas: " + jogadaINVPreta);
+        resultados.add(" Capturas: " + pecaComidaBranca);
+        resultados.add(" Jogadas válidas: " + jogadaVPreta);
+        resultados.add(" Tentativas inválidas: " + jogadaINVPreta);
         resultados.add("Equipa das Brancas");
-        resultados.add("Capturas: " + pecaComidaPreta);
-        resultados.add("Jogadas válidas: " + jogadaVBranca);
-        resultados.add("Tentativas inválidas: " + jogadaINVBranca);
+        resultados.add(" Capturas: " + pecaComidaPreta);
+        resultados.add(" Jogadas válidas: " + jogadaVBranca);
+        resultados.add(" Tentativas inválidas: " + jogadaINVBranca);
         return resultados;
 
     }
