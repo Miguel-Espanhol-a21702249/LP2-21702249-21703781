@@ -58,8 +58,6 @@ public class Rainha extends CrazyPiece {
         for (CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
             if (xD == pieces.getX() && yD == pieces.getY() && pieces.getIDEquipa() != peca.getIDEquipa() && pieces.getTipoDePeca() != peca.getTipoDePeca()) { // a rainha nao pode comer rainha
                 idComida = pieces.getId();
-
-                capturarPeca(pieces, xD, yD);
             }
         }
 

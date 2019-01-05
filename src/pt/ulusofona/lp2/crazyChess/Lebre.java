@@ -57,7 +57,6 @@ public class Lebre extends CrazyPiece {
                             if (xD == pieces.getX() && yD == pieces.getY()) {
                                 if (pieces.getIDEquipa() != peca.getIDEquipa()) {
                                     idComida = pieces.getId();
-                                    capturarPeca(pieces, xD, yD);
                                 } else {
                                     return false;
                                 }
