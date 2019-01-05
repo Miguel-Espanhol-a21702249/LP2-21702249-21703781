@@ -143,7 +143,7 @@ public class PadreDaVila extends CrazyPiece {
                     //ve se a distancia entre rainha e padre e maior que dois
                     for(CrazyPiece rainha : listaPecasAux) {
                         if (rainha.getTipoDePeca() == 1 && rainha.getIDEquipa() != peca.getIDEquipa()) {
-                            if (Math.abs(rainha.getX() - xD) <= 2 && Math.abs(rainha.getY() - yD) <= 2) {
+                            if (Math.abs(rainha.getX() - xD) == 1 && Math.abs(rainha.getY() - yD) == 1) {
                                 return false;
                             }
                         }
