@@ -40,6 +40,12 @@ public class Lebre extends CrazyPiece {
 
     public boolean movimento(CrazyPiece peca,int equipaAtual,int xO, int yO, int xD, int yD) {
         // peça existente nas coordenandas origem
+        int idComida = 0;
+        int y= yO;
+        int x= xO;
+        int idPeca = peca.getId();
+        int yFim= yD;
+        int xFim = xD;
         if (peca.getX() == xO && peca.getY() == yO) {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (xO != xD && yO != yD && Math.abs(xO - xD) == 1 && Math.abs(yO - yD) == 1) {
@@ -48,6 +54,7 @@ public class Lebre extends CrazyPiece {
                         for (CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
                             if(xD == pieces.getX() && yD == pieces.getY()) {
                                 if (pieces.getIDEquipa() != peca.getIDEquipa()) {
+                                    idComida= pieces.getId();
                                     capturarPeca(pieces,  xD, yD);
                                 } else{
                                     return false;
@@ -55,7 +62,8 @@ public class Lebre extends CrazyPiece {
                             }
                         }
 
-
+                        UndoHelp jogadaAnterior = new UndoHelp(idPeca,  x , y, idComida , xFim , yFim,turnoA);
+                        listaDasJogadas.add(jogadaAnterior);
                         return true;
                     }else{
                         return false; // se o turno for impar

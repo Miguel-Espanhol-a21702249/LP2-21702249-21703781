@@ -41,11 +41,18 @@ public class TorreHor extends CrazyPiece {
     }
 
     public boolean movimento(CrazyPiece peca,int equipaAtual,int xO, int yO, int xD, int yD) {
+        int idComida = 0 ;
+        int y= yO;
+        int x= xO;
+        int idPeca = peca.getId();
+        int yFim=yD;
+        int xFim = xD;
             if (peca.getIDEquipa() == equipaAtual) {
                 if (yO == yD && xO != xD) {
 
                     for(CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
                         if (xD == pieces.getX() && yO == pieces.getY() && pieces.getIDEquipa() != peca.getIDEquipa()) {
+                            idComida = pieces.getId();
                             capturarPeca(pieces, xD, yD);
                         }
                     }
@@ -79,8 +86,10 @@ public class TorreHor extends CrazyPiece {
                     peca.posicaoY(yD);
 
                     jogadasSemCaptura++;
-
+                    UndoHelp jogadaAnterior = new UndoHelp(idPeca,  x , y, idComida , xFim , yFim,turnoA);
+                    listaDasJogadas.add(jogadaAnterior);
                     return true;
+
                 }else{ // se o movimento for errado
                     return false;
                 }

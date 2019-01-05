@@ -1,20 +1,22 @@
 package pt.ulusofona.lp2.crazyChess;
 
 public class UndoHelp {
-    private int iDPecaQueAnda;
-    private int xDaQueAnda;
-    private int yDaQueAnda;
-    private int iDPecaQueMorre;
-    private int xDaQueMorre;
-    private int yDaQueMorre;
+    int iDPecaQueAnda;
+    int xDaQueAnda;
+    int yDaQueAnda;
+    int iDPecaQueMorre;
+    int xDaQueMorre;
+    int yDaQueMorre;
+    int turnoAnterior;
 
-    UndoHelp(int iDPecaQueAnda, int xDaQueAnda, int yDaQueAnda,int iDPecaQueMorre, int xDaQueMorre, int yDaQueMorre){
+    UndoHelp(int iDPecaQueAnda, int xDaQueAnda, int yDaQueAnda,int iDPecaQueMorre, int xDaQueMorre, int yDaQueMorre, int turnoAnterior){
         this.iDPecaQueAnda = iDPecaQueAnda;
         this.xDaQueAnda = xDaQueAnda;
         this.yDaQueAnda = yDaQueAnda;
         this.iDPecaQueMorre = iDPecaQueMorre;
         this.xDaQueMorre = xDaQueMorre;
         this.yDaQueMorre = yDaQueMorre;
+        this.turnoAnterior = turnoAnterior;
     }
 
     public int getxDaQueMorre() {
@@ -40,5 +42,9 @@ public class UndoHelp {
 
     public int getiDPecaQueMorre() {
         return iDPecaQueMorre;
+    }
+
+    public int getTurnoAnterior() {
+        return turnoAnterior;
     }
 }

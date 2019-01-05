@@ -39,6 +39,12 @@ public class PadreDaVila extends CrazyPiece {
 
     public boolean movimento(CrazyPiece peca,int equipaAtual,int xO, int yO, int xD, int yD) {
         int direcaoBispo= -2;
+        int idComida =  0;
+        int y= yO;
+        int x= xO;
+        int idPeca = peca.getId();
+        int yFim=yD;
+        int xFim = xD;
         // peça existente nas coordenandas origem
         //peca = peca que esta a ser jogada
         if (peca.getX() == xO && peca.getY() == yO) {
@@ -53,6 +59,7 @@ public class PadreDaVila extends CrazyPiece {
                         //pieces  = peça que vai ser comida
                         if (xD == pieces.getX() && yD == pieces.getY() ) {
                             if( pieces.getIDEquipa() != peca.getIDEquipa()) {
+                                idComida = pieces.getId();
                                 capturarPeca(pieces, xD, yD);
 
                             }else{
@@ -140,13 +147,14 @@ public class PadreDaVila extends CrazyPiece {
                     //ve se a distancia entre rainha e padre e maior que dois
                     for(CrazyPiece rainha : listaPecasAux) {
                         if (rainha.getTipoDePeca() == 1 && rainha.getIDEquipa() != peca.getIDEquipa()) {
-                            if (Math.abs(rainha.getX() - xD) <= 2 && Math.abs(rainha.getY() - yD) <= 2){
-                                return false;
+                                if (Math.abs(rainha.getX() - xD) <= 2 && Math.abs(rainha.getY() - yD) <= 2) {
+                                    return false;
+                                }
                             }
-                        }
+
                     }
-
-
+                    UndoHelp jogadaAnterior = new UndoHelp(idPeca,  x , y, idComida , xFim, yFim,turnoA);
+                    listaDasJogadas.add(jogadaAnterior);
                     return true;
                 }else{ // se a distancia for maior
                     return false;

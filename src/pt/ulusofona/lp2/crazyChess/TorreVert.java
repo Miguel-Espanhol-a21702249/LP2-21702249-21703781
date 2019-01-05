@@ -38,6 +38,12 @@ public class TorreVert extends CrazyPiece {
     }
 
     public boolean movimento(CrazyPiece peca,int equipaAtual,int xO, int yO, int xD, int yD) {
+        int idComida = 0;
+        int y= yO;
+        int x= xO;
+        int idPeca = peca.getId();
+        int yFim= yD;
+        int xFim= xD;
         if (peca.getX() == xO && peca.getY() == yO) {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (xO == xD && yO != yD) {
@@ -45,7 +51,7 @@ public class TorreVert extends CrazyPiece {
                     for(CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
                         if (yD == pieces.getY() && xD == pieces.getX() ) {
                             if (pieces.getIDEquipa() != peca.getIDEquipa()) {
-
+                                idComida=pieces.getId();
                                 capturarPeca(pieces, xD, yD);
 
                             }
@@ -78,7 +84,8 @@ public class TorreVert extends CrazyPiece {
                             yO++;
                         } while (yO <= yD);
                     }
-
+                    UndoHelp jogadaAnterior = new UndoHelp(idPeca,  x , y, idComida , xFim , yFim,turnoA);
+                    listaDasJogadas.add(jogadaAnterior);
 
                     return true;
 

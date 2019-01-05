@@ -88,6 +88,9 @@ abstract public class  CrazyPiece {
                 }
 
                 jogadasSemCaptura=0;
+                if(peca.capturada== true){
+                    listaPecasEmJogo.remove(peca);
+                }
         }
     }
 

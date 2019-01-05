@@ -38,6 +38,12 @@ public class PoneiMagico extends CrazyPiece {
 
     public boolean movimento(CrazyPiece peca, int equipaAtual, int xO, int yO, int xD, int yD) {
         int direcaoPonei=-2;
+        int idComida= 0 ;
+        int y= yO;
+        int x= xO;
+        int idPeca = peca.getId();
+        int yFim=yD;
+        int xFim = xD;
         // peça existente nas coordenandas origem
         if (peca.getX() == xO && peca.getY() == yO) {
             if (peca.getIDEquipa() == equipaAtual) {
@@ -47,6 +53,8 @@ public class PoneiMagico extends CrazyPiece {
                         //pieces  = peça que vai ser comida
                         if (xD == pieces.getX() && yD == pieces.getY() ) {
                             if( pieces.getIDEquipa() != peca.getIDEquipa()) {
+                                idComida=pieces.getId();
+
                                 capturarPeca(pieces, xD, yD);
                             }else{
                                 return false;
@@ -170,7 +178,8 @@ public class PoneiMagico extends CrazyPiece {
                             }
                         }while(xO >= xD && yO <= yD);
                     }
-
+                    UndoHelp jogadaAnterior = new UndoHelp(idPeca,  x , y, idComida , xFim , yFim,turnoA);
+                    listaDasJogadas.add(jogadaAnterior);
 
                     return true;
                 }else{ // se a distancia for maior
