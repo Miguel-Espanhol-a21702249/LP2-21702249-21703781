@@ -283,6 +283,7 @@ public class Simulador {
         if(reiPreto == 0) {
             //vence branco
             vencedor = 0;
+            return true;
         }
         if(reiPreto == 0){
             //vence branca
