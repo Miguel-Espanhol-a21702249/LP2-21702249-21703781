@@ -3,7 +3,9 @@ package pt.ulusofona.lp2.crazyChess;
 import static pt.ulusofona.lp2.crazyChess.Simulador.*;
 
 public class Joker extends CrazyPiece {
-    private String designacao= "Rainha";
+    private String designacao= designacaoJoker();
+
+
 
     Joker(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha){
         this.iDPeca = iDPeca;
@@ -24,7 +26,28 @@ public class Joker extends CrazyPiece {
         this.capturada = capturada;
     }
 
-
+    public String designacaoJoker() {
+        if (countJoker >= 6) {
+            countJoker = 0;
+        }
+            switch (countJoker) {
+                case 0:
+                    return "Rainha";
+                case 1:
+                    return "Pónei Mágico";
+                case 2:
+                    return "Padre Da Vila";
+                case 3:
+                    return "Torre Horizontal";
+                case 4:
+                    return "Torre Vertical";
+                case 5:
+                    return "Lebre";
+                default:
+                    break;
+            }
+        return null;
+    }
 
 
     @Override
@@ -92,9 +115,9 @@ public class Joker extends CrazyPiece {
     @Override
     public String toString(){
         if(!getCapturada()) {
-            return iDPeca + " | " + "Joker/" + designacao + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+            return iDPeca + " | " + "Joker/" + designacaoJoker() + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
         }else{
-            return iDPeca + " | " + "Joker/" + designacao + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+            return iDPeca + " | " + "Joker/" + designacaoJoker() + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
         }
     }
 
