@@ -10,27 +10,23 @@ import static pt.ulusofona.lp2.crazyChess.CrazyPiece.*;
 
 public class Simulador {
     static int sizeTabuleiro;
-    private int numeroDePecas;
-    private List<CrazyPiece> listaPecas = new ArrayList<>();
+    public int numeroDePecas;
+    public List<CrazyPiece> listaPecas = new ArrayList<>();
     static List<CrazyPiece> listaPecasAux= new ArrayList<>();
-    static List<String> listaJogadaSugeridaRei = new ArrayList<>();
-    static List<UndoHelp> listaDasJogadas = new ArrayList<>();
-    static List<CrazyPiece> listaPecasEmJogo = new ArrayList<>();
-    private int vencedor = 3;
+    static List<String> listaJogadaSugerida = new ArrayList<>();
+    public  int vencedor = 3;
     public static int pecaComidaPreta= 0, pecaComidaBranca = 0;
-    private int jogadaVBranca = 0;
-    private int jogadaVPreta = 0;
-    private int jogadaINVBranca = 0, jogadaINVPreta = 0;
+    public int jogadaVBranca = 0;
+    public int jogadaVPreta = 0;
+    public int jogadaINVBranca = 0, jogadaINVPreta = 0;
     static int jogadasSemCaptura= 0;
-    private String mensagem;
-    private int turno = 0;
-    boolean vitoriaSemJogar = false;
-    static int turnoA = 0;
-    static int countLebre = 0;
-    static int countJoker = 0;
-    private int pecaEmJogo;;
-    private int reiPreto;
-    private int reiBranco;
+    public String mensagem;
+    public int turno = 0;
+    public static int countLebre = 0;
+    public static int countJoker = 0;
+    public int pecaEmJogo;;
+    public int reiPreto;
+    public int reiBranco;
 
 
 
@@ -351,13 +347,14 @@ public class Simulador {
     }
 
     public List<String> obterSugestoesJogada(int xO, int yO){
-
-
+        List<String> listaJogadaSugerida;
         for(CrazyPiece peca : listaPecas){
-            peca.movimento(peca,getIDEquipaAJogar(), xO , yO,Math.abs(xO-1), Math.abs(yO-1));
+            if(peca.getX() == xO && peca.getY()== yO && peca.getIDEquipa() != getIDEquipaAJogar()){
+
+            }
 
         }
-        return listaJogadaSugeridaRei;
+        return null;
     }
 
     public void anularJogadaAnterior(){
