@@ -44,8 +44,7 @@ public class TorreVert extends CrazyPiece {
         int idPeca = peca.getId();
         int yFim= yD;
         int xFim= xD;
-        if (peca.getX() == xO && peca.getY() == yO) {
-            if (peca.getIDEquipa() == equipaAtual) {
+
                 if (xO == xD && yO != yD) {
 
                     for(CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
@@ -90,14 +89,9 @@ public class TorreVert extends CrazyPiece {
                     return true;
 
 
-                    }else{ // se o movimento for errado
-                        return false;
-                    }
-                } else { // se nao for a vez da equipa jogar
+                }else{ // se o movimento for errado
                     return false;
                 }
-            }
-            return false;
-        }
+    }
 
 }

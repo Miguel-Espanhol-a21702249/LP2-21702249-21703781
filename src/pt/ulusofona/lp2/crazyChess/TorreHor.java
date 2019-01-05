@@ -47,53 +47,44 @@ public class TorreHor extends CrazyPiece {
         int idPeca = peca.getId();
         int yFim=yD;
         int xFim = xD;
-            if (peca.getIDEquipa() == equipaAtual) {
-                if (yO == yD && xO != xD) {
+            if (yO == yD && xO != xD) {
 
-                    for(CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
-                        if (xD == pieces.getX() && yO == pieces.getY() && pieces.getIDEquipa() != peca.getIDEquipa()) {
-                            idComida = pieces.getId();
-                            capturarPeca(pieces, xD, yD);
-                        }
+                for(CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
+                    if (xD == pieces.getX() && yO == pieces.getY() && pieces.getIDEquipa() != peca.getIDEquipa()) {
+                        idComida = pieces.getId();
                     }
-
-                    if(xO > xD) {
-                        do {
-                            for (CrazyPiece p : listaPecasAux) {
-                                if (p.getX() == xO && peca.getX() != p.getX() && p.getY() == peca.getY()) {
-                                    return false;
-                                }
-                            }
-                            xO--;
-                        } while (xO >= xD);
-
-                    }else{
-
-                        do {
-                            for (CrazyPiece p : listaPecasAux) {
-
-                                if (peca.getX() != p.getX() && p.getX() == xO && p.getY() == peca.getY()) {
-                                    return false;
-                                }
-                            }
-                            xO++;
-                        } while (xO <= xD);
-                    }
-
-
-
-                    peca.posicaoX(xD);
-                    peca.posicaoY(yD);
-
-                    jogadasSemCaptura++;
-                    UndoHelp jogadaAnterior = new UndoHelp(idPeca,  x , y, idComida , xFim , yFim,turnoA);
-                    listaDasJogadas.add(jogadaAnterior);
-                    return true;
-
-                }else{ // se o movimento for errado
-                    return false;
                 }
-            } else { // se nao for a vez da equipa jogar
+
+
+
+                if(xO > xD) {
+                    do {
+                        for (CrazyPiece p : listaPecasAux) {
+                            if (p.getX() == xO && peca.getX() != p.getX() && p.getY() == peca.getY()) {
+                                return false;
+                            }
+                        }
+                        xO--;
+                    } while (xO >= xD);
+
+                }else{
+
+                    do {
+                        for (CrazyPiece p : listaPecasAux) {
+
+                            if (peca.getX() != p.getX() && p.getX() == xO && p.getY() == peca.getY()) {
+                                return false;
+                            }
+                        }
+                        xO++;
+                    } while (xO <= xD);
+                }
+
+                UndoHelp jogadaAnterior = new UndoHelp(idPeca,  x , y, idComida , xFim , yFim,turnoA);
+                listaDasJogadas.add(jogadaAnterior);
+                return true;
+
+            }else{ // se o movimento for errado
                 return false;
             }
 

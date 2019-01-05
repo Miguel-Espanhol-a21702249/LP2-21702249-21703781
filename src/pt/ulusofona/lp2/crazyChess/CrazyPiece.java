@@ -14,6 +14,7 @@ abstract public class  CrazyPiece {
     int y;
     boolean capturada =false;
 
+
     public CrazyPiece(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha){
         this.iDPeca = iDPeca;
         this.tipoDePeca = tipoDePeca;
@@ -77,20 +78,18 @@ abstract public class  CrazyPiece {
 
     public static void capturarPeca(CrazyPiece peca, int xD, int yD){
         if (peca.getX() == xD && peca.getY() == yD) {
-                peca.posicaoY(-1);
-                peca.posicaoX(-1);
-                peca.capturada = true;
+            peca.posicaoY(-1);
+            peca.posicaoX(-1);
+            peca.capturada = true;
 
-                if( peca.getIDEquipa() == 10){
-                    pecaComidaPreta++;
-                }else{
-                    pecaComidaBranca++;
-                }
+            if( peca.getIDEquipa() == 10){
+                pecaComidaPreta++;
+            }else{
+                pecaComidaBranca++;
+            }
 
-                jogadasSemCaptura=0;
-                if(peca.capturada== true){
-                    listaPecasEmJogo.remove(peca);
-                }
+            jogadasSemCaptura=0;
+
         }
     }
 

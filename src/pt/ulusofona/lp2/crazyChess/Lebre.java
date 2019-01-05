@@ -4,19 +4,19 @@ import static pt.ulusofona.lp2.crazyChess.Simulador.*;
 
 public class Lebre extends CrazyPiece {
 
-    Lebre(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha) {
+    Lebre(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha ){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 6;
-        this.tipoString = "Lebre";
+        this.tipoString= "Lebre";
         this.valorRelativo = "2";
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
     }
 
-    Lebre(int iDPeca, int tipoDePeca, int iDEquipa, int x, int y, boolean capturada) {
+    Lebre(int iDPeca, int tipoDePeca, int iDEquipa,int x, int y, boolean capturada ){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 6;
-        this.tipoString = "Lebre";
+        this.tipoString= "Lebre";
         this.valorRelativo = "2";
         this.iDEquipa = iDEquipa;
         this.x = x;
@@ -26,28 +26,37 @@ public class Lebre extends CrazyPiece {
 
 
     @Override
-    public String getImagePNG() {
-        if (iDEquipa == 10) {
+    public String getImagePNG(){
+        if(iDEquipa == 10){
             return "lebre_black.png";
-        } else {
+        }else{
             return "lebre_white.png";
         }
     }
 
-    public boolean anularJogada(CrazyPiece peca, int xO, int yO, int xD, int yD) {
+    public boolean anularJogada(CrazyPiece peca, int xO, int yO, int xD, int yD){
         return true;
     }
 
-    public boolean movimento(CrazyPiece peca, int equipaAtual, int xO, int yO, int xD, int yD) {
+    public boolean movimento(CrazyPiece peca,int equipaAtual,int xO, int yO, int xD, int yD) {
         // peça existente nas coordenandas origem
+        int idComida = 0;
+        int y= yO;
+        int x= xO;
+        int idPeca = peca.getId();
+        int yFim= yD;
+        int xFim = xD;
         if (peca.getX() == xO && peca.getY() == yO) {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (xO != xD && yO != yD && Math.abs(xO - xD) == 1 && Math.abs(yO - yD) == 1) {
                     if(countLebre % 2 == 0) {
 
+
+
                         for (CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
                             if(xD == pieces.getX() && yD == pieces.getY()) {
                                 if (pieces.getIDEquipa() != peca.getIDEquipa()) {
+                                    idComida= pieces.getId();
                                     capturarPeca(pieces,  xD, yD);
                                 } else{
                                     return false;
@@ -55,7 +64,8 @@ public class Lebre extends CrazyPiece {
                             }
                         }
 
-
+                        UndoHelp jogadaAnterior = new UndoHelp(idPeca,  x , y, idComida , xFim , yFim,turnoA);
+                        listaDasJogadas.add(jogadaAnterior);
                         return true;
                     }else{
                         return false; // se o turno for impar
@@ -69,4 +79,5 @@ public class Lebre extends CrazyPiece {
         }
         return false;
     }
+
 }

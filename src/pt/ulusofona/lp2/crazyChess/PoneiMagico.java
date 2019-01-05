@@ -44,9 +44,6 @@ public class PoneiMagico extends CrazyPiece {
         int idPeca = peca.getId();
         int yFim=yD;
         int xFim = xD;
-        // peça existente nas coordenandas origem
-        if (peca.getX() == xO && peca.getY() == yO) {
-            if (peca.getIDEquipa() == equipaAtual) {
                 if (xO != xD && yO != yD && Math.abs(xO - xD) == 2 && Math.abs(yO - yD) == 2) {
 
                     for (CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
@@ -185,11 +182,6 @@ public class PoneiMagico extends CrazyPiece {
                 }else{ // se a distancia for maior
                     return false;
                 }
-            } else { // se nao for a vez da equipa jogar
-                return false;
-            }
-        }
-        return false;
     }
 
 }
