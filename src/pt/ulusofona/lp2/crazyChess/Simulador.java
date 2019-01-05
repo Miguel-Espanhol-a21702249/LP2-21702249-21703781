@@ -11,8 +11,8 @@ import static pt.ulusofona.lp2.crazyChess.CrazyPiece.*;
 public class Simulador {
     static int sizeTabuleiro;
     private int numeroDePecas;
-    private List<CrazyPiece> listaPecas = new ArrayList<>();
-    static List<CrazyPiece> listaPecasAux= new ArrayList<>();
+    private List<CrazyPiece> listaPecas = null;
+    static List<CrazyPiece> listaPecasAux= null;
     static List<String> listaJogadaSugeridaRei = new ArrayList<>();
     static List<UndoHelp> listaDasJogadas = new ArrayList<>();
     static List<CrazyPiece> listaPecasEmJogo = new ArrayList<>();
@@ -28,7 +28,7 @@ public class Simulador {
     static int turnoA = 0;
     static int countLebre = 0;
     static int countJoker = 0;
-    private int pecaEmJogo;;
+    private int pecaEmJogo;
     private int reiPreto;
     private int reiBranco;
 
@@ -37,6 +37,16 @@ public class Simulador {
 
     public boolean iniciaJogo(File ficheiroInicial) {
         int count =0 ,linhaTabuleiro=0;
+        sizeTabuleiro = 0;
+        numeroDePecas = 0;
+        listaPecas = new ArrayList<>();
+        listaPecasAux = new ArrayList<>();
+        listaJogadaSugeridaRei = new ArrayList<>();
+        listaDasJogadas = new ArrayList<>();
+        pecaComidaBranca = 0;
+        pecaComidaPreta = 0;
+        jogadaVBranca = 0;
+
         try {
             Scanner leitorFicheiro = new Scanner(ficheiroInicial);
 

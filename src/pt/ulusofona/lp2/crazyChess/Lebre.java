@@ -49,20 +49,19 @@ public class Lebre extends CrazyPiece {
         if (peca.getX() == xO && peca.getY() == yO) {
             if (peca.getIDEquipa() == equipaAtual) {
                 if (xO != xD && yO != yD && Math.abs(xO - xD) == 1 && Math.abs(yO - yD) == 1) {
+                    if(Math.abs(xO - xD) == Math.abs(yO-yD)){
                     if(countLebre % 2 == 0) {
-
-
-
                         for (CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
-                            if(xD == pieces.getX() && yD == pieces.getY()) {
+                            if (xD == pieces.getX() && yD == pieces.getY()) {
                                 if (pieces.getIDEquipa() != peca.getIDEquipa()) {
-                                    idComida= pieces.getId();
-                                    capturarPeca(pieces,  xD, yD);
-                                } else{
+                                    idComida = pieces.getId();
+                                    capturarPeca(pieces, xD, yD);
+                                } else {
                                     return false;
                                 }
                             }
                         }
+                    }
 
                         UndoHelp jogadaAnterior = new UndoHelp(idPeca,  x , y, idComida , xFim , yFim,turnoA);
                         listaDasJogadas.add(jogadaAnterior);

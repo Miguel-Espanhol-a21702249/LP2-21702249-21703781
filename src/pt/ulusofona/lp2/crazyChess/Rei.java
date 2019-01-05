@@ -43,12 +43,12 @@ public class Rei extends CrazyPiece {
         int idPeca = peca.getId();
         int yFim = yD;
         int xFim = xD;
+        for(CrazyPiece pecas : listaPecasAux){
         if (Math.abs(xO - xD) <= 1 && Math.abs(yO - yD) <= 1) {
 
             //comer pieces
             for (CrazyPiece pieces : listaPecasAux) { // peça existente nas coordenadas destino
-                if (pieces.getX() == xD && pieces.getY() == yD) {
-                    if (pieces.getIDEquipa() != equipaAtual) {
+                if (pieces.getX() == xD && pieces.getY() == yD && pieces.getIDEquipa() != equipaAtual) {
                         idComida = pieces.getId();
                     }
                 }

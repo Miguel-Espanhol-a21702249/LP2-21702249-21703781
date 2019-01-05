@@ -14,7 +14,6 @@ abstract public class  CrazyPiece {
     int y;
     boolean capturada =false;
 
-
     public CrazyPiece(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha){
         this.iDPeca = iDPeca;
         this.tipoDePeca = tipoDePeca;
