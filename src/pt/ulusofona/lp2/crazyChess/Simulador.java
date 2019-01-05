@@ -171,7 +171,7 @@ public class Simulador {
         int equipaAtual = getIDEquipaAJogar();
         CrazyPiece pecaMexe;
 
-        if(xD < 0 || yD < 0 || xD > sizeTabuleiro || yD > sizeTabuleiro){
+        if(xD < 0 || yD < 0 || xD > sizeTabuleiro-1 || yD > sizeTabuleiro-1){
             jogadaInvalida();
             return false;
         }
@@ -286,7 +286,7 @@ public class Simulador {
             return true;
         }
         if(reiBranco == 0){
-            //vence branca
+            //vence preto
             vencedor =1;
             return true;
         }
