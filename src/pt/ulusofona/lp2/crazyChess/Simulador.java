@@ -46,7 +46,15 @@ public class Simulador {
         pecaComidaBranca = 0;
         pecaComidaPreta = 0;
         jogadaVBranca = 0;
-
+        jogadaVPreta = 0;
+        jogadaINVPreta = 0;
+        jogadaINVBranca = 0;
+        jogadasSemCaptura = 0;
+        turno = 0;
+        turnoA = 0;
+        countJoker = 0;
+        countLebre = 0;
+        vencedor = 0;
         try {
             Scanner leitorFicheiro = new Scanner(ficheiroInicial);
 
