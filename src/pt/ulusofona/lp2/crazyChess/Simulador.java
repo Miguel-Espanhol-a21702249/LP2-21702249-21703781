@@ -285,9 +285,9 @@ public class Simulador {
             vencedor = 0;
             return true;
         }
-        if(reiPreto == 0){
+        if(reiBranco == 0){
             //vence branca
-            vencedor =0;
+            vencedor =1;
             return true;
         }
 
