@@ -51,6 +51,7 @@ public class TorreVert extends CrazyPiece {
                         if (yD == pieces.getY() && xD == pieces.getX() ) {
                             if (pieces.getIDEquipa() != peca.getIDEquipa()) {
                                 idComida=pieces.getId();
+                                capturarPeca(pieces, xD, yD);
 
                             }
                         }
