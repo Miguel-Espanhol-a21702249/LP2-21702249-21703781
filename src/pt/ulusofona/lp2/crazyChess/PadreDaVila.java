@@ -10,7 +10,7 @@ public class PadreDaVila extends CrazyPiece {
     PadreDaVila(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 3;
-        this.tipoString = "Padre Da Vila";
+        this.tipoString = "Padre da Vila";
         this.valorRelativo = "3";
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
@@ -18,7 +18,7 @@ public class PadreDaVila extends CrazyPiece {
     PadreDaVila(int iDPeca, int tipoDePeca, int iDEquipa,int x, int y, boolean capturada){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 3;
-        this.tipoString = "Padre Da Vila";
+        this.tipoString = "Padre da Vila";
         this.valorRelativo = "3";
         this.iDEquipa = iDEquipa;
         this.x = x;

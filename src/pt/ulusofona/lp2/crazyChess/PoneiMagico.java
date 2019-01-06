@@ -9,7 +9,7 @@ public class PoneiMagico extends CrazyPiece {
     PoneiMagico(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 2;
-        this.tipoString = "Pónei Mágico";
+        this.tipoString = "Ponei Mágico";
         this.valorRelativo = "5";
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;

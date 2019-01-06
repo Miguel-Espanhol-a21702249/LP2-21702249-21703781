@@ -57,23 +57,10 @@ public class Simulador {
         try {
             Scanner leitorFicheiro = new Scanner(ficheiroInicial);
 
-
-            while(leitorFicheiro.hasNextLine()) {
-                String linha = leitorFicheiro.nextLine();
-                String dados[] = linha.split(":");
-                if (count < 2 ) {
-                    if (count == 0){
-                        if (Integer.parseInt(dados[0])>=4 && Integer.parseInt(dados[0])<=12){
-                            sizeTabuleiro = Integer.parseInt(dados[0]);
-                        }
-                    }else{
-                        if (Integer.parseInt(dados[0])<sizeTabuleiro*sizeTabuleiro){
-                            numeroDePecas = Integer.parseInt(dados[0]);
-                        }
-                    }
-                    count++;
-                }else if (count < 2 + numeroDePecas) {
-
+            sizeTabuleiro =  Integer.parseInt(leitorFicheiro.nextLine());
+            numeroDePecas = Integer.parseInt(leitorFicheiro.nextLine());
+            for (int i = 0; i < numeroDePecas; i++) {
+                String dados[] = leitorFicheiro.nextLine().split(":",4);
                     if(!listaPecas.contains(Integer.parseInt(dados[0])) && Integer.parseInt(dados[0])>=1) { // peça repetida
                         if(Integer.parseInt(dados[1])>=0 && Integer.parseInt(dados[1])<=10) { // tipo peça
                             if (Integer.parseInt(dados[2]) == 10 || Integer.parseInt(dados[2])==20) { // equipa
@@ -115,8 +102,9 @@ public class Simulador {
                             }
                         }
                     }
-                    count++;
-                }else {
+                }
+            for (int linha = 0; linha < sizeTabuleiro; linha++) {
+                String dados[] = leitorFicheiro.nextLine().split(":", sizeTabuleiro);
                     for (int coluna =0 ;coluna < sizeTabuleiro ; coluna++) {
                         if( Integer.parseInt(dados[coluna]) != 0) {
                             for (CrazyPiece listaPeca : listaPecas) {
@@ -131,6 +119,18 @@ public class Simulador {
                     }
                     linhaTabuleiro++;
                 }
+            if(leitorFicheiro.hasNextLine()){
+                String dados[] = leitorFicheiro.nextLine().split(":");
+                if(Integer.parseInt(dados[0]) == 10 || Integer.parseInt(dados[0])==20 && Integer.parseInt(dados[1])>=0 && Integer.parseInt(dados[2])>=0 && Integer.parseInt(dados[3])>=0 && Integer.parseInt(dados[4])>=0 && Integer.parseInt(dados[5])>=0&& Integer.parseInt(dados[6])>=0){
+                    turno = Integer.parseInt(dados[1]) + Integer.parseInt(dados[4]);
+                    jogadaVPreta = Integer.parseInt(dados[1]);
+                    pecaComidaPreta = Integer.parseInt(dados[2]);
+                    jogadaINVPreta = Integer.parseInt(dados[3]);
+                    jogadaVBranca = Integer.parseInt(dados[4]);
+                    pecaComidaBranca = Integer.parseInt(dados[5]);
+                    jogadaINVBranca = Integer.parseInt(dados[6]);
+                }
+
             }
 
             listaPecasAux.addAll(listaPecas);
