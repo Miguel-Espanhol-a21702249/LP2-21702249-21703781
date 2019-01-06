@@ -1,5 +1,7 @@
 package pt.ulusofona.lp2.crazyChess;
 
+import java.util.List;
+
 import static pt.ulusofona.lp2.crazyChess.Simulador.*;
 
 
@@ -88,6 +90,11 @@ public class TorreHor extends CrazyPiece {
                 return false;
             }
 
+    }
+
+    @Override
+    public List<String> listaDeSugestoes(List<CrazyPiece> listaPecas, int xO, int yO, int sizeTabuleiro) {
+        return null;
     }
 
 

@@ -1,5 +1,7 @@
 package pt.ulusofona.lp2.crazyChess;
 
+import java.util.List;
+
 import static pt.ulusofona.lp2.crazyChess.Simulador.*;
 
 public class PadreDaVila extends CrazyPiece {
@@ -154,6 +156,11 @@ public class PadreDaVila extends CrazyPiece {
                 }else{ // se a distancia for maior
                     return false;
                 }
+    }
+
+    @Override
+    public List<String> listaDeSugestoes(List<CrazyPiece> listaPecas, int xO, int yO, int sizeTabuleiro) {
+        return null;
     }
 
 }
