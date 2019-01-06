@@ -220,44 +220,7 @@ public class Simulador {
         return false;
 
 
-
-        /*
-        if (xD >= 0 && xD <= sizeTabuleiro -1  && yD >= 0 && yD <= sizeTabuleiro -1 && xO >=0 && yO >=0) {
-            for (CrazyPiece peca : listaPecasAux){
-                if (peca.getX() == xO && peca.getY() == yO && peca.getIDEquipa() == equipaAtual) {
-                    jogadaValida= peca.movimento(peca,equipaAtual,xO,yO,xD,yD);
-                    if(jogadaValida){
-                        peca.posicaoX(xD);
-                        peca.posicaoY(yD);
-                        turno++;
-                        countJoker++;
-                        countLebre++;
-                        if(peca.getIDEquipa() == 10){
-                            jogadaVPreta++;
-                        }else{
-                            jogadaVBranca++;
-                        }
-                        return true;
-                    }else{
-                        if (peca.getIDEquipa() == 10) {
-                            jogadaINVPreta++;
-                        } else {
-                            jogadaINVBranca++;
-                        }
-                        return false;
-                    }
-                }
-            }
-        }
-        if (getIDEquipaAJogar() == 10) {
-            jogadaINVPreta++;
-        } else {
-            jogadaINVBranca++;
-        }*/
     }
-
-
-
 
     public List<CrazyPiece> getPecasMalucas(){
         return listaPecas;
@@ -381,6 +344,7 @@ public class Simulador {
         }
         return listaSugetoesAux;
     }
+
 
 
     public void anularJogadaAnterior(){
