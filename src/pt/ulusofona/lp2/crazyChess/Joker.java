@@ -38,11 +38,11 @@ public class Joker extends CrazyPiece {
                 case 1:
                     return "Ponei Mágico";
                 case 2:
-                    return "Padre Da Vila";
+                    return "Padre da Vila";
                 case 3:
-                    return "Torre Hor";
+                    return "TorreH";
                 case 4:
-                    return "Torre Vert";
+                    return "TorreV";
                 case 5:
                     return "Lebre";
                 default:

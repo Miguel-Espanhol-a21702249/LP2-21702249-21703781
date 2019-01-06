@@ -37,7 +37,168 @@ public class PoneiMagico extends CrazyPiece {
     public boolean anularJogada(CrazyPiece peca, int xO, int yO, int xD, int yD){
         return true;
     }
+    public boolean cantonumero1parte1 (int xO, int yO) {
+        int x3 = 0;
+        for (int x2 = xO - 1; x2 > xO - 2; x2--) {
+            for (CrazyPiece pecas : listaPecasAux) {
+                if (pecas.tipoDePeca == 0 && pecas.getX() == x2 && pecas.getY() == yO) {
+                    return false;
+                }
+            }
+            x3 = x2;
+        }
 
+        for (int y2 = yO - 1; y2 > yO - 2; y2--) {
+            for (CrazyPiece pecas : listaPecasAux) {
+                if (pecas.tipoDePeca == 0 && pecas.getX() == x3 && pecas.getY() == y2) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean cantonumero1parte2 (int xO, int yO) {
+        int y3 = 0;
+        for (int y2 = yO - 1; y2 > yO - 2; y2--) {
+            for (CrazyPiece pecas : listaPecasAux) {
+                if (pecas.tipoDePeca == 0 && pecas.getX() == xO && pecas.getY() == y2) {
+                    return false;
+                }
+            }
+            y3 = y2;
+        }
+        for (int x2 = xO - 1; x2 > xO - 2; x2--) {
+            for (CrazyPiece pecas : listaPecasAux) {
+                if (pecas.tipoDePeca == 0 && pecas.getX() == x2 && pecas.getY() == y3) {
+                    return false;
+                }
+            }
+        }
+
+
+        return true;
+    }
+
+    public boolean cantonumero2parte1(int xO,int yO){
+        int y3 = 0;
+        for (int y2 = yO - 1; y2 > yO - 2; y2--) {
+            for (CrazyPiece pecas : listaPecasAux) {
+                if (pecas.tipoDePeca == 0 && pecas.getX() == xO && pecas.getY() == y2) {
+                    return false;
+                }
+            }
+            y3 = y2;
+        }
+    for(int x2 = xO + 1 ; x2 < xO +2; x2++){
+        for (CrazyPiece pecas : listaPecasAux) {
+            if (pecas.tipoDePeca == 0 && pecas.getX() == x2 && pecas.getY() == y3) {
+                return false;
+            }
+        }
+    }
+    return true;
+    }
+
+    public boolean cantonumero2parte2(int xO, int yO){
+        int x3 = 0;
+        for(int x2 = xO + 1 ; x2 < xO +2; x2++){
+            for (CrazyPiece pecas : listaPecasAux) {
+                if (pecas.tipoDePeca == 0 && pecas.getX() == x2 && pecas.getY() == yO) {
+                    return false;
+                }
+            }
+            x3= x2;
+        }
+        for (int y2 = yO - 1; y2 > yO - 2; y2--) {
+            for (CrazyPiece pecas : listaPecasAux) {
+                if (pecas.tipoDePeca == 0 && pecas.getX() == x3 && pecas.getY() == y2) {
+                    return false;
+                }
+            }
+        }
+        return true;
+
+    }
+    public boolean cantonumero3parte1(int xO, int yO) {
+        int x3 = 0;
+        for (int x2 = xO - 1; x2 > xO - 2; x2--) {
+            for (CrazyPiece pecas : listaPecasAux) {
+                if (pecas.tipoDePeca == 0 && pecas.getX() == x2 && pecas.getY() == yO) {
+                    return false;
+                }
+            }
+            x3 = x2;
+        }
+        for (int y2 = yO + 1; y2 < yO + 2; y2++) {
+            for (CrazyPiece pecas : listaPecasAux) {
+                if (pecas.tipoDePeca == 0 && pecas.getX() == x3 && pecas.getY() == y2) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean cantonumero3parte2(int xO, int yO){
+        int y3=0;
+        for (int y2 = yO + 1; y2 < yO + 2; y2++) {
+            for (CrazyPiece pecas : listaPecasAux) {
+                if (pecas.tipoDePeca == 0 && pecas.getX() == xO && pecas.getY() == y2) {
+                    return false;
+                }
+            }
+            y3 = y2;
+        }
+        for (int x2 = xO - 1; x2 > xO - 2; x2--) {
+            for (CrazyPiece pecas : listaPecasAux) {
+                if (pecas.tipoDePeca == 0 && pecas.getX() == x2 && pecas.getY() == yO) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean cantonumero4parte1(int xO, int yO){
+        int y3=0;
+        for (int y2 = yO + 1; y2 < yO + 2; y2++) {
+            for (CrazyPiece pecas : listaPecasAux) {
+                if (pecas.tipoDePeca == 0 && pecas.getX() == xO && pecas.getY() == y2) {
+                    return false;
+                }
+            }
+            y3 = y2;
+        }
+        for(int x2 = xO + 1 ; x2 < xO +2; x2++){
+            for (CrazyPiece pecas : listaPecasAux) {
+                if (pecas.tipoDePeca == 0 && pecas.getX() == x2 && pecas.getY() == y3) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean cantonumero4parte2(int xO, int yO){
+        int x3 = 0;
+        for(int x2 = xO + 1 ; x2 < xO +2; x2++){
+            for (CrazyPiece pecas : listaPecasAux) {
+                if (pecas.tipoDePeca == 0 && pecas.getX() == x2 && pecas.getY() == yO) {
+                    return false;
+                }
+            }
+            x3= x2;
+        }
+        for (int y2 = yO + 1; y2 < yO + 2; y2++) {
+            for (CrazyPiece pecas : listaPecasAux) {
+                if (pecas.tipoDePeca == 0 && pecas.getX() == x3 && pecas.getY() == y2) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     public boolean movimento(CrazyPiece peca, int equipaAtual, int xO, int yO, int xD, int yD) {
         int direcaoPonei=-2;
         int idComida= 0 ;
@@ -53,7 +214,6 @@ public class PoneiMagico extends CrazyPiece {
                 if (xD == pieces.getX() && yD == pieces.getY() ) {
                     if( pieces.getIDEquipa() != peca.getIDEquipa()) {
                         idComida=pieces.getId();
-                        capturarPeca(pieces, xD, yD);
                     }else{
                         return false;
                     }
@@ -87,94 +247,30 @@ public class PoneiMagico extends CrazyPiece {
 
 
             if(direcaoPonei == -1 ) {
-
-                do {
-
-                    for (CrazyPiece p : listaPecasAux) {
-                        if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && p.tipoDePeca == 0) {
-                            return false;
-                        }
-                    }
-                    xO--;
-                    for(CrazyPiece pecaRei: listaPecasAux){
-                        if(pecaRei.getX() == xO && pecaRei.getY() == yO && pecaRei.getTipoDePeca() == 0){
-                            return false;
-                        }
-                    }
-                    yO--;
-                    for(CrazyPiece pecaRei: listaPecasAux){
-                        if(pecaRei.getX() == xO && pecaRei.getY() == yO && pecaRei.getTipoDePeca() == 0){
-                            return false;
-                        }
-                    }
-                } while (xO >= xD && yO >= yD);
+                if (cantonumero1parte1(xO, yO) || cantonumero1parte2(xO, yO)) {
+                    return true;
+                }
+                return false;
             }
 
-
-            if(direcaoPonei == 0){
-                do{
-                    for(CrazyPiece p: listaPecasAux){
-                        if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && p.tipoDePeca == 0) {
-                            return false;
-                        }
-                    }
-                    xO++;
-                    for (CrazyPiece p : listaPecasAux) {
-                        if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && p.tipoDePeca == 0) {
-                            return false;
-                        }
-                    }
-                    yO--;
-                    for (CrazyPiece p : listaPecasAux) {
-                        if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && p.tipoDePeca == 0) {
-                            return false;
-                        }
-                    }
-                }while( xO <= xD && yO >= yD);
+            if(direcaoPonei == 0) {
+                if (cantonumero2parte1(xO, yO) || cantonumero2parte2(xO, yO)) {
+                    return true;
+                }
+                return false;
             }
-
             if(direcaoPonei == 1){
-                do{
-                    for(CrazyPiece p: listaPecasAux){
-                        if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && p.tipoDePeca == 0) {
-                            return false;
-                        }
-                    }
-                    xO++;
-                    for (CrazyPiece p : listaPecasAux) {
-                        if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && p.tipoDePeca == 0) {
-                            return false;
-                        }
-                    }
-                    yO++;
-                    for (CrazyPiece p : listaPecasAux) {
-                        if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && p.tipoDePeca == 0) {
-                            return false;
-                        }
-                    }
-                }while(xO <= xD && yO <= yD);
+               if(cantonumero4parte1(xO, yO) || cantonumero4parte2(xO, yO)){
+                   return true;
+               }
+               return false;
             }
 
             if(direcaoPonei == 2){
-                do{
-                    for(CrazyPiece p: listaPecasAux){
-                        if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && p.tipoDePeca == 0) {
-                            return false;
-                        }
-                    }
-                    xO--;
-                    for (CrazyPiece p : listaPecasAux) {
-                        if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && p.tipoDePeca == 0) {
-                            return false;
-                        }
-                    }
-                    yO++;
-                    for (CrazyPiece p : listaPecasAux) {
-                        if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && p.tipoDePeca == 0) {
-                            return false;
-                        }
-                    }
-                }while(xO >= xD && yO <= yD);
+                if(cantonumero3parte1(xO, yO) || cantonumero3parte2(xO, yO)){
+                    return true;
+                }
+                return false;
             }
             UndoHelp jogadaAnterior = new UndoHelp(idPeca,  x , y, idComida , xFim , yFim,turnoA);
             listaDasJogadas.add(jogadaAnterior);
@@ -191,5 +287,4 @@ public class PoneiMagico extends CrazyPiece {
     }
 
 }
-
 
