@@ -3,6 +3,7 @@ package pt.ulusofona.lp2.crazyChess;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertTrue;
 
 public class TestesRainha {
     @Test
@@ -12,7 +13,7 @@ public class TestesRainha {
         CrazyPiece rainha = new Rainha(3,2,10, 4,5,false);
         rainha.posicaoX(0);
         rainha.posicaoY(0);
-        assertFalse(rainha.movimento(rainha,10, rainha.getX(), rainha.getY(), 6, 1));
+        assertTrue(rainha.movimento(rainha,10, rainha.getX(), rainha.getY(), 6, 1));
     }
 
 }

@@ -16,7 +16,6 @@ public class Simulador {
     static List<CrazyPiece> listaPecasAux = null;
     static List<String> listaJogadaSugeridaRei = new ArrayList<>();
     static List<UndoHelp> listaDasJogadas = new ArrayList<>();
-    static List<CrazyPiece> listaPecasEmJogo = new ArrayList<>();
     private int vencedor = 3;
     public static int pecaComidaPreta = 0, pecaComidaBranca = 0;
     private int jogadaVBranca = 0;
@@ -25,11 +24,9 @@ public class Simulador {
     static int jogadasSemCaptura = 0;
     private String mensagem;
     private int turno = 0;
-    boolean vitoriaSemJogar = false;
     static int turnoA = 0;
     static int countLebre = 0;
     static int countJoker = 0;
-    private int pecaEmJogo;
 
 
     public boolean iniciaJogo(File ficheiroInicial) {
@@ -209,7 +206,6 @@ public class Simulador {
                     return false;
                 } else {
                     capturarPeca(pecaNoDestino, xD, yD);
-                    pecaEmJogo--;
                 }
             }
             jogadaValida();
