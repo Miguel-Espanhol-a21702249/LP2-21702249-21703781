@@ -1,5 +1,7 @@
 package pt.ulusofona.lp2.crazyChess;
 
+import java.util.List;
+
 import static pt.ulusofona.lp2.crazyChess.Simulador.*;
 
 public class Joker extends CrazyPiece {
@@ -103,6 +105,11 @@ public class Joker extends CrazyPiece {
         }
 
         return jogadaValida;
+    }
+
+    @Override
+    public List<String> listaDeSugestoes(List<CrazyPiece> listaPecas, int xO, int yO, int sizeTabuleiro) {
+        return null;
     }
 
 

@@ -1,5 +1,7 @@
 package pt.ulusofona.lp2.crazyChess;
 
+import java.util.List;
+
 import static pt.ulusofona.lp2.crazyChess.Simulador.*;
 
 //rainha certa falta ver se passa por cima de peças
@@ -212,5 +214,10 @@ public class Rainha extends CrazyPiece {
         listaDasJogadas.add(jogadaAnterior);
         return true;
 
+    }
+
+    @Override
+    public List<String> listaDeSugestoes(List<CrazyPiece> listaPecas, int xO, int yO, int sizeTabuleiro) {
+        return null;
     }
 }

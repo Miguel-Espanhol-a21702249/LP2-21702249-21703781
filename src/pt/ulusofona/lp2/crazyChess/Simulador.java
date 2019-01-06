@@ -9,6 +9,7 @@ import java.util.Scanner;
 import static pt.ulusofona.lp2.crazyChess.CrazyPiece.*;
 
 public class Simulador {
+    public static int turnoAJogar;
     static int sizeTabuleiro;
     private int numeroDePecas;
     private List<CrazyPiece> listaPecas = null;
@@ -29,8 +30,6 @@ public class Simulador {
     static int countLebre = 0;
     static int countJoker = 0;
     private int pecaEmJogo;
-    private int reiPreto;
-    private int reiBranco;
 
 
 
@@ -360,21 +359,29 @@ public class Simulador {
     }
     public int getIDEquipaAJogar() {
         if (turno % 2 == 0) {
+            turnoAJogar = 10;
             return 10;
         } else {
+            turnoAJogar = 20;
             return 20;
         }
     }
 
-    public List<String> obterSugestoesJogada(int xO, int yO){
+    public List<String> obterSugestoesJogada(int xO, int yO) {
+        List<String> listaSugetoesAux = new ArrayList<>();
+        for (CrazyPiece piece : listaPecasAux) {
+            if (piece.getX() == xO && piece.getY() == yO && piece.getIDEquipa() == getIDEquipaAJogar()) {
+                listaSugetoesAux = piece.listaDeSugestoes(listaPecas, xO, yO, sizeTabuleiro);
 
-
-        for(CrazyPiece peca : listaPecas){
-            peca.movimento(peca,getIDEquipaAJogar(), xO , yO,Math.abs(xO-1), Math.abs(yO-1));
+            }
+        }
+        if (listaSugetoesAux.size() == 0) {
+            listaSugetoesAux.add("Pedido inválido");
 
         }
-        return listaJogadaSugeridaRei;
+        return listaSugetoesAux;
     }
+
 
     public void anularJogadaAnterior(){
         for(UndoHelp undo : listaDasJogadas ){
