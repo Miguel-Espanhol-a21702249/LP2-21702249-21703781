@@ -157,6 +157,7 @@ public class Simulador {
         return sizeTabuleiro;
     }
 
+
     public void jogadaInvalida(){
         if (getIDEquipaAJogar() == 10) {
             jogadaINVPreta++;
