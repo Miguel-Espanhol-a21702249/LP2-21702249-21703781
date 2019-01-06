@@ -116,9 +116,9 @@ public class Joker extends CrazyPiece {
     @Override
     public String toString(){
         if(!getCapturada()) {
-            return iDPeca + " | " + "Joker/" + designacaoJoker() + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+            return iDPeca + " | " + "Joker " +  " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
         }else{
-            return iDPeca + " | " + "Joker/" + designacaoJoker() + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+            return iDPeca + " | " + "Joker " + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
         }
     }
 
