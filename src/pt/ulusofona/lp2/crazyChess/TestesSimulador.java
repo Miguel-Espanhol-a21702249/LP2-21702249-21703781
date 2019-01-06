@@ -2,26 +2,40 @@ package pt.ulusofona.lp2.crazyChess;
 
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 public class TestesSimulador {
 
     @Test
-    public void test01ProcessaJogada(){
+    public void test01GetEquipaAJogar(){
+        PoneiMagico ponei = new PoneiMagico(3, 2, 10, "Ponei Muito mas muito mas muito magico");
         Simulador simulador = new Simulador ();
         simulador.setTamanho (8);
-        //a peca na posicao (2,5) pode andar para (2,6)
-        assertFalse(simulador.processaJogada(2,5, 2,6));
-
+        int equipaEsperada = 10;
+        int equipaObtida = ponei.getIDEquipa();
+        assertEquals(equipaEsperada,equipaObtida);
     }
+
+
+
     @Test
-    public void test02ProcessaJogada(){
+    public void test02GetTipoDePeca(){
+        PoneiMagico ponei = new PoneiMagico(3, 2, 10, "Ponei Muito mas muito mas muito magico");
         Simulador simulador = new Simulador ();
         simulador.setTamanho (6);
-        /*simulador.setCrazyPieces(2,0,0,"O esperto",5,1,false);
-        //a peca na posicao (5,1) pode andar para (3,2)
-        assertFalse(simulador.processaJogada(5,1, 3,2));
-        */
+        int pecaEsperada= 2;
+        int pecaObtida = ponei.getTipoDePeca();
+        assertEquals(pecaEsperada,pecaObtida);
+    }
 
+    @Test
+    public void test03GetAlcunha(){
+        PoneiMagico ponei = new PoneiMagico(3, 2, 10, "Ponei Muito mas muito mas muito magico");
+        Simulador simulador = new Simulador ();
+        simulador.setTamanho (6);
+        String alcunhaEsperada = "Ponei Muito mas muito mas muito magico";
+        String alcunhaObtida = ponei.getAlcunha();
+        assertEquals(alcunhaEsperada,alcunhaObtida);
     }
 
 }

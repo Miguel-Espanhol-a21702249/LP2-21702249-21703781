@@ -9,15 +9,6 @@ import static pt.ulusofona.lp2.crazyChess.Simulador.*;
 
 public class Rei extends CrazyPiece {
 
-
-    Rei(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha) {
-        this.iDPeca = iDPeca;
-        this.tipoDePeca = 0;
-        this.tipoString = "Rei";
-        this.valorRelativo = "infinito";
-        this.iDEquipa = iDEquipa;
-        this.alcunha = alcunha;
-    }
     Rei(int iDPeca, int tipoDePeca, int iDEquipa, int x, int y, boolean capturada ){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 0;
@@ -29,6 +20,16 @@ public class Rei extends CrazyPiece {
         this.capturada = capturada;
     }
 
+    Rei(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha) {
+        this.iDPeca = iDPeca;
+        this.tipoDePeca = 0;
+        this.tipoString = "Rei";
+        this.valorRelativo = "infinito";
+        this.iDEquipa = iDEquipa;
+        this.alcunha = alcunha;
+    }
+
+
 
     public String getImagePNG() {
         if (iDEquipa == 10) {
@@ -37,7 +38,7 @@ public class Rei extends CrazyPiece {
             return "crazy_emoji_white.png";
         }
     }
-    public boolean anularJogada(CrazyPiece p, int xO, int xD,int yO,int yD){return true;}
+
     public boolean movimento(CrazyPiece peca, int equipaAtual, int xO, int yO, int xD, int yD) {
         // peça existente nas coordenandas origem
         int idComida = 0;

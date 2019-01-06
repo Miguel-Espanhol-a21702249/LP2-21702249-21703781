@@ -6,16 +6,6 @@ import static pt.ulusofona.lp2.crazyChess.Simulador.*;
 
 //rainha certa falta ver se passa por cima de peças
 public class Rainha extends CrazyPiece {
-
-    Rainha(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha) {
-        this.iDPeca = iDPeca;
-        this.tipoDePeca = 1;
-        this.tipoString = "Rainha";
-        this.valorRelativo = "8";
-        this.iDEquipa = iDEquipa;
-        this.alcunha = alcunha;
-    }
-
     Rainha(int iDPeca, int tipoDePeca, int iDEquipa, int x, int y, boolean capturada) {
         this.iDPeca = iDPeca;
         this.tipoDePeca = 1;
@@ -27,6 +17,17 @@ public class Rainha extends CrazyPiece {
         this.capturada = capturada;
     }
 
+    Rainha(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha) {
+        this.iDPeca = iDPeca;
+        this.tipoDePeca = 1;
+        this.tipoString = "Rainha";
+        this.valorRelativo = "8";
+        this.iDEquipa = iDEquipa;
+        this.alcunha = alcunha;
+    }
+
+
+
 
     @Override
     public String getImagePNG() {
@@ -37,9 +38,6 @@ public class Rainha extends CrazyPiece {
         }
     }
 
-    public boolean anularJogada(CrazyPiece peca, int xO, int yO, int xD, int yD) {
-        return true;
-    }
 
     public boolean movimento(CrazyPiece peca, int equipaAtual, int xO, int yO, int xD, int yD) {
         int distanciaX = Math.abs(xO - xD);

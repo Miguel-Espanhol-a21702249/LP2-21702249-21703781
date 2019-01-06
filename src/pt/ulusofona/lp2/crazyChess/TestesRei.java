@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import static pt.ulusofona.lp2.crazyChess.Simulador.*;
 
 public class TestesRei {
-
+/*
     @Test
     public void test01(){
         Simulador simulador = new Simulador();
@@ -14,6 +14,7 @@ public class TestesRei {
         CrazyPiece rei = new Rei(1,0,10,-1,-1,false);
         assertFalse(simulador.processaJogada(-1,-1,1,1));
     }
+    */
     @Test
     public void test02(){
         Simulador simulador = new Simulador();
@@ -21,7 +22,7 @@ public class TestesRei {
         CrazyPiece rei = new Rei(1,0,10,0,0,false);
         assertFalse(simulador.processaJogada(0,0,0,-1));
     }
-
+/*
     @Test
     public void test03(){
 
@@ -33,5 +34,5 @@ public class TestesRei {
         listaPecasAux.add(rei2);
         assertFalse(simulador.processaJogada(0,1,0,0));
     }
-
+*/
 }

@@ -445,12 +445,30 @@ public class Simulador {
     public void setTamanho(int sizeTabuleiro){
         this.sizeTabuleiro = sizeTabuleiro;
     }
-  /*  public void setCrazyPieces(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean capturada){
-        listaPecas.add(new Rainha(iDPeca, tipoDePeca, iDEquipa, alcunha, x, y, capturada));
-    }
-*//*
+
     public void setRei(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean capturada){
-        listaPecas.add(new Rei(iDPeca,tipoDePeca,iDEquipa,alcunha,x,y,capturada));
-    }*/
+        listaPecasAux.add(new Rei(iDPeca,tipoDePeca,iDEquipa, x, y, capturada));
+    }
+    public void setRainha(int iDPeca, int tipoDePeca, int iDEquipa ,  String alcunha, int x, int y, boolean capturada){
+        listaPecasAux.add(new Rainha(iDPeca, tipoDePeca, iDEquipa, x, y, capturada));
+    }
+    public void setPoneiMagicos(int iDPeca, int tipoDePeca, int iDEquipa, int x, int y, boolean capturada){
+        listaPecasAux.add(new PoneiMagico(iDPeca, tipoDePeca, iDEquipa, x, y, capturada));
+    }
+    public void setPadredaVila(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean capturada){
+        listaPecasAux.add(new PadreDaVila(iDPeca, tipoDePeca, iDEquipa, x, y, capturada));
+    }
+    public void setLebre(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean capturada){
+        listaPecasAux.add(new Lebre(iDPeca, tipoDePeca, iDEquipa, x, y, capturada));
+    }
+    public void setTorreV(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean capturada){
+        listaPecasAux.add(new TorreVert(iDPeca, tipoDePeca, iDEquipa, x, y, capturada));
+    }
+    public void setTorreH(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean capturada){
+        listaPecasAux.add(new TorreHor(iDPeca, tipoDePeca, iDEquipa, x, y, capturada));
+    }
+    public void setJoker(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean capturada){
+        listaPecasAux.add(new Joker(iDPeca, tipoDePeca, iDEquipa,alcunha, x, y, capturada));
+    }
 
 }

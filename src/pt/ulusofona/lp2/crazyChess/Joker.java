@@ -8,15 +8,6 @@ public class Joker extends CrazyPiece {
     private String designacao= designacaoJoker();
 
 
-
-    Joker(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha){
-        this.iDPeca = iDPeca;
-        this.tipoDePeca = 7;
-        this.valorRelativo = "4";
-        this.iDEquipa = iDEquipa;
-        this.alcunha = alcunha;
-    }
-
     Joker(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha,int x, int y, boolean capturada){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 7;
@@ -27,6 +18,15 @@ public class Joker extends CrazyPiece {
         this.y = y;
         this.capturada = capturada;
     }
+    Joker(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha){
+        this.iDPeca = iDPeca;
+        this.tipoDePeca = 7;
+        this.valorRelativo = "4";
+        this.iDEquipa = iDEquipa;
+        this.alcunha = alcunha;
+    }
+
+
 
     public String designacaoJoker() {
         if (countJoker >= 6) {
@@ -61,9 +61,6 @@ public class Joker extends CrazyPiece {
         }
     }
 
-    public boolean anularJogada(CrazyPiece peca, int xO, int yO, int xD, int yD){
-        return true;
-    }
     public boolean movimento(CrazyPiece peca, int equipaAtual, int xO, int yO, int xD, int yD) {
 
         boolean jogadaValida=false;
