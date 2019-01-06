@@ -14,8 +14,6 @@ import static pt.ulusofona.lp2.crazyChess.Simulador.*;
 
 public class TestePadreDaVila {
 
-
-
     @Test
     public void test01padreFalso(){
         Simulador simulador = new Simulador();
