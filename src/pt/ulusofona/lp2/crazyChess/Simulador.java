@@ -213,7 +213,6 @@ public class Simulador {
             turnoA++;
             countJoker++;
             countLebre++;
-            System.out.println(listaPecas);
             return true;
         }
         jogadaInvalida();

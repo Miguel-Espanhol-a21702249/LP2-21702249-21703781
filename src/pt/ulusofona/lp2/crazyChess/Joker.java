@@ -36,13 +36,13 @@ public class Joker extends CrazyPiece {
                 case 0:
                     return "Rainha";
                 case 1:
-                    return "Pónei Mágico";
+                    return "Ponei Mágico";
                 case 2:
                     return "Padre Da Vila";
                 case 3:
-                    return "Torre Horizontal";
+                    return "Torre Hor";
                 case 4:
-                    return "Torre Vertical";
+                    return "Torre Vert";
                 case 5:
                     return "Lebre";
                 default:
@@ -116,9 +116,9 @@ public class Joker extends CrazyPiece {
     @Override
     public String toString(){
         if(!getCapturada()) {
-            return iDPeca + " | " + "Joker " +  " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+            return iDPeca + " | " + "Joker/" + designacaoJoker() +  " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
         }else{
-            return iDPeca + " | " + "Joker " + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+            return iDPeca + " | " + "Joker/" + designacaoJoker() + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
         }
     }
 
