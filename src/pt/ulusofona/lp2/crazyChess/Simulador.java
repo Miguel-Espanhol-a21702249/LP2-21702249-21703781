@@ -56,9 +56,14 @@ public class Simulador {
         vencedor = 0;
         try {
             Scanner leitorFicheiro = new Scanner(ficheiroInicial);
-            String dados1[]= leitorFicheiro.nextLine().split(":");
                 sizeTabuleiro = Integer.parseInt(leitorFicheiro.nextLine());
+                if(!(sizeTabuleiro >=4 && sizeTabuleiro<= 12)){
+                    return false;
+                }
                 numeroDePecas = Integer.parseInt(leitorFicheiro.nextLine());
+                if(!(numeroDePecas < sizeTabuleiro*sizeTabuleiro)){
+                    return false;
+                }
             for (int i = 0; i < numeroDePecas; i++) {
                 String dados[] = leitorFicheiro.nextLine().split(":",4);
                     if(!listaPecas.contains(Integer.parseInt(dados[0])) && Integer.parseInt(dados[0])>=1) { // peça repetida
