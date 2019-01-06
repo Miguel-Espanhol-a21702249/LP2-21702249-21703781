@@ -427,7 +427,7 @@ public class Simulador {
                 writer.write(newLine);
 
             }
-            writer.write(getIDEquipaAJogar()+ ":" + jogadaVPreta + ":" + pecaComidaPreta + ":" + jogadaINVPreta + ":" + jogadaVBranca + ":" + pecaComidaBranca + ":" + jogadaINVBranca);
+            writer.write(getIDEquipaAJogar()+ ":" + jogadaVPreta + ":" + pecaComidaBranca + ":" + jogadaINVPreta + ":" + jogadaVBranca + ":" + pecaComidaPreta + ":" + jogadaINVBranca);
             writer.write(newLine);
             writer.write(listaPecas.size() + "");
             writer.close();
