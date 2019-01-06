@@ -6,7 +6,7 @@ import static junit.framework.TestCase.assertFalse;
 
 public class TestesJoker {
     @Test
-    public void test01padreFalso(){
+    public void test01jokerFalso(){
         Simulador simulador = new Simulador();
         simulador.setTamanho(8);
         CrazyPiece joker = new Joker(3,2,10,"Jokerino", 4,5,false);
