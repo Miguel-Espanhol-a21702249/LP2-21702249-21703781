@@ -36,9 +36,6 @@ public class TorreVert extends CrazyPiece {
         }
     }
 
-    public boolean anularJogada(CrazyPiece peca, int xO, int yO, int xD, int yD){
-        return true;
-    }
 
     public boolean movimento(CrazyPiece peca,int equipaAtual,int xO, int yO, int xD, int yD) {
         int idComida = 0;

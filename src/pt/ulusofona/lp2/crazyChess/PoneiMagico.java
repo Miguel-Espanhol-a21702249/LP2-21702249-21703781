@@ -34,9 +34,6 @@ public class PoneiMagico extends CrazyPiece {
         }
     }
 
-    public boolean anularJogada(CrazyPiece peca, int xO, int yO, int xD, int yD){
-        return true;
-    }
     public boolean cantonumero1parte1 (int xO, int yO) {
         int x3 = 0;
         for (int x2 = xO - 1; x2 > xO - 2; x2--) {
