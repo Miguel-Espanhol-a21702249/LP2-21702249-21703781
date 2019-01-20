@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 import static pt.ulusofona.lp2.crazyChess.CrazyPiece.*;
 
@@ -27,10 +28,10 @@ public class Simulador {
     static int turnoA = 0;
     static int countLebre = 0;
     static int countJoker = 0;
+    static int countLinha = 1;
 
-
-    public boolean iniciaJogo(File ficheiroInicial) {
-        int count = 0, linhaTabuleiro = 0;
+    public void iniciaJogo(File ficheiroInicial) throws InvalidSimulatorInputException,IOException{
+        int linhaTabuleiro = 0;
         sizeTabuleiro = 0;
         numeroDePecas = 0;
         listaPecas = new ArrayList<>();
@@ -49,19 +50,75 @@ public class Simulador {
         countJoker = 0;
         countLebre = 0;
         vencedor = 3;
+        countLinha = 1;
         try {
+
             Scanner leitorFicheiro = new Scanner(ficheiroInicial);
             sizeTabuleiro = Integer.parseInt(leitorFicheiro.nextLine());
             if (!(sizeTabuleiro >= 4 && sizeTabuleiro <= 12)) {
-                return false;
+                throw new InvalidSimulatorInputException(countLinha);
             }
+            countLinha++;
             numeroDePecas = Integer.parseInt(leitorFicheiro.nextLine());
             if (!(numeroDePecas < sizeTabuleiro * sizeTabuleiro)) {
-                return false;
+                throw new InvalidSimulatorInputException(countLinha);
             }
+            countLinha++;
             for (int i = 0; i < numeroDePecas; i++) {
-                String dados[] = leitorFicheiro.nextLine().split(":", 4);
-                if (!listaPecas.contains(Integer.parseInt(dados[0])) && Integer.parseInt(dados[0]) >= 1) { // peça repetida
+                String[] dados = leitorFicheiro.nextLine().split(":");
+
+                if(dados.length >=5){
+                    throw new InvalidSimulatorInputException(countLinha);
+                }
+
+                if(!(!listaPecas.contains(Integer.parseInt(dados[0])) && Integer.parseInt(dados[0]) >= 1)){ // Ve se ha peças repetidas
+                    throw new InvalidSimulatorInputException(countLinha);
+                }
+
+                if(!(Integer.parseInt(dados[1]) >= 0 && Integer.parseInt(dados[1]) <= 10)){
+                    throw new InvalidSimulatorInputException(countLinha);
+                }
+
+                if(!(Integer.parseInt(dados[2]) == 10 || Integer.parseInt(dados[2]) == 20)){
+                    throw new InvalidSimulatorInputException(countLinha);
+                }
+                switch (Integer.parseInt(dados[1])) {
+                    case 0:
+                        CrazyPiece rei = new Rei(Integer.parseInt(dados[0]), Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), dados[3]);
+                        listaPecas.add(rei);
+                        break;
+                    case 1:
+                        CrazyPiece rainha = new Rainha(Integer.parseInt(dados[0]), Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), dados[3]);
+                        listaPecas.add(rainha);
+                        break;
+                    case 2:
+                        CrazyPiece poneiMagico = new PoneiMagico(Integer.parseInt(dados[0]), Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), dados[3]);
+                        listaPecas.add(poneiMagico);
+                        break;
+                    case 3:
+                        CrazyPiece padreDaVila = new PadreDaVila(Integer.parseInt(dados[0]), Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), dados[3]);
+                        listaPecas.add(padreDaVila);
+                        break;
+                    case 4:
+                        CrazyPiece torreHor = new TorreHor(Integer.parseInt(dados[0]), Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), dados[3]);
+                        listaPecas.add(torreHor);
+                        break;
+                    case 5:
+                        CrazyPiece torreV = new TorreVert(Integer.parseInt(dados[0]), Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), dados[3]);
+                        listaPecas.add(torreV);
+                        break;
+                    case 6:
+                        CrazyPiece lebre = new Lebre(Integer.parseInt(dados[0]), Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), dados[3]);
+                        listaPecas.add(lebre);
+                        break;
+                    case 7:
+                        CrazyPiece joker = new Joker(Integer.parseInt(dados[0]), Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), dados[3]);
+                        listaPecas.add(joker);
+                        break;
+
+                }
+                countLinha++;
+                /*if (!listaPecas.contains(Integer.parseInt(dados[0])) && Integer.parseInt(dados[0]) >= 1) { // peça repetida
                     if (Integer.parseInt(dados[1]) >= 0 && Integer.parseInt(dados[1]) <= 10) { // tipo peça
                         if (Integer.parseInt(dados[2]) == 10 || Integer.parseInt(dados[2]) == 20) { // equipa
                             switch (Integer.parseInt(dados[1])) {
@@ -99,12 +156,20 @@ public class Simulador {
                                     break;
 
                             }
+                        } else{
+                            throw new InvalidSimulatorInputException(countLinha);
                         }
+                    } else{
+                        throw new InvalidSimulatorInputException(countLinha);
                     }
+                } else{
+                    throw new InvalidSimulatorInputException(countLinha);
                 }
+                countLinha++; */
             }
+            //por as peças nas posiçoes
             for (int linha = 0; linha < sizeTabuleiro; linha++) {
-                String dados[] = leitorFicheiro.nextLine().split(":", sizeTabuleiro);
+                String[] dados = leitorFicheiro.nextLine().split(":", sizeTabuleiro);
                 for (int coluna = 0; coluna < sizeTabuleiro; coluna++) {
                     if (Integer.parseInt(dados[coluna]) != 0) {
                         for (CrazyPiece listaPeca : listaPecas) {
@@ -119,8 +184,10 @@ public class Simulador {
                 }
                 linhaTabuleiro++;
             }
+
+            // ler jogo gravado
             if (leitorFicheiro.hasNextLine()) {
-                String dados[] = leitorFicheiro.nextLine().split(":");
+                String[] dados = leitorFicheiro.nextLine().split(":");
                 if (Integer.parseInt(dados[0]) == 10 || Integer.parseInt(dados[0]) == 20 && Integer.parseInt(dados[1]) >= 0 && Integer.parseInt(dados[2]) >= 0 && Integer.parseInt(dados[3]) >= 0 && Integer.parseInt(dados[4]) >= 0 && Integer.parseInt(dados[5]) >= 0 && Integer.parseInt(dados[6]) >= 0) {
                     turno = Integer.parseInt(dados[1]) + Integer.parseInt(dados[4]);
                     jogadaVPreta = Integer.parseInt(dados[1]);
@@ -139,12 +206,9 @@ public class Simulador {
             }
 
             leitorFicheiro.close();
-            return true;
 
         } catch (FileNotFoundException exception) {
-            String mensagem = "Erro: o ficheiro " + ficheiroInicial.getName() + " nao foi encontrado.";
-            System.out.println(mensagem);
-            return false;
+            throw new IOException();
         }
     }
 
@@ -441,6 +505,14 @@ public class Simulador {
     public void setTamanho(int sizeTabuleiro){
         this.sizeTabuleiro = sizeTabuleiro;
     }
+
+
+    /*public Map<String,List<String>> getEstatisticas(){
+
+    }*/
+
+
+
 
     public void setRei(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean capturada){
         listaPecasAux.add(new Rei(iDPeca,tipoDePeca,iDEquipa, x, y, capturada));
