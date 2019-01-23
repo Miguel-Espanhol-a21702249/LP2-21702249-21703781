@@ -137,7 +137,6 @@ public class Simulador {
             // ler jogo gravado
             if (leitorFicheiro.hasNextLine()) {
                 String[] dados = leitorFicheiro.nextLine().split(":");
-                String[] dadosVirgula  = leitorFicheiro.nextLine().split(",");
                 if (Integer.parseInt(dados[0]) == 10 || Integer.parseInt(dados[0]) == 20 && Integer.parseInt(dados[1]) >= 0 && Integer.parseInt(dados[2]) >= 0 && Integer.parseInt(dados[3]) >= 0 && Integer.parseInt(dados[4]) >= 0 && Integer.parseInt(dados[5]) >= 0 && Integer.parseInt(dados[6]) >= 0) {
                     turno = Integer.parseInt(dados[1]) + Integer.parseInt(dados[4]);
                     jogadaVPreta = Integer.parseInt(dados[1]);
@@ -146,7 +145,7 @@ public class Simulador {
                     jogadaVBranca = Integer.parseInt(dados[4]);
                     pecaComidaBranca = Integer.parseInt(dados[5]);
                     jogadaINVBranca = Integer.parseInt(dados[6]);
-                    jogadasSemCaptura = Integer.parseInt(dadosVirgula[1]);
+                    jogadasSemCaptura = Integer.parseInt(dados[7]);
                 }
 
             }
@@ -372,9 +371,10 @@ public class Simulador {
     }
 
     public boolean processaSugestao(int xO, int yO, int xD, int yD){
+        System.out.println(xO +"-"+yO+"-"+xD+"-"+yD);
         int equipaAJogar = getIDEquipaAJogar();
         boolean vazia =true;
-        if (xO != xD && yO != yD && xD >= 0 && yD >= 0 && xD <= sizeTabuleiro - 1 && yD <= sizeTabuleiro - 1 ) {
+        if (xO != xD || yO != yD && xD >= 0 && yD >= 0 && xD <= sizeTabuleiro - 1 && yD <= sizeTabuleiro - 1 ) {
             for(CrazyPiece peca:listaPecas){
                 if(peca.getX() == xO && peca.getY() == yO){
                     if(peca.getIDEquipa() == equipaAJogar){
@@ -383,13 +383,16 @@ public class Simulador {
                                 if (piece.getX() == xD && piece.getY() == yD) {
                                     vazia = false;
                                     if (piece.getIDEquipa() != peca.getIDEquipa()) {
-
+                                        System.out.println(xO +"-"+yO+"-"+xD+"-"+yD+"certo");
                                         return true;
+
                                     }
                                 }
                             }
                             if (vazia) {
+                                System.out.println(xO +"-"+yO+"-"+xD+"-"+yD+"certo");
                                 return true;
+
                             }
                         }
                     }
