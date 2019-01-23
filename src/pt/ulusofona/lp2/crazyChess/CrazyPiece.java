@@ -12,9 +12,11 @@ abstract public class  CrazyPiece {
     int iDEquipa;
     String alcunha;
     String tipoString;
+    int nrCapturas;
+    int nrPontos;
     int x;
     int y;
-    boolean capturada =false;
+    boolean capturada = false;
 
     public CrazyPiece(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha){
         this.iDPeca = iDPeca;
@@ -64,13 +66,21 @@ abstract public class  CrazyPiece {
     String getAlcunha(){
         return alcunha;
     }
-
     public int getId() {
         return iDPeca;
     }
     boolean getCapturada(){
         return capturada;
     }
+
+    public int getNrPontos(){
+        return nrPontos;
+    }
+
+    public int getNrCapturas(){
+        return nrCapturas;
+    }
+
 
     abstract public String getImagePNG();
 

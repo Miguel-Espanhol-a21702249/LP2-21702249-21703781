@@ -3,10 +3,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import static pt.ulusofona.lp2.crazyChess.CrazyPiece.*;
 
 public class Simulador {
@@ -452,17 +452,60 @@ public class Simulador {
     }
 
 
-    public void setTamanho(int sizeTabuleiro){
-        this.sizeTabuleiro = sizeTabuleiro;
+
+    public Map<String,List<String>> getEstatisticas(){
+        Map<String,List<String>> mapaEstatisticas = new HashMap<>();
+
+        mapaEstatisticas.put("top5Capturas",top5Capturas());
+        mapaEstatisticas.put("top5Pontos", top5Pontos());
+        mapaEstatisticas.put("pecasMais5Capturas",pecasMais5Capturas());
+
+
+        return mapaEstatisticas;
+    }
+
+    public List<String> top5Capturas(){
+        List<String> top5capturas;
+
+        top5capturas = listaPecasAux.stream()
+                .sorted((p1,p2) -> p2.getNrCapturas() - p1.getNrCapturas())
+                .limit(5)
+                .map((p1) -> p1.getIDEquipa() + ":"+ p1.getAlcunha()+ ":" + p1.getNrPontos()+ ":"+ p1.getNrCapturas())
+                .collect(Collectors.toList());
+
+        return top5capturas;
+    }
+
+    public List<String>  top5Pontos(){
+        List<String> top5Pontos;
+
+        top5Pontos = listaPecasAux.stream()
+                .sorted((p1,p2)-> p2.getNrPontos() - p1.getNrPontos())
+                .limit(5)
+                .map((p1) -> p1.getIDEquipa() + ":"+ p1.getAlcunha()+ ":" + p1.getNrPontos()+ ":"+ p1.getNrCapturas())
+                .collect(Collectors.toList());
+
+        return top5Pontos;
+    }
+
+    public List<String> pecasMais5Capturas(){
+        List<String> pecasMais5Capturas;
+
+        pecasMais5Capturas = listaPecasAux.stream()
+                .filter((p1)-> p1.getNrCapturas()>5)
+                .map((p1) -> p1.getIDEquipa() + ":"+ p1.getAlcunha()+ ":" + p1.getNrPontos()+ ":"+ p1.getNrCapturas())
+                .collect(Collectors.toList());
+        return pecasMais5Capturas;
     }
 
 
-    /*public Map<String,List<String>> getEstatisticas(){
-
-    }*/
 
 
 
+
+    public void setTamanho(int sizeTabuleiro){
+        this.sizeTabuleiro = sizeTabuleiro;
+    }
 
     public void setRei(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha, int x, int y, boolean capturada){
         listaPecasAux.add(new Rei(iDPeca,tipoDePeca,iDEquipa, x, y, capturada));
