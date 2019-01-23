@@ -353,19 +353,24 @@ public class Simulador {
 
     public boolean processaSugestao(int xO, int yO, int xD, int yD){
         int equipaAJogar = getIDEquipaAJogar();
-        if (xO != xD && yO != yD || xD < 0 || yD < 0 || xD > sizeTabuleiro - 1 || yD > sizeTabuleiro - 1 ) {
+        boolean vazia =true;
+        if (xO != xD && yO != yD && xD >= 0 && yD >= 0 && xD <= sizeTabuleiro - 1 && yD <= sizeTabuleiro - 1 ) {
             for(CrazyPiece peca:listaPecas){
                 if(peca.getX() == xO && peca.getY() == yO){
                     if(peca.getIDEquipa() == equipaAJogar){
-                        if(peca.movimento(peca,equipaAJogar,xO,yO,xD,yD)){
-                            for(CrazyPiece piece : listaPecas){
-                                if(piece.getX() == xD && piece.getY() == yD) {
+                        if(peca.movimento(peca,equipaAJogar,xO,yO,xD,yD)) {
+                            for (CrazyPiece piece : listaPecas) {
+                                if (piece.getX() == xD && piece.getY() == yD) {
+                                    vazia = false;
                                     if (piece.getIDEquipa() != peca.getIDEquipa()) {
+
                                         return true;
                                     }
                                 }
                             }
-                            return true;
+                            if (vazia) {
+                                return true;
+                            }
                         }
                     }
                 }
