@@ -1,6 +1,7 @@
 package pt.ulusofona.lp2.crazyChess;
 
 import java.util.List;
+import java.util.Map;
 
 import static pt.ulusofona.lp2.crazyChess.Simulador.*;
 
@@ -63,6 +64,140 @@ public class Rainha extends CrazyPiece {
         }
 
 
+        if((distanciaX >= 5)||(distanciaY>=5)){
+            return false;
+        }else{
+            if(xO == xD || yO == yD){
+                if(xO == xD){
+                    if(yO - yD < 0){
+                        for(int i= yO+1 ; i<= yD;i++){
+                            for(CrazyPiece p: listaPecasAux){
+                                if(p.getY() == i && p.getX() == xO && p.getY() != yD){
+                                    return false;
+                                }
+                            }
+                        }
+                    } else{
+                        for(int i= yO-1; i>=yD ; i--){
+                            for(CrazyPiece p:listaPecasAux){
+                                if(p.getY() == i && p.getX() == xO && p.getY() != yD){
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+                //horizontal
+                else{
+                    if(xO-xD<0){
+                        for(int i= xO+1; i<=xD;i++){
+                            for(CrazyPiece p: listaPecasAux){
+                                if(p.getX() == i && p.getY() == yO && p.getX()!=xD){
+                                    return false;
+                                }
+                            }
+                        }
+                    } else{
+                        for(int i= xO-1;i>=xD;i--){
+                            for(CrazyPiece p: listaPecasAux){
+                                if(p.getX() == i && p.getY() == yO && p.getX() != xD ){
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+
+                }
+            } else{
+                //diagonal
+                if(distanciaX == distanciaY){
+                    //diagonal baixo direita
+                    if(xO<xD && yO<yD){
+                        for(int xCount= xO+1; xCount<=xD; xCount++){
+                            for(int yCount=yO+1; yCount<= yD;y++ ){
+                                if(xCount== yCount){
+                                    for(CrazyPiece p : listaPecasAux){
+                                        if(p.getX() == xCount && p.getY() == y && p.getX() != xD){
+                                            return false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else{
+                        //diagonal baixo esquerda
+                        if(xO>xD && yO<yD){
+                            for(int xCount= xO-1;xCount>=xD;xCount--){
+                                for(int yCount=yO+1; yCount<= yD ; yCount++){
+                                    if(Math.abs(xO-xCount) == Math.abs(yO-yCount)){
+                                        for(CrazyPiece p: listaPecasAux){
+                                            if(p.getX() == xCount && p.getY() == yCount && p.getX() != xD){
+                                                return false;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else{
+                            //diagonal cima esquerda
+                            if(xO>xD && yO>yD){
+                                for(int xCount = xO-1;  xCount >= xD ;xCount--){
+                                    for(int yCount = yO-1; yCount >= yD;yCount--)  {
+                                        if(xCount == yCount){
+                                            for(CrazyPiece p: listaPecasAux){
+                                                if(p.getX() == xCount && p.getY()== yCount && p.getX()!= xD){
+                                                    return false;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                //diagonal cima direita
+                                if (xO < xD && yO > yD) {
+                                    for (int xCount = xO + 1; xCount <= xD; xCount++) {
+                                        for (int yCount = yO - 1; yCount >= yD; yCount--) {
+                                            if (Math.abs(xO - xCount) == Math.abs(yO - yCount)) {
+                                                for (CrazyPiece p : listaPecasAux) {
+                                                    if (p.getX() == xCount && p.getY() == yCount && p.getX() != xD) {
+                                                        return false;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }else{
+                    return false;
+                }
+                for(CrazyPiece p:listaPecasAux){
+                    if(peca.getTipoDePeca() == 1 ){
+                        if(peca.getX() == xD && peca.getY()==yD){
+                            return false;
+                        }
+                    }else{
+                        if(peca.getTipoDePeca()== 3){
+                            if(Math.abs(peca.getX() - xD) == 1 && Math.abs(peca.getY() - yD) == 1){
+                                if(peca.getIDEquipa()!= getIDEquipa()){
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            UndoHelp jogadaAnterior = new UndoHelp(idPeca, x, y, idComida, xFim, yFim, turnoA);
+            listaDasJogadas.add(jogadaAnterior);
+            return true;
+        }
+
+
+
+
+        /*
         if (xO > xD && yO > yD) {
             //diagonal para esquerda cima
             direcaoRainha = -1;
@@ -197,20 +332,7 @@ public class Rainha extends CrazyPiece {
                 }
                 xO++;
             } while (xO <= xD);
-        }
-
-        //ve se a distancia entre rainha e padre e maior que dois
-        for (CrazyPiece padre : listaPecasAux) {
-            if (padre.getTipoDePeca() == 3 && padre.getIDEquipa() != peca.getIDEquipa()) {
-                if (Math.abs(padre.getX() - xD) == 1 && Math.abs(padre.getY() - yD) == 1) {
-                    return false;
-                }
-            }
-        }
-
-        UndoHelp jogadaAnterior = new UndoHelp(idPeca, x, y, idComida, xFim, yFim, turnoA);
-        listaDasJogadas.add(jogadaAnterior);
-        return true;
+        }*/
 
     }
 

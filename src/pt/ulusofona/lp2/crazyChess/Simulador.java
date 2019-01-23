@@ -371,7 +371,6 @@ public class Simulador {
     }
 
     public boolean processaSugestao(int xO, int yO, int xD, int yD){
-        System.out.println(xO +"-"+yO+"-"+xD+"-"+yD);
         int equipaAJogar = getIDEquipaAJogar();
         boolean vazia =true;
         if (xO != xD || yO != yD && xD >= 0 && yD >= 0 && xD <= sizeTabuleiro - 1 && yD <= sizeTabuleiro - 1 ) {
@@ -383,14 +382,12 @@ public class Simulador {
                                 if (piece.getX() == xD && piece.getY() == yD) {
                                     vazia = false;
                                     if (piece.getIDEquipa() != peca.getIDEquipa()) {
-                                        System.out.println(xO +"-"+yO+"-"+xD+"-"+yD+"certo");
                                         return true;
 
                                     }
                                 }
                             }
                             if (vazia) {
-                                System.out.println(xO +"-"+yO+"-"+xD+"-"+yD+"certo");
                                 return true;
 
                             }

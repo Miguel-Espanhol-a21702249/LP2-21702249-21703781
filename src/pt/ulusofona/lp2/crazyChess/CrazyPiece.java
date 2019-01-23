@@ -93,7 +93,12 @@ abstract public class  CrazyPiece {
         return valorRelativo;
     }
     public int getRatioJogadas(){
-        return jogadaInvalida/nrTotalJogadas;
+        if(nrTotalJogadas>=1){
+            return jogadaInvalida/nrTotalJogadas;
+        }else{
+            return 0;
+        }
+
     }
     public void jogadaInvalida(){
         jogadaInvalida++;
@@ -110,6 +115,7 @@ abstract public class  CrazyPiece {
     public int getJogadaInvalida(){
         return jogadaInvalida;
     }
+
 
     abstract public String getImagePNG();
 
