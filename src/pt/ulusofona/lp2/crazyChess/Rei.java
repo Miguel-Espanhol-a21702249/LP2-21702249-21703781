@@ -13,7 +13,7 @@ public class Rei extends CrazyPiece {
         this.iDPeca = iDPeca;
         this.tipoDePeca = 0;
         this.tipoString = "Rei";
-        this.valorRelativo = -1;
+        this.valorRelativo = 1000;
         this.iDEquipa = iDEquipa;
         this.x = x;
         this.y = y;
