@@ -64,6 +64,7 @@ public class Rainha extends CrazyPiece {
         }
 
 
+        /*
         if((distanciaX >= 5)||(distanciaY>=5)){
             return false;
         }else{
@@ -192,12 +193,12 @@ public class Rainha extends CrazyPiece {
             UndoHelp jogadaAnterior = new UndoHelp(idPeca, x, y, idComida, xFim, yFim, turnoA);
             listaDasJogadas.add(jogadaAnterior);
             return true;
-        }
+        }*/
 
 
 
 
-        /*
+
         if (xO > xD && yO > yD) {
             //diagonal para esquerda cima
             direcaoRainha = -1;
@@ -332,8 +333,10 @@ public class Rainha extends CrazyPiece {
                 }
                 xO++;
             } while (xO <= xD);
-        }*/
-
+        }
+        UndoHelp jogadaAnterior = new UndoHelp(idPeca, x, y, idComida, xFim, yFim, turnoA);
+        listaDasJogadas.add(jogadaAnterior);
+        return true;
     }
 
 }
