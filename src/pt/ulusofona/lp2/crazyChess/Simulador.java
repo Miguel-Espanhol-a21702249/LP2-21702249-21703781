@@ -522,7 +522,7 @@ public class Simulador {
     public List<String> top5Capturas(){
         List<String> top5capturas;
 
-        top5capturas = listaPecasAux.stream()
+        top5capturas = listaPecas.stream()
                 .sorted((p1,p2) -> p2.getNrCapturas() - p1.getNrCapturas())
                 .limit(5)
                 .map((p1) -> p1.getIDEquipa() + ":"+ p1.getAlcunha()+ ":" + p1.getNrPontos()+ ":"+ p1.getNrCapturas())
@@ -534,7 +534,7 @@ public class Simulador {
     public List<String>  top5Pontos(){
         List<String> top5Pontos;
 
-        top5Pontos = listaPecasAux.stream()
+        top5Pontos = listaPecas.stream()
                 .sorted((p1,p2)-> p2.getNrPontos() - p1.getNrPontos())
                 .limit(5)
                 .map((p1) -> p1.getIDEquipa() + ":"+ p1.getAlcunha()+ ":" + p1.getNrPontos()+ ":"+ p1.getNrCapturas())
@@ -546,7 +546,7 @@ public class Simulador {
     public List<String> pecasMais5Capturas(){
         List<String> pecasMais5Capturas;
 
-        pecasMais5Capturas = listaPecasAux.stream()
+        pecasMais5Capturas = listaPecas.stream()
                 .filter((p1)-> p1.getNrCapturas()>5)
                 .map((p1) -> p1.getIDEquipa() + ":"+ p1.getAlcunha()+ ":" + p1.getNrPontos()+ ":"+ p1.getNrCapturas())
                 .collect(Collectors.toList());
@@ -556,7 +556,7 @@ public class Simulador {
     public List <String> tresPecasMaisBaralhadas(){
         List<String> tresPecasMaisBaralhadas;
 
-        tresPecasMaisBaralhadas = listaPecasAux.stream()
+        tresPecasMaisBaralhadas = listaPecas.stream()
                 .sorted((p1,p2)-> p2.getRatioJogadas() - p1.getRatioJogadas())
                 .limit(3)
                 .map((p1) -> p1.getIDEquipa()+ ":" + p1.getAlcunha()+ ":"+ p1.getJogadaInvalida()+ ":" + p1.getJogadaValida())
@@ -568,7 +568,7 @@ public class Simulador {
     public List <String> tiposPecaCapturados(){
         List<String> tiposPecaCapturados;
 
-        tiposPecaCapturados = listaPecasAux.stream()
+        tiposPecaCapturados = listaPecas.stream()
                 .sorted((p1,p2)-> p2.getNrCapturas()- p1.getNrCapturas())
                 .map((p1)-> p1.getTipoDePeca() +":"+ p1.getNrCapturas())
                 .collect(Collectors.toList());
