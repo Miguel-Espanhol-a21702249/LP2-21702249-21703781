@@ -12,7 +12,7 @@ public class TorreHor extends CrazyPiece {
         this.iDPeca = iDPeca;
         this.tipoDePeca = 4;
         this.tipoString = "TorreH";
-        this.valorRelativo = "3";
+        this.valorRelativo = 3;
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
     }
@@ -21,7 +21,7 @@ public class TorreHor extends CrazyPiece {
         this.iDPeca = iDPeca;
         this.tipoDePeca = 4;
         this.tipoString = "TorreH";
-        this.valorRelativo = "3";
+        this.valorRelativo = 3;
         this.iDEquipa = iDEquipa;
         this.x = x;
         this.y = y;

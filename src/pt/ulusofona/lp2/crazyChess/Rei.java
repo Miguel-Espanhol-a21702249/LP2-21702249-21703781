@@ -13,7 +13,7 @@ public class Rei extends CrazyPiece {
         this.iDPeca = iDPeca;
         this.tipoDePeca = 0;
         this.tipoString = "Rei";
-        this.valorRelativo = "infinito";
+        this.valorRelativo = -1;
         this.iDEquipa = iDEquipa;
         this.x = x;
         this.y = y;
@@ -24,7 +24,7 @@ public class Rei extends CrazyPiece {
         this.iDPeca = iDPeca;
         this.tipoDePeca = 0;
         this.tipoString = "Rei";
-        this.valorRelativo = "infinito";
+        this.valorRelativo = -1;
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
     }
@@ -113,9 +113,9 @@ public class Rei extends CrazyPiece {
     @Override
     public String toString(){
         if(!getCapturada()) {
-            return iDPeca + " | " + tipoString + " | " + "(" + valorRelativo + ")" + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+            return iDPeca + " | " + tipoString + " | " + "(infinito)" + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
         }else{
-            return iDPeca + " | " + tipoString + " | " + "(" + valorRelativo + ")" + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
+            return iDPeca + " | " + tipoString + " | " + "(infinito)" + " | " + iDEquipa + " | " + alcunha + " @ (n/a)";
         }
     }
 }

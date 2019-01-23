@@ -10,7 +10,7 @@ public class Rainha extends CrazyPiece {
         this.iDPeca = iDPeca;
         this.tipoDePeca = 1;
         this.tipoString = "Rainha";
-        this.valorRelativo = "8";
+        this.valorRelativo = 8;
         this.iDEquipa = iDEquipa;
         this.x = x;
         this.y = y;
@@ -21,7 +21,7 @@ public class Rainha extends CrazyPiece {
         this.iDPeca = iDPeca;
         this.tipoDePeca = 1;
         this.tipoString = "Rainha";
-        this.valorRelativo = "8";
+        this.valorRelativo = 8;
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
     }

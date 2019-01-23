@@ -220,6 +220,8 @@ public class Simulador {
                     return false;
                 } else {
                     capturarPeca(pecaNoDestino, xD, yD);
+                    pecaMexe.nrCapturas++;
+                    pecaMexe.adicionaPontos(pecaMexe.getValorRelativo());
                 }
             }
             jogadaValida();

@@ -13,7 +13,7 @@ public class TorreVert extends CrazyPiece {
         this.iDPeca = iDPeca;
         this.tipoDePeca = 5;
         this.tipoString = "TorreV";
-        this.valorRelativo = "3";
+        this.valorRelativo = 3;
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
     }

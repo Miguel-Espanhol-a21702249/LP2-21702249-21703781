@@ -11,7 +11,7 @@ public class PadreDaVila extends CrazyPiece {
         this.iDPeca = iDPeca;
         this.tipoDePeca = 3;
         this.tipoString = "Padre da Vila";
-        this.valorRelativo = "3";
+        this.valorRelativo = 3;
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
     }
@@ -19,7 +19,7 @@ public class PadreDaVila extends CrazyPiece {
         this.iDPeca = iDPeca;
         this.tipoDePeca = 3;
         this.tipoString = "Padre da Vila";
-        this.valorRelativo = "3";
+        this.valorRelativo = 3;
         this.iDEquipa = iDEquipa;
         this.x = x;
         this.y = y;

@@ -11,7 +11,7 @@ public class Lebre extends CrazyPiece {
         this.iDPeca = iDPeca;
         this.tipoDePeca = 6;
         this.tipoString= "Lebre";
-        this.valorRelativo = "2";
+        this.valorRelativo = 2;
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
     }
@@ -20,7 +20,7 @@ public class Lebre extends CrazyPiece {
         this.iDPeca = iDPeca;
         this.tipoDePeca = 6;
         this.tipoString= "Lebre";
-        this.valorRelativo = "2";
+        this.valorRelativo = 2;
         this.iDEquipa = iDEquipa;
         this.x = x;
         this.y = y;

@@ -12,7 +12,6 @@ public class UmaPecaMesmoMaluca extends CrazyPiece {
         this.iDPeca = iDPeca;
         this.tipoDePeca = 8;
         this.tipoString = "Peça Mesmo Maluca";
-        this.valorRelativo = "infinito";
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
     }
@@ -20,7 +19,6 @@ public class UmaPecaMesmoMaluca extends CrazyPiece {
     UmaPecaMesmoMaluca(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha,int x, int y, boolean capturada) {
         this.iDPeca = iDPeca;
         this.tipoDePeca = 8;
-        this.valorRelativo = "infinito";
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
         this.x = x;

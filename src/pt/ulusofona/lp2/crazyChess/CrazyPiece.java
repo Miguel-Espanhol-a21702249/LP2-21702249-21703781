@@ -8,7 +8,7 @@ import static pt.ulusofona.lp2.crazyChess.Simulador.*;
 abstract public class  CrazyPiece {
     int iDPeca;
     int tipoDePeca;
-    String valorRelativo;
+    int valorRelativo;
     int iDEquipa;
     String alcunha;
     String tipoString;
@@ -81,6 +81,13 @@ abstract public class  CrazyPiece {
         return nrCapturas;
     }
 
+    public int adicionaPontos(int pontos){
+        nrPontos += pontos;
+        return nrPontos;
+    }
+    public int getValorRelativo(){
+        return valorRelativo;
+    }
 
     abstract public String getImagePNG();
 

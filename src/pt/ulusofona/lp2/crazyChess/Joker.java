@@ -11,7 +11,7 @@ public class Joker extends CrazyPiece {
     Joker(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha,int x, int y, boolean capturada){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 7;
-        this.valorRelativo = "4";
+        this.valorRelativo = 4;
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
         this.x = x;
@@ -21,7 +21,7 @@ public class Joker extends CrazyPiece {
     Joker(int iDPeca, int tipoDePeca, int iDEquipa, String alcunha){
         this.iDPeca = iDPeca;
         this.tipoDePeca = 7;
-        this.valorRelativo = "4";
+        this.valorRelativo = 4;
         this.iDEquipa = iDEquipa;
         this.alcunha = alcunha;
     }
