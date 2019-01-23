@@ -237,7 +237,7 @@ public class Simulador {
 
                     capturarPeca(pecaNoDestino, xD, yD);
                     pecaMexe.nrCapturas++;
-                    pecaMexe.adicionaPontos(pecaMexe.getValorRelativo());
+                    pecaMexe.adicionaPontos(pecaNoDestino.getValorRelativo());
                 }
             }
             jogadaValida();
@@ -515,7 +515,7 @@ public class Simulador {
         mapaEstatisticas.put("top5Capturas",top5Capturas());
         mapaEstatisticas.put("top5Pontos", top5Pontos());
         mapaEstatisticas.put("pecasMais5Capturas",pecasMais5Capturas());
-        mapaEstatisticas.put("3pecasMaisBaralhadas",tresPecasMaisBaralhadas());
+        mapaEstatisticas.put("3PecasMaisBaralhadas",tresPecasMaisBaralhadas());
         mapaEstatisticas.put("tiposPecaCapturados",tiposPecaCapturados());
 
 
