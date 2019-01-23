@@ -64,24 +64,23 @@ public class Rainha extends CrazyPiece {
         }
 
 
-        /*
-        if((distanciaX >= 5)||(distanciaY>=5)){
+        if ((distanciaX >= 5) || (distanciaY >= 5)) {
             return false;
-        }else{
-            if(xO == xD || yO == yD){
-                if(xO == xD){
-                    if(yO - yD < 0){
-                        for(int i= yO+1 ; i<= yD;i++){
-                            for(CrazyPiece p: listaPecasAux){
-                                if(p.getY() == i && p.getX() == xO && p.getY() != yD){
+        } else {
+            if (xO == xD || yO == yD) {
+                if (xO == xD) {
+                    if (yO - yD < 0) {
+                        for (int i = yO + 1; i <= yD; i++) {
+                            for (CrazyPiece p : listaPecasAux) {
+                                if (p.getY() == i && p.getX() == xO && p.getY() != yD) {
                                     return false;
                                 }
                             }
                         }
-                    } else{
-                        for(int i= yO-1; i>=yD ; i--){
-                            for(CrazyPiece p:listaPecasAux){
-                                if(p.getY() == i && p.getX() == xO && p.getY() != yD){
+                    } else {
+                        for (int i = yO - 1; i >= yD; i--) {
+                            for (CrazyPiece p : listaPecasAux) {
+                                if (p.getY() == i && p.getX() == xO && p.getY() != yD) {
                                     return false;
                                 }
                             }
@@ -89,64 +88,63 @@ public class Rainha extends CrazyPiece {
                     }
                 }
                 //horizontal
-                else{
-                    if(xO-xD<0){
-                        for(int i= xO+1; i<=xD;i++){
-                            for(CrazyPiece p: listaPecasAux){
-                                if(p.getX() == i && p.getY() == yO && p.getX()!=xD){
+                else {
+                    if (xO - xD < 0) {
+                        for (int i = xO + 1; i <= xD; i++) {
+                            for (CrazyPiece p : listaPecasAux) {
+                                if (p.getX() == i && p.getY() == yO && p.getX() != xD) {
                                     return false;
                                 }
                             }
                         }
-                    } else{
-                        for(int i= xO-1;i>=xD;i--){
-                            for(CrazyPiece p: listaPecasAux){
-                                if(p.getX() == i && p.getY() == yO && p.getX() != xD ){
+                    } else {
+                        for (int i = xO - 1; i >= xD; i--) {
+                            for (CrazyPiece p : listaPecasAux) {
+                                if (p.getX() == i && p.getY() == yO && p.getX() != xD) {
                                     return false;
                                 }
                             }
                         }
                     }
-
                 }
-            } else{
+            } else {
                 //diagonal
-                if(distanciaX == distanciaY){
+                if (distanciaX == distanciaY) {
                     //diagonal baixo direita
-                    if(xO<xD && yO<yD){
-                        for(int xCount= xO+1; xCount<=xD; xCount++){
-                            for(int yCount=yO+1; yCount<= yD;y++ ){
-                                if(xCount== yCount){
-                                    for(CrazyPiece p : listaPecasAux){
-                                        if(p.getX() == xCount && p.getY() == y && p.getX() != xD){
+                    if (xO < xD && yO < yD) {
+                        for (int xCount = xO + 1; xCount <= xD; xCount++) {
+                            for (int yCount = yO + 1; yCount <= yD; y++) {
+                                if (xCount == yCount) {
+                                    for (CrazyPiece p : listaPecasAux) {
+                                        if (p.getX() == xCount && p.getY() == y && p.getX() != xD) {
                                             return false;
                                         }
                                     }
                                 }
                             }
                         }
-                    } else{
+                    } else {
                         //diagonal baixo esquerda
-                        if(xO>xD && yO<yD){
-                            for(int xCount= xO-1;xCount>=xD;xCount--){
-                                for(int yCount=yO+1; yCount<= yD ; yCount++){
-                                    if(Math.abs(xO-xCount) == Math.abs(yO-yCount)){
-                                        for(CrazyPiece p: listaPecasAux){
-                                            if(p.getX() == xCount && p.getY() == yCount && p.getX() != xD){
+                        if (xO > xD && yO < yD) {
+                            for (int xCount = xO - 1; xCount >= xD; xCount--) {
+                                for (int yCount = yO + 1; yCount <= yD; yCount++) {
+                                    if (Math.abs(xO - xCount) == Math.abs(yO - yCount)) {
+                                        for (CrazyPiece p : listaPecasAux) {
+                                            if (p.getX() == xCount && p.getY() == yCount && p.getX() != xD) {
                                                 return false;
                                             }
                                         }
                                     }
                                 }
                             }
-                        } else{
+                        } else {
                             //diagonal cima esquerda
-                            if(xO>xD && yO>yD){
-                                for(int xCount = xO-1;  xCount >= xD ;xCount--){
-                                    for(int yCount = yO-1; yCount >= yD;yCount--)  {
-                                        if(xCount == yCount){
-                                            for(CrazyPiece p: listaPecasAux){
-                                                if(p.getX() == xCount && p.getY()== yCount && p.getX()!= xD){
+                            if (xO > xD && yO > yD) {
+                                for (int xCount = xO - 1; xCount >= xD; xCount--) {
+                                    for (int yCount = yO - 1; yCount >= yD; yCount--) {
+                                        if (xCount == yCount) {
+                                            for (CrazyPiece p : listaPecasAux) {
+                                                if (p.getX() == xCount && p.getY() == yCount && p.getX() != xD) {
                                                     return false;
                                                 }
                                             }
@@ -171,18 +169,18 @@ public class Rainha extends CrazyPiece {
                             }
                         }
                     }
-                }else{
+                } else {
                     return false;
                 }
-                for(CrazyPiece p:listaPecasAux){
-                    if(peca.getTipoDePeca() == 1 ){
-                        if(peca.getX() == xD && peca.getY()==yD){
+                for (CrazyPiece p : listaPecasAux) {
+                    if (peca.getTipoDePeca() == 1) {
+                        if (peca.getX() == xD && peca.getY() == yD) {
                             return false;
                         }
-                    }else{
-                        if(peca.getTipoDePeca()== 3){
-                            if(Math.abs(peca.getX() - xD) == 1 && Math.abs(peca.getY() - yD) == 1){
-                                if(peca.getIDEquipa()!= getIDEquipa()){
+                    } else {
+                        if (peca.getTipoDePeca() == 3) {
+                            if (Math.abs(peca.getX() - xD) == 1 && Math.abs(peca.getY() - yD) == 1) {
+                                if (peca.getIDEquipa() != getIDEquipa()) {
                                     return false;
                                 }
                             }
@@ -193,150 +191,7 @@ public class Rainha extends CrazyPiece {
             UndoHelp jogadaAnterior = new UndoHelp(idPeca, x, y, idComida, xFim, yFim, turnoA);
             listaDasJogadas.add(jogadaAnterior);
             return true;
-        }*/
-
-
-
-
-
-        if (xO > xD && yO > yD) {
-            //diagonal para esquerda cima
-            direcaoRainha = -1;
         }
-        if (xO > xD && yO < yD) {
-            //diagonal para esquerda baixo
-            direcaoRainha = 2;
-        }
-        if (xO < xD && yO > yD) {
-            //diagonal para direita cima
-            direcaoRainha = 0;
-        }
-        if (xO < xD && yO < yD) {
-            //diagonal para direita baixa
-            direcaoRainha = 1;
-        }
-        if (xO == xD && yO > yD) {
-            //movimento para cima
-            direcaoRainha = 3;
-        }
-        if (xO > xD && yO == yD) {
-            //movimento para esquerda
-            direcaoRainha = 4;
-        }
-        if (xO == xD && yO < yD) {
-            //movimento para baixo
-            direcaoRainha = 5;
-        }
-        if (xO < xD && yO == yD) {
-            //movimento para direita
-            direcaoRainha = 6;
-        }
-
-
-        if (direcaoRainha == -1) {
-            do {
-                for (CrazyPiece p : listaPecasAux) {
-                    if (distanciaX == distanciaY) {
-                        if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && peca.getX() != p.getX()) {
-                            return false;
-                        }
-                    }
-                }
-                xO--;
-                yO--;
-            } while (xO >= xD && yO >= yD);
-        }
-        if (direcaoRainha == 0) {
-            do {
-                for (CrazyPiece p : listaPecasAux) {
-                    if (distanciaX == distanciaY) {
-                        if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && peca.getX() != p.getX()) {
-                            return false;
-                        }
-                    }
-                }
-                xO++;
-                yO--;
-            } while (xO <= xD && yO >= yD);
-        }
-
-        if (direcaoRainha == 1) {
-            do {
-                for (CrazyPiece p : listaPecasAux) {
-                    if (distanciaX == distanciaY) {
-                        if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && peca.getX() != p.getX()) {
-                            return false;
-                        }
-                    }
-                }
-                xO++;
-                yO++;
-            } while (xO <= xD && yO <= yD);
-        }
-
-        if (direcaoRainha == 2) {
-            do {
-                for (CrazyPiece p : listaPecasAux) {
-                    if (distanciaX == distanciaY) {
-                        if (peca.getY() != p.getY() && p.getY() == yO && p.getX() == xO && peca.getX() != p.getX()) {
-                            return false;
-                        }
-                    }
-                }
-                xO--;
-                yO++;
-            } while (xO >= xD && yO <= yD);
-        }
-
-        if (direcaoRainha == 3) {
-            do {
-                for (CrazyPiece p : listaPecasAux) {
-
-                    if (p.getY() == yO && peca.getY() != p.getY() && p.getX() == peca.getX()) {
-                        return false;
-                    }
-                }
-                yO--;
-            } while (yO >= yD);
-        }
-
-        if (direcaoRainha == 4) {
-            do {
-                for (CrazyPiece p : listaPecasAux) {
-                    if (p.getX() == xO && peca.getX() != p.getX() && p.getY() == peca.getY()) {
-                        return false;
-                    }
-                }
-                xO--;
-            } while (xO >= xD);
-        }
-
-        if (direcaoRainha == 5) {
-            do {
-                for (CrazyPiece p : listaPecasAux) {
-
-                    if (p.getY() == yO && peca.getY() != p.getY() && p.getX() == peca.getX()) {
-                        return false;
-                    }
-                }
-                yO++;
-            } while (yO <= yD);
-        }
-
-        if (direcaoRainha == 6) {
-            do {
-                for (CrazyPiece p : listaPecasAux) {
-
-                    if (p.getX() == xO && peca.getX() != p.getX() && p.getY() == peca.getY()) {
-                        return false;
-                    }
-                }
-                xO++;
-            } while (xO <= xD);
-        }
-        UndoHelp jogadaAnterior = new UndoHelp(idPeca, x, y, idComida, xFim, yFim, turnoA);
-        listaDasJogadas.add(jogadaAnterior);
-        return true;
     }
-
 }
+
