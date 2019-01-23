@@ -14,6 +14,10 @@ abstract public class  CrazyPiece {
     String tipoString;
     int nrCapturas;
     int nrPontos;
+    int jogadaInvalida;
+    int jogadaValida;
+    int nrTotalJogadas;
+    int ratioJogadas;
     int x;
     int y;
     boolean capturada = false;
@@ -82,12 +86,33 @@ abstract public class  CrazyPiece {
         return nrCapturas;
     }
 
-    public int adicionaPontos(int pontos){
+    public void adicionaPontos(int pontos){
         nrPontos += pontos;
-        return nrPontos;
     }
     public int getValorRelativo(){
         return valorRelativo;
+    }
+    public int getRatioJogadas(){
+        return ratioJogadas;
+    }
+    public void jogadaInvalida(){
+        jogadaInvalida++;
+    }
+    public void jogadaValida(){
+        jogadaValida++;
+    }
+    public void nrTotalJogadas(){
+        nrTotalJogadas++;
+    }
+    public int getJogadaValida(){
+        return jogadaValida;
+    }
+    public int getJogadaInvalida(){
+        return jogadaInvalida;
+    }
+
+    public void setRatioJogadas(){
+        ratioJogadas = jogadaInvalida/nrTotalJogadas;
     }
 
     abstract public String getImagePNG();

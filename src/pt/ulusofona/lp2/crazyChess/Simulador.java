@@ -23,6 +23,7 @@ public class Simulador {
     private int jogadaVBranca = 0;
     private int jogadaVPreta = 0;
     private int jogadaINVBranca = 0, jogadaINVPreta = 0;
+    private int ratioJogada = 0;
     static int jogadasSemCaptura = 0;
     private String mensagem;
     private int turno = 0;
@@ -190,18 +191,25 @@ public class Simulador {
         int equipaAtual = getIDEquipaAJogar();
         CrazyPiece pecaMexe;
 
+
+        pecaMexe = pecaNaPosicao(xO, yO);
+
         if (xD < 0 || yD < 0 || xD > sizeTabuleiro - 1 || yD > sizeTabuleiro - 1) {
             jogadaInvalida();
+            pecaMexe.jogadaInvalida();
+            pecaMexe.nrTotalJogadas();
             return false;
         }
 
         if (xD == xO && yD == yO) {
             jogadaInvalida();
+            pecaMexe.jogadaInvalida();
+            pecaMexe.nrTotalJogadas();
             return false;
         }
 
 
-        pecaMexe = pecaNaPosicao(xO, yO);
+
         // nao encontrou peça
         if (pecaMexe == null) {
             jogadaInvalida();
@@ -210,6 +218,8 @@ public class Simulador {
 
         if (pecaMexe.getIDEquipa() != equipaAtual) {
             jogadaInvalida();
+            pecaMexe.jogadaInvalida();
+            pecaMexe.nrTotalJogadas();
             return false;
         }
 
@@ -220,14 +230,20 @@ public class Simulador {
             if (pecaNoDestino != null) {
                 if (pecaNoDestino.getIDEquipa() == pecaMexe.getIDEquipa()) {
                     jogadaInvalida();
+                    pecaMexe.jogadaInvalida();
+                    pecaMexe.nrTotalJogadas();
                     return false;
+
                 } else {
+
                     capturarPeca(pecaNoDestino, xD, yD);
                     pecaMexe.nrCapturas++;
                     pecaMexe.adicionaPontos(pecaMexe.getValorRelativo());
                 }
             }
             jogadaValida();
+            pecaMexe.jogadaValida();
+            pecaMexe.nrTotalJogadas();
             pecaMexe.posicaoX(xD);
             pecaMexe.posicaoY(yD);
             turno++;
@@ -236,6 +252,8 @@ public class Simulador {
             countLebre++;
             return true;
         }
+        pecaMexe.jogadaInvalida();
+        pecaMexe.nrTotalJogadas();
         jogadaInvalida();
         return false;
 
@@ -497,6 +515,8 @@ public class Simulador {
         mapaEstatisticas.put("top5Capturas",top5Capturas());
         mapaEstatisticas.put("top5Pontos", top5Pontos());
         mapaEstatisticas.put("pecasMais5Capturas",pecasMais5Capturas());
+        mapaEstatisticas.put("3pecasMaisBaralhadas",tresPecasMaisBaralhadas());
+        mapaEstatisticas.put("tiposPecaCapturados",tiposPecaCapturados());
 
 
         return mapaEstatisticas;
@@ -534,6 +554,29 @@ public class Simulador {
                 .map((p1) -> p1.getIDEquipa() + ":"+ p1.getAlcunha()+ ":" + p1.getNrPontos()+ ":"+ p1.getNrCapturas())
                 .collect(Collectors.toList());
         return pecasMais5Capturas;
+    }
+
+    public List <String> tresPecasMaisBaralhadas(){
+        List<String> tresPecasMaisBaralhadas;
+
+        tresPecasMaisBaralhadas = listaPecasAux.stream()
+                .sorted((p1,p2)-> p2.getRatioJogadas() - p1.getRatioJogadas())
+                .limit(3)
+                .map((p1) -> p1.getIDEquipa()+ ":" + p1.getAlcunha()+ ":"+ p1.getJogadaInvalida()+ ":" + p1.getJogadaValida())
+                .collect(Collectors.toList());
+
+        return tresPecasMaisBaralhadas;
+    }
+
+    public List <String> tiposPecaCapturados(){
+        List<String> tiposPecaCapturados;
+
+        tiposPecaCapturados = listaPecasAux.stream()
+                .sorted((p1,p2)-> p2.getNrCapturas()- p1.getNrCapturas())
+                .map((p1)-> p1.getTipoDePeca() +":"+ p1.getNrCapturas())
+                .collect(Collectors.toList());
+
+        return tiposPecaCapturados;
     }
 
 
