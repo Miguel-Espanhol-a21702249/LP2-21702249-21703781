@@ -17,6 +17,7 @@ public class Simulador {
     static List<CrazyPiece> listaPecasAux = null;
     static List<String> listaJogadaSugeridaRei = new ArrayList<>();
     static List<UndoHelp> listaDasJogadas = new ArrayList<>();
+    static List<Comparable> listaSugetoesAux = null;
     private int vencedor = 3;
     public static int pecaComidaPreta = 0, pecaComidaBranca = 0;
     private int jogadaVBranca = 0;
@@ -135,6 +136,7 @@ public class Simulador {
             // ler jogo gravado
             if (leitorFicheiro.hasNextLine()) {
                 String[] dados = leitorFicheiro.nextLine().split(":");
+                String[] dadosVirgula  = leitorFicheiro.nextLine().split(",");
                 if (Integer.parseInt(dados[0]) == 10 || Integer.parseInt(dados[0]) == 20 && Integer.parseInt(dados[1]) >= 0 && Integer.parseInt(dados[2]) >= 0 && Integer.parseInt(dados[3]) >= 0 && Integer.parseInt(dados[4]) >= 0 && Integer.parseInt(dados[5]) >= 0 && Integer.parseInt(dados[6]) >= 0) {
                     turno = Integer.parseInt(dados[1]) + Integer.parseInt(dados[4]);
                     jogadaVPreta = Integer.parseInt(dados[1]);
@@ -143,6 +145,7 @@ public class Simulador {
                     jogadaVBranca = Integer.parseInt(dados[4]);
                     pecaComidaBranca = Integer.parseInt(dados[5]);
                     jogadaINVBranca = Integer.parseInt(dados[6]);
+                    jogadasSemCaptura = Integer.parseInt(dadosVirgula[1]);
                 }
 
             }
@@ -213,8 +216,8 @@ public class Simulador {
         if (pecaMexe.movimento(pecaMexe, equipaAtual, xO, yO, xD, yD)) {
             //verifica se ha peça para comer
             CrazyPiece pecaNoDestino = pecaNaPosicao(xD, yD);
+            jogadasSemCaptura++;
             if (pecaNoDestino != null) {
-
                 if (pecaNoDestino.getIDEquipa() == pecaMexe.getIDEquipa()) {
                     jogadaInvalida();
                     return false;
@@ -295,8 +298,8 @@ public class Simulador {
     }
 
     public List<String> getResultados() {
-        List<String> resultados = new ArrayList<>();
-        resultados.add("JOGO DE CRAZY CHESS");
+            List<String> resultados = new ArrayList<>();
+            resultados.add("JOGO DE CRAZY CHESS");
         if (vencedor == 0) {
             mensagem = "VENCERAM AS BRANCAS";
         }
@@ -350,17 +353,52 @@ public class Simulador {
         }
     }
 
-    public List<String> obterSugestoesJogada(int xO, int yO) {
-        List<String> listaSugetoesAux = new ArrayList<>();
-        for (CrazyPiece piece : listaPecasAux) {
-            if (piece.getX() == xO && piece.getY() == yO && piece.getIDEquipa() == getIDEquipaAJogar()) {
-                listaSugetoesAux = piece.listaDeSugestoes(listaPecas, xO, yO, sizeTabuleiro);
+    public boolean processaSugestao(int xO, int yO, int xD, int yD){
+        int equipaAJogar = getIDEquipaAJogar();
+        boolean vazia =true;
+        if (xO != xD && yO != yD && xD >= 0 && yD >= 0 && xD <= sizeTabuleiro - 1 && yD <= sizeTabuleiro - 1 ) {
+            for(CrazyPiece peca:listaPecas){
+                if(peca.getX() == xO && peca.getY() == yO){
+                    if(peca.getIDEquipa() == equipaAJogar){
+                        if(peca.movimento(peca,equipaAJogar,xO,yO,xD,yD)) {
+                            for (CrazyPiece piece : listaPecas) {
+                                if (piece.getX() == xD && piece.getY() == yD) {
+                                    vazia = false;
+                                    if (piece.getIDEquipa() != peca.getIDEquipa()) {
 
+                                        return true;
+                                    }
+                                }
+                            }
+                            if (vazia) {
+                                return true;
+                            }
+                        }
+                    }
+                }
             }
         }
-        if (listaSugetoesAux.size() == 0) {
-            listaSugetoesAux.add("Pedido inválido");
+        return false;
 
+    }
+
+    public List<Comparable> obterSugestoesJogada(int xO, int yO){
+    listaSugetoesAux = new ArrayList<>();
+        for (CrazyPiece piece : listaPecasAux) {
+            if (piece.getX() == xO && piece.getY() == yO ) {
+                if (piece.getIDEquipa() == getIDEquipaAJogar()) {
+                    for (int y = 0; y < sizeTabuleiro; y++) {
+                        for (int x = 0; x < sizeTabuleiro; x++) {
+                            if (processaSugestao(xO, yO, x, y)) {
+                                listaSugetoesAux.add(x + "," + y);
+                            }
+                        }
+                    }
+                } else {
+
+                    listaSugetoesAux.add("Pedido inválido");
+                }
+            }
         }
         return listaSugetoesAux;
     }
@@ -441,9 +479,7 @@ public class Simulador {
                 writer.write(newLine);
 
             }
-            writer.write(getIDEquipaAJogar() + ":" + jogadaVPreta + ":" + pecaComidaBranca + ":" + jogadaINVPreta + ":" + jogadaVBranca + ":" + pecaComidaPreta + ":" + jogadaINVBranca);
-            writer.write(newLine);
-            writer.write(listaPecas.size() + "");
+            writer.write(getIDEquipaAJogar() + ":" + jogadaVPreta + ":" + pecaComidaBranca + ":" + jogadaINVPreta + ":" + jogadaVBranca + ":" + pecaComidaPreta + ":" + jogadaINVBranca + "," + jogadasSemCaptura);
             writer.close();
             return true;
         } catch (IOException e) {

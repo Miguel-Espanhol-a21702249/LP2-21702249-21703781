@@ -79,33 +79,4 @@ public class Lebre extends CrazyPiece {
         return false;
     }
 
-    @Override
-    public List<String> listaDeSugestoes(List<CrazyPiece> listaPecas, int xO, int yO, int sizeTabuleiro) {
-        List<String> sugestoesDaLebre = new ArrayList<>();
-
-
-        if (x-1 >= 0 && y+1 < sizeTabuleiro) {
-            sugestoesDaLebre.add((x-1) + ", " + (y+1));
-        }
-        if(x+1 < sizeTabuleiro && y+1 < sizeTabuleiro) {
-            sugestoesDaLebre.add((x+1) + ", " + (y+1));
-        }
-        if (x+1 < sizeTabuleiro && y-1 >= 0) {
-            sugestoesDaLebre.add((x+1) + ", " + (y-1));
-        }
-        if (x-1 >= 0 && y-1 >= 0 ) {
-            sugestoesDaLebre.add((x-1) + ", " + (y-1));
-        }
-        //remove sugestao se tiver outra peça no mesmo sitio
-
-        for(CrazyPiece pecas : listaPecas) {
-            for (int ocupado=0; ocupado < sugestoesDaLebre.size(); ocupado++) {
-                if (Simulador.turnoAJogar == pecas.getIDEquipa() && sugestoesDaLebre.get(ocupado).equals(pecas.getX() + ", " + pecas.getY())) {
-                    sugestoesDaLebre.remove(ocupado);
-                    ocupado=0;
-                }
-            }
-        }
-        return sugestoesDaLebre;
-    }
 }

@@ -104,10 +104,6 @@ public class Joker extends CrazyPiece {
         return jogadaValida;
     }
 
-    @Override
-    public List<String> listaDeSugestoes(List<CrazyPiece> listaPecas, int xO, int yO, int sizeTabuleiro) {
-        return null;
-    }
 
 
     @Override

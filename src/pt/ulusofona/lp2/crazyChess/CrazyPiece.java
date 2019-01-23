@@ -66,6 +66,7 @@ abstract public class  CrazyPiece {
     String getAlcunha(){
         return alcunha;
     }
+
     public int getId() {
         return iDPeca;
     }
@@ -111,7 +112,6 @@ abstract public class  CrazyPiece {
         }
     }
 
-    abstract public List<String> listaDeSugestoes(List<CrazyPiece> listaPecas, int xO, int yO, int sizeTabuleiro);
     public String toString(){
         if(!getCapturada()) {
             return iDPeca + " | " + tipoString + " | " + valorRelativo + " | " + iDEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
