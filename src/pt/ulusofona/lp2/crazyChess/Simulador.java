@@ -375,7 +375,7 @@ public class Simulador {
 
     }
 
-    List<Comparable> obterSugestoesJogada(int xO, int yO){
+    public List<Comparable> obterSugestoesJogada(int xO, int yO){
     listaSugetoesAux = new ArrayList<>();
         for (CrazyPiece piece : listaPecasAux) {
             if (piece.getX() == xO && piece.getY() == yO ) {
