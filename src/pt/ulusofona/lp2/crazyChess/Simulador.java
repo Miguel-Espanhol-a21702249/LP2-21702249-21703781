@@ -405,7 +405,7 @@ public class Simulador {
                     for (int y = 0; y < sizeTabuleiro; y++) {
                         for (int x = 0; x < sizeTabuleiro; x++) {
                             if (processaSugestao(xO, yO, x, y)) {
-                                listaSugetoesAux.add(x + "," + y);
+                                listaSugetoesAux.add(x + "," + y + "," + piece.getNrPontos());
                             }
                         }
                     }
