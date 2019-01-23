@@ -53,9 +53,5 @@ public class UmaPecaMesmoMaluca extends CrazyPiece {
         return false;
     }
 
-    @Override
-    public List<String> listaDeSugestoes(List<CrazyPiece> listaPecas, int xO, int yO, int sizeTabuleiro) {
-        return null;
-    }
 
 }

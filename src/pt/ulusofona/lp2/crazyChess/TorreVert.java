@@ -94,10 +94,6 @@ public class TorreVert extends CrazyPiece {
                 }
     }
 
-    @Override
-    public List<String> listaDeSugestoes(List<CrazyPiece> listaPecas, int xO, int yO, int sizeTabuleiro) {
-        return null;
-    }
 
 
 }

@@ -66,6 +66,7 @@ abstract public class  CrazyPiece {
     String getAlcunha(){
         return alcunha;
     }
+
     public int getId() {
         return iDPeca;
     }
