@@ -383,13 +383,11 @@ public class Simulador {
                                     vazia = false;
                                     if (piece.getIDEquipa() != peca.getIDEquipa()) {
                                         return true;
-
                                     }
                                 }
                             }
                             if (vazia) {
                                 return true;
-
                             }
                         }
                     }
@@ -397,7 +395,6 @@ public class Simulador {
             }
         }
         return false;
-
     }
 
     public List<Comparable> obterSugestoesJogada(int xO, int yO){

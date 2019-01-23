@@ -24,7 +24,7 @@ public class TestesRei {
         Simulador simulador = new Simulador();
         simulador.setTamanho(8);
         CrazyPiece rei = new Rei(1,0,10,0,0,false);
-        assertFalse(simulador.processaJogada(0,0,0,-1));
+        assertFalse(simulador.processaJogada(0,0,0,0));
     }
 
     @Test
